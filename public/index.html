@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Worth carrying?</title>
 <meta name="description" content="Standing in a shop abroad? Type or photograph the product and its price. See India's price today, its lowest, and what it really costs to carry home.">
+<meta name="theme-color" content="#1b1a18">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Worth carrying">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
 <style>
   :root{--paper:#f6f1e7;--ink:#1c1a17;--muted:#6f685c;--line:#e2dacb;--card:#fffdf8;--dark:#1b1a18;--dark-ink:#f1ece2;--dark-muted:#a39d91;
         --green:#2f8a4a;--amber:#c27a1f;--red:#b6372f;--teal:#0f6f7a;--blue:#4c8fb5;
@@ -70,6 +77,7 @@
   <p class="hint">Duty-free allowance is ₹75,000 per person, not pooled. Duty above that is 35 percent. Amazon history needs a Keepa key; otherwise the low builds from everyone's lookups over time.</p>
 </div>
 <script>
+if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('/sw.js').catch(()=>{});
 (async function(){
   const $=(s)=>document.querySelector(s); const out=$('#out'), status=$('#status'), go=$('#go');
   const cfg=await fetch('/api/config').then(r=>r.json()).catch(()=>({currencies:['AED','USD','INR'],countries:[]}));

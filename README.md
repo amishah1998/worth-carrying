@@ -25,6 +25,10 @@ Shelf prices abroad get compared against India's printed MRP, and the MRP is a f
 5. Lands the shelf price. Frankfurter converts it, the VAT refund comes off, and duty at 35 percent goes on for anything above the 75,000 rupee per-person allowance.
 6. Decides. Cheaper abroad, marginal, not worth carrying, or wait for the India sale, with the reason and the warranty flag.
 
+## As an app on your phone
+
+Host it once (see [docs/deploy.md](docs/deploy.md), Fly.io is set up in the repo), open the address on your phone, and choose "Add to Home Screen". It installs with an icon, opens full screen, and keeps its shell cached for weak roaming data. The camera button opens the phone camera directly.
+
 ## Keys
 
 Put them in a `.env` file in the folder you run from, or export them.
