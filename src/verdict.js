@@ -10,6 +10,10 @@ export const VERDICTS = {
 
 // india: { now, low, typical } in INR. landed: number in INR. warranty: { status }.
 export function decide({ india, landed, warranty }) {
+  if (india?.per100 && !india.queryGrams && landed) {
+    const p = india.per100;
+    return { verdict: "unknown", label: "Add the pack size for a verdict", saving: null, savingPct: null, reason: `India sells it at ${Math.round(p.low).toLocaleString("en-IN")} to ${Math.round(p.high).toLocaleString("en-IN")} rupees per 100 g. Add the weight, like "500g", and the card compares your pack.` };
+  }
   if (!india?.now || !landed) return { verdict: "unknown", label: VERDICTS.unknown, saving: null, savingPct: null, reason: "No matching Indian listing" };
   const saving = india.now - landed;
   const savingPct = saving / india.now;
@@ -25,10 +29,27 @@ export function decide({ india, landed, warranty }) {
 
 // Stores a traveller would actually order from. "India today" is the cheapest of these;
 // an unknown shop at half the price is shown separately, never used as the anchor.
-export const TRUSTED = /amazon\.in|\bamazon\b|flipkart|myntra|nykaa|croma|reliance digital|tata cliq|tatacliq|jiomart|ajio|sephora|tira|vijay sales|shoppers stop|apple\b|samsung\b|jbl india|sony centre|boat|american tourister|samsonite|imagine|unicorn|aptronix|ishopping|maple/i;
+export const TRUSTED = /amazon\.in|\bamazon\b|flipkart|myntra|nykaa|croma|reliance digital|tata cliq|tatacliq|jiomart|ajio|sephora|tira|vijay sales|shoppers stop|apple\b|samsung\b|jbl india|sony centre|boat|american tourister|samsonite|imagine|unicorn|aptronix|ishopping|maple|bigbasket|blinkit|zepto|instamart|dmart|nature'?s basket|spencer'?s|reliance smart|star bazaar/i;
 
 export function isTrusted(l) {
   return TRUSTED.test(l.seller || "") || TRUSTED.test(l.url || "");
+}
+
+// A generic product is compared per 100 g across pack sizes. With a pack size in the query
+// the figures are scaled to that size; without one only the per-100 g range is known.
+export function genericFigures(kept, queryGrams) {
+  const priced = kept.filter((k) => k.per100);
+  if (!priced.length) return { now: null, nowSeller: null, low: null, high: null, typical: null, per100: null, unit: "100 g", queryGrams, historySource: null };
+  const trusted = priced.filter(isTrusted);
+  const pool = trusted.length ? trusted : priced;
+  const cheapest = pool.reduce((a, b) => (a.per100 <= b.per100 ? a : b));
+  const per100 = { low: cheapest.per100, lowSeller: cheapest.seller, lowGrams: cheapest.grams, typical: median(pool.map((k) => k.per100)), high: Math.max(...pool.map((k) => k.per100)) };
+  const scale = queryGrams ? queryGrams / 100 : null;
+  return {
+    now: scale ? per100.low * scale : null, nowSeller: cheapest.seller, nowTrusted: trusted.length > 0,
+    low: null, high: null, typical: scale ? per100.typical * scale : null,
+    per100, unit: "100 g", queryGrams, historySource: null,
+  };
 }
 
 // Today's India figures from the kept listings plus whatever history source answered.

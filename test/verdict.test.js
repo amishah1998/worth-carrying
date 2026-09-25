@@ -1,6 +1,24 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { decide, indiaFigures } from "../src/verdict.js";
+import { decide, indiaFigures, genericFigures } from "../src/verdict.js";
+
+test("a generic product is priced per 100 g and scaled to the pack size when one is given", () => {
+  const kept = [
+    { price: 650, seller: "SnaXup", grams: 500, per100: 130 },
+    { price: 221, seller: "JioMart Grocery", grams: 200, per100: 110.5 },
+    { price: 351, seller: "Flipkart", grams: null, per100: null },
+  ];
+  const open = genericFigures(kept, null);
+  assert.equal(open.per100.low, 110.5);
+  assert.equal(open.per100.lowSeller, "JioMart Grocery");
+  assert.equal(open.now, null);
+  const d = decide({ india: open, landed: 2611, warranty: { status: "unknown" } });
+  assert.equal(d.verdict, "unknown");
+  assert.match(d.label, /pack size/);
+  const sized = genericFigures(kept, 500);
+  assert.equal(sized.now, 552.5);
+  assert.equal(decide({ india: sized, landed: 2611, warranty: { status: "unknown" } }).verdict, "not_worth");
+});
 
 test("cheaper, marginal, not worth and wait", () => {
   assert.equal(decide({ india: { now: 11500, low: 9000, typical: 11000 }, landed: 8833, warranty: { status: "na" } }).verdict, "cheaper");

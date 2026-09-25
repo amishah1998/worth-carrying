@@ -30,6 +30,24 @@ test("elixir stays distinct from eau de parfum even when the box says both", () 
   assert.equal(parseSpec("Dior Sauvage Eau de Parfum For Men 100ml").conc, "edp");
 });
 
+test("pack weights are read, and a generic query compares per 100 g instead of rejecting other packs", async () => {
+  assert.equal(parseSpec("Roasted Californian Almonds 500 g").grams, 500);
+  assert.equal(parseSpec("Happilo Almonds 1kg").grams, 1000);
+  assert.equal(ruleCheck("Happilo almonds 200g", { title: "Happilo Almonds 500 g" }).verdict, "reject");
+  assert.equal(ruleCheck("almonds roasted", { title: "Roasted Californian Almonds 500 g" }, { generic: true }).verdict, "unsure");
+  assert.equal(ruleCheck("almonds roasted", { title: "Indian Kitchen Roasted Salted Almond 250g" }, { generic: true }).verdict, "unsure");
+  const r = await matchListings("almonds roasted", [
+    { title: "Roasted Californian Almonds 500 g", price: 650, seller: "SnaXup" },
+    { title: "Wonderland Roasted & Salted Almonds 200g", price: 221, seller: "JioMart Grocery" },
+    { title: "Happilo Premium Californian Almonds Roasted And Salted", price: 351, seller: "Flipkart" },
+  ], { apiKey: null });
+  assert.equal(r.generic, true);
+  assert.equal(r.kept.length, 3);
+  assert.equal(r.kept[0].per100, 130);
+  assert.equal(r.kept[1].per100, 110.5);
+  assert.equal(r.kept[2].per100, null);
+});
+
 test("decants, samples and minis are rejected even when the title also carries the full size", () => {
   const q = "Dior Sauvage EDP 100ml";
   assert.equal(ruleCheck(q, { title: "Dior Sauvage Eau De Parfum For Men 100ml 10ml Decant" }).verdict, "reject");

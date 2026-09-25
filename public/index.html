@@ -156,9 +156,13 @@ if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.se
   });
   function render(d){
     const i=d.india, a=d.abroad, v=d.verdict;
+    const p=i.per100;
     const tiles=`<div class="tiles">
-      <div class="tile"><b>${inr(i.now)}</b><span>India today${i.nowSeller?' at '+esc(i.nowSeller):''}${i.nowTrusted===false?', not a major store':''}</span></div>
-      <div class="tile"><b>${inr(i.low)}</b><span>${i.low?'India lowest'+(i.historySource==='keepa'?', Amazon':''):'No history yet'}</span></div>
+      ${p&&!i.queryGrams
+        ?`<div class="tile"><b>${inr(p.low)}</b><span>India per 100 g, cheapest${p.lowSeller?' at '+esc(p.lowSeller):''}</span></div>
+          <div class="tile"><b>${inr(p.typical)}</b><span>India per 100 g, typical</span></div>`
+        :`<div class="tile"><b>${inr(i.now)}</b><span>India today${i.nowSeller?' at '+esc(i.nowSeller):''}${i.nowTrusted===false?', not a major store':''}${p?', scaled to '+i.queryGrams+' g':''}</span></div>
+          <div class="tile"><b>${inr(i.low||i.typical)}</b><span>${i.low?'India lowest'+(i.historySource==='keepa'?', Amazon':''):(i.typical?'India typical today':'No history yet')}</span></div>`}
       <div class="tile"><b>${a?inr(a.landedInr):'n/a'}</b><span>${a?'Landed cost here':'Enter a shelf price'}</span></div></div>`;
     const ladder=a?`<ul class="ladder">
       <li><span class="k">Shelf price</span><span class="v">${inr(a.shelfInr)}</span></li>
@@ -168,9 +172,9 @@ if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.se
       </ul><div class="why" style="color:var(--dark-muted);margin-top:6px">${esc(a.dutyNote)}</div>`:'';
     const hist=historyBlock(d);
     const flag=`<div class="flag ${d.warranty.status}">${esc(d.warranty.text)}${d.notes.length?'<br>'+d.notes.map(esc).join('<br>'):''}</div>`;
-    const kept=d.listings.kept.map(l=>`<div class="li"><div><div class="t">${l.url?`<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.title)}</a>`:esc(l.title)}</div><div class="s">${esc(l.seller)}${l.p!=null?' · '+Math.round(l.p*100)+'% match':''}</div></div><div class="p">${inr(l.price)}</div></div>`).join('');
+    const kept=d.listings.kept.map(l=>`<div class="li"><div><div class="t">${l.url?`<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.title)}</a>`:esc(l.title)}</div><div class="s">${esc(l.seller)}${l.p!=null?' · '+Math.round(l.p*100)+'% match':''}${l.grams?' · '+l.grams+' g':''}${l.per100?' · '+inr(l.per100)+' per 100 g':''}</div></div><div class="p">${inr(l.price)}</div></div>`).join('');
     const rej=d.listings.rejected.map(l=>`<div class="li"><div><div class="t">${esc(l.title)}</div><div class="s">${esc(l.seller)} · <span class="why">${esc(l.reason||'')}</span></div></div><div class="p">${inr(l.price)}</div></div>`).join('');
-    out.innerHTML=`<div class="card"><div class="kicker">${esc(d.query)}</div><p class="verdict ${v.verdict}">${esc(v.label)}</p><div class="reason">${esc(v.reason)}${v.saving!=null?' · '+(v.saving>=0?'save ':'lose ')+inr(Math.abs(v.saving)):''}</div>${tiles}${ladder}${hist}${flag}<div class="foot">${d.listings.kept.length} matches from ${d.meta.listingsSeen} listings · ${d.provider}${d.jevUsed?' + Jev':''} · ${d.meta.ms} ms${d.fx?' · 1 '+esc($('#currency').value)+' = ₹'+d.fx.rate:''}</div></div>
+    out.innerHTML=`<div class="card"><div class="kicker">${esc(d.query)}${d.generic?' · compared per 100 g':''}</div><p class="verdict ${v.verdict}">${esc(v.label)}</p><div class="reason">${esc(v.reason)}${v.saving!=null?' · '+(v.saving>=0?'save ':'lose ')+inr(Math.abs(v.saving)):''}</div>${tiles}${ladder}${hist}${flag}<div class="foot">${d.listings.kept.length} matches from ${d.meta.listingsSeen} listings · ${d.provider}${d.jevUsed?' + Jev':''} · ${d.meta.ms} ms${d.fx?' · 1 '+esc($('#currency').value)+' = ₹'+d.fx.rate:''}</div></div>
       <div class="list"><h2>Indian listings that match</h2>${kept||'<div class="s">None. Try a shorter name, or check the rejected list below.</div>'}
       ${rej?`<details><summary>${d.listings.rejected.length} rejected, with the reason</summary>${rej}</details>`:''}</div>`;
   }
