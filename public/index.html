@@ -30,6 +30,7 @@
   .go{background:var(--ink);color:var(--paper);border:0;border-radius:12px;padding:13px;font-weight:600;font-size:1.05rem;cursor:pointer}
   .go:disabled{opacity:.5} details.more{font-size:.9rem;color:var(--muted)} details.more summary{cursor:pointer} details.more .row{margin-top:8px}
   .status{color:var(--muted);font-size:.9rem;margin:12px 2px;min-height:1.2em}
+  .fx{margin:-2px 2px 0;font-size:.9rem;color:var(--muted);min-height:1.3em} .fx b{color:var(--ink);font-size:1.05rem;font-family:var(--mono);font-weight:600} .fx small{display:block;font-size:.75rem}
   .card{background:var(--dark);color:var(--dark-ink);border-radius:18px;padding:20px 18px;margin-top:16px;box-shadow:0 14px 40px rgba(0,0,0,.18)}
   .card .kicker{font:600 .68rem/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--dark-muted);margin-bottom:10px}
   .card .verdict{font-size:1.9rem;font-weight:700;letter-spacing:-.02em;line-height:1.1;margin:0}
@@ -64,6 +65,7 @@
       <div><label for="price">Shelf price</label><input id="price" name="price" type="number" inputmode="decimal" step="0.01" min="0" placeholder="350"></div>
       <div><label for="currency">Currency</label><select id="currency" name="currency"></select></div>
     </div>
+    <div class="fx" id="fx" aria-live="polite">Type a price to see it in rupees at today's rate.</div>
     <details class="more"><summary>Where you are, and what else you are carrying</summary>
       <div class="row">
         <div><label for="country">Country (VAT refund)</label><select id="country" name="country"><option value="">Other, no refund</option></select></div>
@@ -84,6 +86,19 @@ if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.se
   $('#currency').innerHTML=cfg.currencies.map(c=>`<option ${c==='AED'?'selected':''}>${c}</option>`).join('');
   $('#country').innerHTML='<option value="">Other, no refund</option>'+cfg.countries.map(c=>`<option value="${c.code}" ${c.code==='AE'?'selected':''}>${c.name}</option>`).join('');
   if(!cfg.photo){ $('#camtext').textContent='Photo off'; $('#camlabel').title='The server has no vision key'; }
+  // Live converter: one rate fetch per currency per day, then rupees as you type.
+  const rates={}; const fxBox=$('#fx'); let fxTimer=null;
+  async function rateFor(cur){ if(rates[cur]) return rates[cur]; const r=await fetch('/api/fx?from='+encodeURIComponent(cur)).then(x=>x.json()); if(r.rate){ rates[cur]=r; return r; } throw new Error(r.error||'no rate'); }
+  async function showFx(){
+    const v=parseFloat($('#price').value), cur=$('#currency').value;
+    if(!(v>0)){ fxBox.innerHTML="Type a price to see it in rupees at today's rate."; return; }
+    if(cur==='INR'){ fxBox.innerHTML='<b>'+inr(v)+'</b>'; return; }
+    try{ const r=await rateFor(cur); fxBox.innerHTML='<b>'+inr(v*r.rate)+'</b> at today\'s rate<small>1 '+esc(cur)+' = ₹'+r.rate+(r.date?' on '+esc(r.date):'')+', mid-market. Your card adds a markup.</small>'; }
+    catch(e){ fxBox.textContent='Rate unavailable right now: '+e.message; }
+  }
+  $('#price').addEventListener('input',()=>{ clearTimeout(fxTimer); fxTimer=setTimeout(showFx,250); });
+  $('#currency').addEventListener('change',showFx);
+  rateFor($('#currency').value).catch(()=>{});
   let photo=null;
   $('#photo').addEventListener('change',async(e)=>{ const f=e.target.files[0]; if(!f) return; photo=await shrink(f); $('#camtext').textContent='Photo ✓'; $('#q').placeholder='reading the photo on submit'; });
   const inr=(n)=>n==null?'n/a':'₹'+Math.round(n).toLocaleString('en-IN');
