@@ -182,11 +182,11 @@ if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.se
     if(i.low) rows.push(`<li><span class="k">India lowest${i.lowDate?', '+fmt(i.lowDate):''}</span><span class="v">${inr(i.low)}</span></li>`);
     if(i.high) rows.push(`<li><span class="k">India highest${i.highDate?', '+fmt(i.highDate):''}</span><span class="v">${inr(i.high)}</span></li>`);
     const spark=s.length>=3?sparkline(s):'';
-    const sales=(cfg.sales||[]).map(x=>`${esc(x.name)} from ${fmt(x.start)}`).join(', ');
+    const sales=(cfg.sales||[]).map(x=>x.start?`${esc(x.name)} from ${fmt(x.start)}${x.sources&&x.sources[0]?` <a href="${esc(x.sources[0])}" target="_blank" rel="noopener" style="color:inherit">source</a>`:''}`:`${esc(x.name)}, usually ${esc(x.usual)}, this year's date not announced yet`).join('; ');
     const q=encodeURIComponent('site:pricehistory.app '+d.query);
     return `<div class="hist"><div class="kicker">Price history in India</div>
       ${spark}${rows.length?`<ul class="ladder">${rows.join('')}</ul>`:''}
-      <div class="why" style="color:var(--dark-muted)">${i.historyNote?esc(i.historyNote)+'. ':(i.historySource==='keepa'?'':'No record yet for this product; it starts today and fills in daily. ')}${sales?'Next big sales: '+sales+'. Lows usually land in sale weeks; check again then. ':''}<a href="https://www.google.com/search?q=${q}" target="_blank" rel="noopener" style="color:inherit">One year of Amazon and Flipkart history on pricehistory.app</a></div></div>`;
+      <div class="why" style="color:var(--dark-muted)">${i.historyNote?esc(i.historyNote)+'. ':(i.historySource==='keepa'?'':'No record yet for this product; it starts today and fills in daily. ')}${sales?'Big Indian sales: '+sales+'. Prices usually drop in those weeks; check again then. ':''}<a href="https://www.google.com/search?q=${q}" target="_blank" rel="noopener" style="color:inherit">One year of Amazon and Flipkart history on pricehistory.app</a></div></div>`;
   }
   function sparkline(s){
     const w=300,h=48,p=4; const ys=s.map(x=>x.price); const lo=Math.min(...ys), hi=Math.max(...ys); const span=hi-lo||1;

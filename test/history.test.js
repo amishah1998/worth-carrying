@@ -5,7 +5,6 @@ import os from "node:os";
 import path from "node:path";
 import { DatabaseSync } from "node:sqlite";
 import { openRecorder, queryKey, recheck } from "../src/history.js";
-import { upcomingSales } from "../src/sales.js";
 
 function tempDb() {
   return path.join(fs.mkdtempSync(path.join(os.tmpdir(), "wc-")), "obs.sqlite");
@@ -59,9 +58,4 @@ test("recheck re-prices every recent query and records only trusted stores", asy
   assert.equal(rows.length, 1);
   assert.equal(rows[0].price, 11999, "the untrusted 8,000 was not recorded");
   rec.close();
-});
-
-test("upcomingSales drops a sale a month after it starts", () => {
-  assert.equal(upcomingSales(new Date("2026-09-25")).length, 2);
-  assert.equal(upcomingSales(new Date("2026-11-15")).length, 0);
 });

@@ -34,7 +34,7 @@ Tourist VAT refunds (UAE 5 percent through Planet, Thailand 7 percent, Indonesia
 | Amazon Great Indian Festival | From 8 October, Prime early access 7 October | [DesiDime, sale updates page](https://www.desidime.com/news/amazon-great-indian-festival-2026-agif-sale) |
 | Flipkart Big Billion Days | From 9 October, Plus and VIP early access 8 October | [The Sunday Guardian, September 2026](https://sundayguardianlive.com/trending/flipkart-big-billion-days-2026-starts-on-october-9-with-exclusive-early-access-on-october-8-for-flipkart-plus-black-eligible-credit-card-members-heres-bank-offers-discounts-deals-290338/) |
 
-Dates are for the current year and drop off the card a month after they pass. Update them here and in `src/sales.js` when the next ones are announced.
+These are the hand-read seeds for 2026, each backed by two pages. A hosted copy with a Serper key also searches the web every week for the current year's announcement and replaces the seed only when two different sites name the same start date, keeping both links. When no date is confirmed, the card says "usually late September to October", which is what the last four years show: 23 September 2022, 8 October 2023, 27 September 2024, 23 September 2025 for the Amazon sale ([DesiDime sale history table](https://www.desidime.com/news/amazon-great-indian-festival-2026-agif-sale)). A date drops off the card a month after it passes.
 
 ## Currency and countries
 

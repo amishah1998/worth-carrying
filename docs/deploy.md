@@ -44,6 +44,8 @@ Put nginx or Caddy in front for HTTPS. The camera only works over HTTPS.
 | `RECORDER_DB` | data/observations.sqlite | Where lookups are recorded for history |
 | `VISION_MODEL` | claude-opus-5 | Model used to read a photo |
 | `CHROME_DEBUG_URL` | localhost 9222, then 9223 | Where the development Chrome listens |
+| `SALES_REFRESH_DAYS` | 7 | Weekly web search for this year's sale dates; 0 turns it off |
+| `SALES_STATE` | data/sales.json | Where confirmed sale dates are kept |
 
 ## What it costs to run
 
