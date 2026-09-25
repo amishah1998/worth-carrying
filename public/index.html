@@ -139,7 +139,8 @@ if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.se
   currencyForCountry();
   rateFor($('#currency').value).catch(()=>{});
   let photo=null;
-  $('#photo').addEventListener('change',async(e)=>{ const f=e.target.files[0]; if(!f) return; photo=await shrink(f); $('#camtext').textContent='Photo ✓'; $('#q').placeholder='reading the photo on submit'; });
+  const photoInput=$('#photo');
+  if(photoInput) photoInput.addEventListener('change',async(e)=>{ const f=e.target.files[0]; if(!f) return; photo=await shrink(f); $('#camtext').textContent='Photo ✓'; $('#q').placeholder='reading the photo on submit'; });
   const inr=(n)=>n==null?'n/a':'₹'+Math.round(n).toLocaleString('en-IN');
   $('#f').addEventListener('submit',async(e)=>{
     e.preventDefault(); const query=$('#q').value.trim(); if(!query&&!photo){ status.textContent='Type a product or take a photo.'; return; }
@@ -152,7 +153,7 @@ if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.se
       if(d.photo?.query){ $('#q').value=d.photo.query; }
       status.textContent=''; render(d);
     }catch(err){ status.textContent='Could not check: '+err.message; }
-    finally{ go.disabled=false; photo=null; $('#camtext').textContent='Photo'; }
+    finally{ go.disabled=false; photo=null; const ct=$('#camtext'); if(ct) ct.textContent='Photo'; }
   });
   function render(d){
     const i=d.india, a=d.abroad, v=d.verdict;
