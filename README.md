@@ -42,7 +42,7 @@ Put them in a `.env` file in the folder you run from, or export them.
 | `KEEPA_API_KEY` | Amazon.in price history on the first lookup | From EUR 49 a month |
 | `ANTHROPIC_API_KEY` | Photo input. The upload, the request and the reply parsing are tested against a stand-in endpoint; accuracy on real shelf photos is not yet measured | Pay per use, about a cent per photo |
 
-`PORT` (default 8787), `DAILY_CAP` (default 300 lookups a day, for a hosted copy), `PRICE_PROVIDER` (`serper`, `serpapi`, `chrome`), `RECORDER_DB` (default `data/observations.sqlite`), `RECHECK_HOURS` (default 24, the daily re-pricing of everything looked up; 0 turns it off; never runs on the Chrome provider).
+`PORT` (default 8787), `DAILY_CAP` (default 300 lookups a day, for a hosted copy), `PRICE_PROVIDER` (`serper`, `serpapi`, `chrome`), `RECORDER_DB` (default `data/observations.sqlite`), `RECHECK_HOURS` (default 24, the daily re-pricing of everything looked up; 0 turns it off; never runs on the Chrome provider), `SALES_REFRESH_DAYS` (default 7, the weekly web search for this year's Amazon and Flipkart sale dates, needs the Serper key; a date is shown only when two different sites agree, with both links).
 
 ## What leaves your machine
 

@@ -12,7 +12,7 @@ import { recheck } from "./history.js";
 import { searchIndia } from "./providers/index.js";
 import { matchListings } from "./match.js";
 import { isTrusted } from "./verdict.js";
-import { upcomingSales } from "./sales.js";
+import { upcomingSales, refreshSales } from "./sales.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const PUBLIC = path.join(here, "..", "public");
@@ -84,6 +84,13 @@ export function createServer({ port = Number(process.env.PORT) || 8787, dailyCap
     };
     setTimeout(run, 60 * 1000).unref();
     setInterval(run, hours * 3600 * 1000).unref();
+  }
+  // Weekly: look for this year's sale dates on the web; a date is taken only when two sites agree.
+  if (process.env.SERPER_API_KEY && Number(process.env.SALES_REFRESH_DAYS ?? 7) > 0) {
+    const days = Number(process.env.SALES_REFRESH_DAYS ?? 7);
+    const run = () => refreshSales({ log: console.error }).then((s) => console.log(`sales: ${Object.keys(s.sales).length} confirmed`)).catch((e) => console.error(`sales: ${e.message}`));
+    setTimeout(run, 2 * 60 * 1000).unref();
+    setInterval(run, days * 86400 * 1000).unref();
   }
   return server;
 }
