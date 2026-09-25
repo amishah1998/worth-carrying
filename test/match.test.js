@@ -69,13 +69,34 @@ test("import resellers and suspiciously cheap listings are rejected by rule", as
   assert.match(r.rejected.find((x) => x.price === 1999).reason, /clone/);
 });
 
-test("matchListings without a Jev key keeps unsure rows and reports no Jev use", async () => {
+test("without a model key, every word of the query must appear in the title", async () => {
   const r = await matchListings("JBL Flip 7", [
     { title: "JBL Flip 7 Portable Bluetooth Speaker", price: 12999, seller: "Amazon.in" },
     { title: "JBL Flip 6 Portable Bluetooth Speaker", price: 8999, seller: "Amazon.in" },
     { title: "Refurbished JBL Flip 7", price: 7999, seller: "Cashify" },
+    { title: "JBL फ्लिप 7 पोर्टेबल स्पीकर", price: 12999, seller: "amazon.in" },
   ], { apiKey: null });
   assert.equal(r.jevUsed, false);
-  assert.deepEqual(r.kept.map((k) => k.price), [12999, 8999]);
-  assert.equal(r.rejected[0].reason, "used or refurbished");
+  assert.deepEqual(r.kept.map((k) => k.price), [12999]);
+  assert.equal(r.rejected.find((x) => x.price === 8999).reason, "does not mention 7");
+  assert.equal(r.rejected.find((x) => x.price === 7999).reason, "used or refurbished");
+});
+
+test("without a model key, brand queries reject other lines and clones by word coverage", async () => {
+  const q = "Dior Sauvage EDP 100ml";
+  const r = await matchListings(q, [
+    { title: "Dior Sauvage Eau de Parfum For Men 100ml", price: 16999, seller: "GottaGo.in" },
+    { title: "Dior Sauvage Eau de Parfum", price: 15600, seller: "nykaa.com" },
+    { title: "Dior Homme Intense Eau de Parfum 100ml", price: 14170, seller: "GottaGo.in" },
+    { title: "Mens Diorr Sauvaage Eau De Parfum 100ml", price: 2184, seller: "amazon.in" },
+    { title: "Apple Watch Series 11 GPS 46mm Jet Black", price: 46490, seller: "Vijay Sales" },
+  ], { apiKey: null });
+  assert.deepEqual(r.kept.map((k) => k.price), [16999, 15600]);
+  assert.match(r.rejected.find((x) => x.price === 14170).reason, /sauvage/);
+  const w = await matchListings("Apple Watch Series 11 46mm", [
+    { title: "Apple Watch Series 11 GPS 46mm Jet Black Aluminium", price: 46490, seller: "Vijay Sales" },
+    { title: "Apple Watch Series 11 GPS 42mm Silver", price: 43490, seller: "Vijay Sales" },
+    { title: "Apple watches", price: 16000, seller: "TechStorm Gadgets" },
+  ], { apiKey: null });
+  assert.deepEqual(w.kept.map((k) => k.price), [46490]);
 });

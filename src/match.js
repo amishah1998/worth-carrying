@@ -52,8 +52,58 @@ export function ruleCheck(query, listing, { generic = false } = {}) {
   return { verdict: decided && (!q.conc || l.conc) ? "keep" : "unsure", reason: decided ? "size matches" : "size or variant not stated in the title" };
 }
 
-// Words that mark a query as a kind of product rather than a model, used only when Jev is absent.
-const GENERIC_HINT = /\b(almonds?|cashews?|pistachios?|walnuts?|dates|saffron|chocolates?|coffee|tea|honey|spices?|nuts|raisins?|rice|oil|ghee|butter|cheese|biscuits?|cookies|noodles|snacks?|masala|perfume oil|attar|oud)\b/i;
+// Words that mark a query as a kind of product rather than a brand and model.
+const GENERIC_HINT = /\b(almonds?|cashews?|pistachios?|walnuts?|hazelnuts?|macadamia|pecans?|dates|figs?|apricots?|raisins?|saffron|kesar|cardamom|cinnamon|vanilla|spices?|masala|chocolates?|toffee|candy|coffee|tea|matcha|honey|nuts|rice|olive oil|oil|ghee|butter|cheese|biscuits?|cookies|noodles|snacks?|chips|perfume oil|attar|oud|bakhoor|incense|soap|towels?|silk|pashmina|carpet|rug|pottery|ceramics?|tobacco|cigars?|wine|whisky|whiskey|vodka|rum|gin|beer|sunscreen|sheet masks?|face masks?|lip balm)\b/i;
+
+// Flavours and finishes that turn a kind of product into a different one.
+const FLAVOUR = /\b(masala|honey|chocolate|caramel|chilli|chili|peri peri|cream|onion|cheese|wasabi|mint|coffee|salted caramel|pepper|smoked|tandoori|barbecue|bbq|coated|activated)\b/i;
+
+const STOP = new Set(["the", "a", "an", "for", "of", "and", "with", "by", "in", "to", "on", "men", "mens", "women", "womens", "unisex", "new", "original", "edition", "spray", "eau", "de", "parfum", "toilette", "cologne", "edp", "edt", "edc", "premium", "authentic", "genuine", "imported", "pack", "piece", "pc", "gm", "gms", "grams", "ml", "cm", "mm", "kg", "g"]);
+
+function tokens(s) {
+  return (String(s || "").toLowerCase().match(/[a-z0-9]+/g) || [])
+    .filter((t) => !STOP.has(t) && !/^\d+(ml|cm|mm|gb|tb|g|gm|gms|kg|kgs|l|ltr|inch|in)$/.test(t));
+}
+
+// almonds and almond, cookies and cookie; "series" stays "series".
+function singular(t) {
+  if (t.length > 4 && t.endsWith("ies")) return t.slice(0, -3) + "y";
+  if (t.length > 3 && t.endsWith("s") && !/(ss|us|is)$/.test(t)) return t.slice(0, -1);
+  return t;
+}
+
+// Every word of the query, minus filler and sizes, must appear in the title: brand,
+// line and model number alike. "Dior Homme" fails "Dior Sauvage"; "Flip 6" fails "Flip 7".
+export function coverage(query, title) {
+  const q = [...new Set(tokens(query))];
+  const t = new Set();
+  for (const w of tokens(title)) { t.add(w); t.add(singular(w)); }
+  const missing = q.filter((x) => !t.has(x) && !t.has(singular(x)));
+  return { q, missing, cover: q.length ? (q.length - missing.length) / q.length : 0 };
+}
+
+export function looksGeneric(query) {
+  const first = String(query || "").trim().split(/\s+/)[0] || "";
+  return GENERIC_HINT.test(query) && !/\d/.test(first);
+}
+
+// The keyless decision: rules plus word coverage. Used on its own when no Jev key exists,
+// and as the first pass before Jev when one does.
+export function keylessCheck(query, listing, { generic = false } = {}) {
+  const base = ruleCheck(query, listing, { generic });
+  if (base.verdict === "reject") return base;
+  const c = coverage(query, listing.title);
+  if (generic) {
+    const head = c.q[0];
+    if (head && c.missing.includes(head)) return { verdict: "reject", reason: `does not mention ${head}` };
+    const f = listing.title.match(FLAVOUR);
+    if (f && !FLAVOUR.test(query)) return { verdict: "reject", reason: `${f[0].toLowerCase()} variant, you did not ask for it` };
+    if (c.missing.length) return { verdict: "reject", reason: `does not say ${c.missing.join(", ")}` };
+    return { verdict: "keep", reason: "same kind of product" };
+  }
+  if (c.missing.length) return { verdict: "reject", reason: `does not mention ${c.missing.join(", ")}` };
+  return { verdict: base.verdict === "keep" ? "keep" : "keep", reason: base.verdict === "keep" ? "brand, model and size match" : "brand and model match, size not in the title" };
+}
 
 // A genuine Dior at a fifth of the going rate is a decant or a clone. Judged against the
 // candidates still standing, so one outlier cannot move the bar. Runs twice: after the
@@ -72,13 +122,21 @@ export function priceSanity(rows, floor = 0.4) {
 // same model (for a brand query) or same kind of product (for a generic one), plus whether
 // the listing's size or variant contradicts the query. Which set counts is decided after.
 export async function matchListings(query, listings, { apiKey = process.env.TYPESAFE_API_KEY, same = 0.5, sameKind = 0.6, contradict = 0.5, max = 20 } = {}) {
+  // With no model key the decision is rules and word coverage; the generic call is a word list.
+  if (!apiKey) {
+    const generic = looksGeneric(query);
+    const rows = listings.slice(0, max).map((l) => ({ ...l, ...keylessCheck(query, l, { generic }) }));
+    priceSanity(rows);
+    for (const r of rows) { const grams = parseSpec(r.title).grams; r.grams = grams || null; r.per100 = grams ? r.price / grams * 100 : null; }
+    return { kept: rows.filter((r) => r.verdict === "keep"), rejected: rows.filter((r) => r.verdict !== "keep"), jevUsed: false, generic, genericP: null, queryGrams: parseSpec(query).grams || null };
+  }
   const loose = listings.slice(0, max).map((l) => ({ ...l, ...ruleCheck(query, l, { generic: true }) }));
   const strict = listings.slice(0, max).map((l) => ({ ...l, ...ruleCheck(query, l, { generic: false }) }));
-  let generic = !apiKey && GENERIC_HINT.test(query) && !/\d/.test(query.split(/\s+/)[0]);
+  let generic = looksGeneric(query);
   let rows = generic ? loose : strict;
   let genericP = null;
   const unsure = loose.filter((r) => r.verdict !== "reject");
-  if (apiKey && unsure.length) {
+  if (unsure.length) {
     const state = { query, listings: unsure.map((r, i) => ({ i, title: r.title, seller: r.seller })) };
     const questions = {
       generic: { type: "noul", instructions: "Does `query` name a kind of product rather than a specific brand and model? Examples of a kind: roasted almonds, saffron, dates, olive oil, sheet masks. Examples of a brand and model: Dior Sauvage EDP, JBL Flip 7, iPhone 17 Pro, American Tourister Curio." },
@@ -110,18 +168,17 @@ export async function matchListings(query, listings, { apiKey = process.env.TYPE
         if (ok && !generic && ((q.ml && !l.ml) || (q.cm && !l.cm) || (q.mm && !l.mm) || (q.gb && !l.gb))) r.reason += ", size not in the title";
       }
     } catch (err) {
-      rows.forEach((r) => { if (r.verdict !== "reject") r.reason += `; Jev unavailable (${err.message})`; });
+      // Jev down: fall back to the keyless decision so the lookup still answers.
+      for (const r of rows) if (r.verdict !== "reject") Object.assign(r, keylessCheck(query, r, { generic }), { reason: `${keylessCheck(query, r, { generic }).reason}; Jev unavailable (${err.message})` });
     }
-    priceSanity(rows);
-  } else {
-    priceSanity(rows);
   }
+  priceSanity(rows);
   for (const r of rows) {
     const grams = parseSpec(r.title).grams;
     r.grams = grams || null;
     r.per100 = grams ? r.price / grams * 100 : null;
   }
-  const kept = rows.filter((r) => r.verdict === "keep" || (r.verdict === "unsure" && !apiKey));
-  const rejected = rows.filter((r) => !kept.includes(r));
-  return { kept, rejected, jevUsed: Boolean(apiKey && unsure.length), generic, genericP, queryGrams: parseSpec(query).grams || null };
+  const kept = rows.filter((r) => r.verdict === "keep");
+  const rejected = rows.filter((r) => r.verdict !== "keep");
+  return { kept, rejected, jevUsed: unsure.length > 0, generic, genericP, queryGrams: parseSpec(query).grams || null };
 }

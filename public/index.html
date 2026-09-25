@@ -123,7 +123,7 @@ if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.se
     }catch{ guideBox.hidden=true; }
   }
   $('#country').addEventListener('change',showGuide); showGuide();
-  if(!cfg.photo){ $('#camtext').textContent='Photo off'; $('#camlabel').title='The server has no vision key'; }
+  if(!cfg.photo){ $('#camlabel').remove(); document.querySelector('.qrow').style.gridTemplateColumns='1fr'; }
   // Live converter: one rate fetch per currency per day, then rupees as you type.
   const rates={}; const fxBox=$('#fx'); let fxTimer=null;
   async function rateFor(cur){ if(rates[cur]) return rates[cur]; const r=await fetch('/api/fx?from='+encodeURIComponent(cur)).then(x=>x.json()); if(r.rate){ rates[cur]=r; return r; } throw new Error(r.error||'no rate'); }
