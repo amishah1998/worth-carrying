@@ -30,6 +30,14 @@ test("elixir stays distinct from eau de parfum even when the box says both", () 
   assert.equal(parseSpec("Dior Sauvage Eau de Parfum For Men 100ml").conc, "edp");
 });
 
+test("decants, samples and minis are rejected even when the title also carries the full size", () => {
+  const q = "Dior Sauvage EDP 100ml";
+  assert.equal(ruleCheck(q, { title: "Dior Sauvage Eau De Parfum For Men 100ml 10ml Decant" }).verdict, "reject");
+  assert.equal(ruleCheck(q, { title: "Dior Sauvage EDP 2ml Sample Vial" }).verdict, "reject");
+  assert.equal(ruleCheck(q, { title: "Dior Sauvage Eau de Parfum 100ml Travel Size Mini" }).verdict, "reject");
+  assert.equal(ruleCheck("Dior Sauvage EDP 10ml decant", { title: "Dior Sauvage EDP 10ml Decant" }).verdict, "keep");
+});
+
 test("import resellers and suspiciously cheap listings are rejected by rule", async () => {
   const r = await matchListings("Dior Sauvage EDP 100ml", [
     { title: "Dior Sauvage Eau de Parfum 100ml", price: 15600, seller: "Nykaa" },

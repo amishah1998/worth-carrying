@@ -18,7 +18,7 @@ export function parseSpec(text) {
     conc,
     used: /\b(refurbished|renewed|pre-owned|used|second hand)\b/.test(t),
     set: /\b(set of|combo|pack of|bundle|\d\s*pc|\d\s*piece)\b/.test(t),
-    tester: /\btester\b/.test(t),
+    tester: /\b(tester|decant|sample|vial|travel size|miniature|mini|refill)\b/.test(t),
   };
 }
 
@@ -31,7 +31,7 @@ export function ruleCheck(query, listing) {
   const q = parseSpec(query), l = parseSpec(listing.title);
   if (IMPORTERS.test(listing.seller || "") || IMPORTERS.test(listing.url || "")) return { verdict: "reject", reason: "imports on demand, not an Indian store price" };
   if (l.used) return { verdict: "reject", reason: "used or refurbished" };
-  if (l.tester) return { verdict: "reject", reason: "tester" };
+  if (l.tester && !q.tester) return { verdict: "reject", reason: "tester, decant, sample or mini" };
   if (l.set && !q.set) return { verdict: "reject", reason: "a set or bundle, not the single item" };
   for (const k of ["ml", "cm", "mm", "gb"]) {
     if (q[k] && l[k] && q[k] !== l[k]) return { verdict: "reject", reason: `${l[k]}${k}, you asked for ${q[k]}${k}` };
@@ -45,8 +45,9 @@ export function ruleCheck(query, listing) {
 }
 
 // A genuine Dior at a fifth of the going rate is a decant or a clone. Judged against the
-// candidates that survived the rules, so one outlier cannot move the bar.
-export function priceSanity(rows, floor = 0.3) {
+// candidates still standing, so one outlier cannot move the bar. Runs twice: after the
+// rules, and again after Jev has thinned the list, when the median is more honest.
+export function priceSanity(rows, floor = 0.4) {
   const cands = rows.filter((r) => r.verdict !== "reject").map((r) => r.price).filter(Number.isFinite).sort((a, b) => a - b);
   if (cands.length < 3) return;
   const med = cands[Math.floor(cands.length / 2)];
@@ -82,6 +83,7 @@ export async function matchListings(query, listings, { apiKey = process.env.TYPE
     } catch (err) {
       unsure.forEach((r) => { r.reason += `; Jev unavailable (${err.message})`; });
     }
+    priceSanity(rows);
   }
   const kept = rows.filter((r) => r.verdict === "keep" || (r.verdict === "unsure" && !apiKey));
   const rejected = rows.filter((r) => !kept.includes(r));
