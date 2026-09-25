@@ -17,6 +17,8 @@ import { upcomingSales, refreshSales } from "./sales.js";
 const here = path.dirname(fileURLToPath(import.meta.url));
 const PUBLIC = path.join(here, "..", "public");
 const COUNTRIES = JSON.parse(fs.readFileSync(path.join(here, "countries.json"), "utf8")).countries;
+// Common currencies first, then every other currency a listed country uses, so the pick always lands.
+const ALL_CURRENCIES = [...new Set([...CURRENCIES, ...COUNTRIES.map((c) => c.currency).filter(Boolean).sort()])];
 
 const STATIC = { "/manifest.json": "application/manifest+json", "/sw.js": "application/javascript", "/icon.svg": "image/svg+xml", "/icon-192.png": "image/png", "/icon-512.png": "image/png" };
 
@@ -44,7 +46,7 @@ export function createServer({ port = Number(process.env.PORT) || 8787, dailyCap
     if (req.method === "GET" && url.pathname === "/api/config") {
       const withGuide = new Set(listCountries().map((c) => c.code));
       const countries = COUNTRIES.map((c) => ({ ...c, guide: withGuide.has(c.code) }));
-      return json(res, 200, { provider: pickProvider(), currencies: CURRENCIES, countries, sales: upcomingSales(), photo: Boolean(process.env.ANTHROPIC_API_KEY), history: process.env.KEEPA_API_KEY ? "keepa" : "own", jev: Boolean(process.env.TYPESAFE_API_KEY), dailyCap, usedToday: used });
+      return json(res, 200, { provider: pickProvider(), currencies: ALL_CURRENCIES, countries, sales: upcomingSales(), photo: Boolean(process.env.ANTHROPIC_API_KEY), history: process.env.KEEPA_API_KEY ? "keepa" : "own", jev: Boolean(process.env.TYPESAFE_API_KEY), dailyCap, usedToday: used });
     }
     if (req.method === "POST" && url.pathname === "/api/check") {
       if (today() !== day) { day = today(); used = 0; }
