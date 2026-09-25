@@ -6,7 +6,7 @@ import { check } from "./check.js";
 import { openRecorder } from "./history.js";
 import { queryFromPhoto } from "./vision.js";
 import { pickProvider } from "./providers/index.js";
-import { CURRENCIES } from "./fx.js";
+import { CURRENCIES, rateToInr } from "./fx.js";
 import { REFUND } from "./rules.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -24,6 +24,12 @@ export function createServer({ port = Number(process.env.PORT) || 8787, dailyCap
       const file = path.join(PUBLIC, url.pathname);
       if (!fs.existsSync(file)) return send(res, 404, "not found", "text/plain");
       return send(res, 200, fs.readFileSync(file), STATIC[url.pathname]);
+    }
+    // The converter: today's rate for one currency, cached a day, so the page can show rupees as you type.
+    if (req.method === "GET" && url.pathname === "/api/fx") {
+      const from = String(url.searchParams.get("from") || "").toUpperCase();
+      if (!/^[A-Z]{3}$/.test(from)) return json(res, 400, { error: "from must be a 3-letter currency code" });
+      try { return json(res, 200, { from, ...(await rateToInr(from)) }); } catch (err) { return json(res, 502, { error: err.message }); }
     }
     if (req.method === "GET" && url.pathname === "/api/config") return json(res, 200, { provider: pickProvider(), currencies: CURRENCIES, countries: Object.entries(REFUND).map(([code, r]) => ({ code, name: r.name })), photo: Boolean(process.env.ANTHROPIC_API_KEY), history: process.env.KEEPA_API_KEY ? "keepa" : "own", jev: Boolean(process.env.TYPESAFE_API_KEY), dailyCap, usedToday: used });
     if (req.method === "POST" && url.pathname === "/api/check") {

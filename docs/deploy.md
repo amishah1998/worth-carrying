@@ -43,6 +43,7 @@ Put nginx or Caddy in front for HTTPS. The camera only works over HTTPS.
 | `PRICE_PROVIDER` | auto | `serper`, `serpapi` or `chrome` |
 | `RECORDER_DB` | data/observations.sqlite | Where lookups are recorded for history |
 | `VISION_MODEL` | claude-opus-5 | Model used to read a photo |
+| `CHROME_DEBUG_URL` | localhost 9222, then 9223 | Where the development Chrome listens |
 
 ## What it costs to run
 

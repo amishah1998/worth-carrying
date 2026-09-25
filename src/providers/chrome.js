@@ -4,12 +4,20 @@ import { parsePrice } from "../util.js";
 // --remote-debugging-port=9222 and reads the Google Shopping page as a person would.
 // It needs no API key, which makes local testing free, but it is not for hosting:
 // Google blocks headless and server traffic, and this reads a page, not an API.
-const BASE = process.env.CHROME_DEBUG_URL || "http://localhost:9222";
+const CANDIDATES = [process.env.CHROME_DEBUG_URL, "http://localhost:9222", "http://localhost:9223"].filter(Boolean);
+
+async function debugBase() {
+  for (const base of CANDIDATES) {
+    try { const r = await fetch(`${base}/json/version`, { signal: AbortSignal.timeout(1500) }); if (r.ok) return base; } catch {}
+  }
+  throw new Error("no debug Chrome on " + CANDIDATES.join(" or ") + "; start one with --remote-debugging-port, or set SERPER_API_KEY");
+}
 
 const NOISE = /^(sponsored|sale|low price|also nearby|nearby|free delivery|special offer|refurbished|pre-owned|price|under|over|was|usually|\d+% off|& more|free by|\(?[$€£])/i;
 const BARE_NUMBER = /^[\d,]+(?:\.\d+)?$/;
 
 export async function searchChrome(query, { gl = "in", hl = "en" } = {}) {
+  const BASE = await debugBase();
   const t = await (await fetch(`${BASE}/json/new?about:blank`, { method: "PUT" })).json();
   const ws = new WebSocket(t.webSocketDebuggerUrl);
   let id = 0;
