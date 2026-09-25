@@ -4,6 +4,10 @@ The web page is already a phone app. Open the site on a phone, choose "Add to Ho
 
 A hosted copy needs two things: a price key (Serper, 2,500 free queries; a search key, not a model key) and a folder that survives restarts for the recorder database. No model key is needed; Jev, Keepa and the photo reader are optional extras.
 
+## Hostinger web apps (Business or Cloud plan)
+
+Hostinger runs Node.js server apps on its Business web hosting and Cloud plans, deployed from a GitHub repository with a rebuild on every push, with the entry file set to `index.js` and Node 22 or 24. Add `SERPER_API_KEY` under the app's environment variables in hPanel, and attach the subdomain there; at your DNS provider, point that subdomain at the target hPanel shows. Two cautions: Hostinger keeps only the last two deployed versions of the app folder, so the SQLite recorder inside it does not survive a redeploy, and the Single plan has no Node.js at all. For a durable price history on Hostinger, point `DATABASE_URL` at the plan's MySQL database (adapter in progress) or keep the recorder on a host with a volume.
+
 ## Fly.io, the path this repo is set up for
 
 ```
