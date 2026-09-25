@@ -40,7 +40,7 @@ Put them in a `.env` file in the folder you run from, or export them.
 | neither | A Chrome you already run with `--remote-debugging-port=9222` reads the Google Shopping page. Development only | Free |
 | `TYPESAFE_API_KEY` | Jev, the variant check. Without it, listings the rules cannot decide are kept | Pay per use, cents per hundred lookups |
 | `KEEPA_API_KEY` | Amazon.in price history on the first lookup | From EUR 49 a month |
-| `ANTHROPIC_API_KEY` | Photo input | Pay per use, about a cent per photo |
+| `ANTHROPIC_API_KEY` | Photo input. The upload, the request and the reply parsing are tested against a stand-in endpoint; accuracy on real shelf photos is not yet measured | Pay per use, about a cent per photo |
 
 `PORT` (default 8787), `DAILY_CAP` (default 300 lookups a day, for a hosted copy), `PRICE_PROVIDER` (`serper`, `serpapi`, `chrome`), `RECORDER_DB` (default `data/observations.sqlite`).
 
