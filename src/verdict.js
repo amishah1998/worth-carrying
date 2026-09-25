@@ -46,9 +46,13 @@ export function indiaFigures(kept, history) {
     cheapestAny: cheapestAny.price < cheapest.price ? { price: cheapestAny.price, seller: cheapestAny.seller } : null,
     spreadHigh: Math.max(...pool.map((k) => k.price)),
     low: history?.low ?? null,
+    lowDate: history?.lowDate ?? null,
     high: history?.high ?? null,
+    highDate: history?.highDate ?? null,
     typical: history?.typical ?? median(pool.map((k) => k.price)),
     historySource: history?.source ?? null,
+    historySince: history?.since ?? null,
+    historySamples: history?.samples ?? null,
     historyNote: history?.note ?? null,
   };
 }

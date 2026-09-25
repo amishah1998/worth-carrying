@@ -31,7 +31,7 @@ if (args[0] === "check") {
   console.log(`\n${out.query}   via ${out.provider}${out.jevUsed ? " + Jev" : ""}`);
   console.log(`India today  ${inr(out.india.now)} at ${out.india.nowSeller || "n/a"}${out.india.nowTrusted === false ? " (not a major store)" : ""}   typical ${inr(out.india.typical)}   low ${inr(out.india.low)}   high ${inr(out.india.high)}   ${out.india.historyNote || "no history yet"}`);
   if (out.india.cheapestAny) console.log(`Cheapest seen ${inr(out.india.cheapestAny.price)} at ${out.india.cheapestAny.seller}, unverified shop`);
-  if (out.abroad) console.log(`Abroad       ${opt.price} ${opt.currency} = ${inr(out.abroad.shelfInr)}   refund ${inr(out.abroad.refundInr)}   duty ${inr(out.abroad.dutyInr)}   landed ${inr(out.abroad.landedInr)}`);
+  if (out.abroad) console.log(`Abroad       ${opt.price} ${opt.currency} = ${inr(out.abroad.shelfInr)}   duty ${inr(out.abroad.dutyInr)}   landed ${inr(out.abroad.landedInr)}`);
   console.log(`Verdict      ${out.verdict.label}. ${out.verdict.reason}   warranty: ${out.warranty.status}`);
   for (const k of out.listings.kept) console.log(`  keep   ${inr(k.price).padStart(11)}  ${k.seller.padEnd(22)} ${k.title.slice(0, 70)}${k.p != null ? `  (${Math.round(k.p * 100)}%)` : ""}`);
   for (const r of out.listings.rejected) console.log(`  drop   ${inr(r.price).padStart(11)}  ${r.seller.padEnd(22)} ${r.title.slice(0, 50)}  ${r.reason}`);

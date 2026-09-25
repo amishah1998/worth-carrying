@@ -1,0 +1,1533 @@
+{
+ "generated": "2026-09-25",
+ "countries": [
+  {
+   "code": "AE",
+   "name": "UAE",
+   "currency": "AED",
+   "knownFor": [
+    {
+     "item": "Arabian oud perfumes",
+     "search": "Lattafa Oud Mood",
+     "kind": "local",
+     "why": "Lattafa is a third generation family perfume house set up in the UAE",
+     "source": "https://lattafa.com/about-us/"
+    },
+    {
+     "item": "Ajmal perfumes and attar",
+     "search": "Ajmal perfume",
+     "kind": "local",
+     "why": "Dubai perfume house with roots in Assam, its first Dubai store opened in 1976",
+     "source": "https://gulfnews.com/uae-success-stories/ajmal-perfumes-indian-farmer-started-with-dh25-now-owns-multimillion-dollar-perfume-company-in-the-uae-1.77197086"
+    },
+    {
+     "item": "Camel milk chocolate",
+     "search": "Al Nassma camel milk chocolate",
+     "kind": "local",
+     "why": "Al Nassma bills itself as the first camel milk chocolate",
+     "source": "https://al-nassma.com/"
+    },
+    {
+     "item": "Dubai pistachio kunafa chocolate",
+     "search": "FIX Dubai chocolate bar",
+     "kind": "famous",
+     "why": "The viral pistachio kunafa bar started at FIX, a Dubai dessert brand",
+     "source": "https://www.khaleejtimes.com/lifestyle/food/uae-meet-the-filipino-pastry-chef-behind-dubais-viral-pistachio-kunafa-chocolate"
+    },
+    {
+     "item": "Gold jewellery",
+     "search": "22K gold chain",
+     "kind": "famous",
+     "why": "Gold Souk pieces are checked by Dubai Central Laboratory for purity and weight",
+     "source": "https://mysecretdubai.com/dubai-gold-souk/"
+    },
+    {
+     "item": "Oud and bakhoor incense",
+     "search": "bakhoor incense",
+     "kind": "famous",
+     "why": "Oud and bakhoor are listed among the unique things to buy in Dubai",
+     "source": "https://www.atlys.com/blog/what-to-buy-in-dubai"
+    },
+    {
+     "item": "Spices like saffron and sumac",
+     "search": "saffron",
+     "kind": "famous",
+     "why": "Saffron, sumac and za'atar are common picks from Dubai spice shops",
+     "source": "https://middleeastjourneys.com/what-to-buy-in-dubai-souvenir-ideas/"
+    },
+    {
+     "item": "Sand art bottles",
+     "search": "sand art bottle",
+     "kind": "famous",
+     "why": "Desert scenes drawn in coloured sand inside a bottle, a classic Dubai keepsake",
+     "source": "https://middleeastjourneys.com/what-to-buy-in-dubai-souvenir-ideas/"
+    }
+   ],
+   "usuallyBuy": [
+    {
+     "item": "iPhone",
+     "search": "iPhone 18 Pro 256GB",
+     "why": "Indians fly to Dubai for iPhones as UAE prices run lower, but the extra phones need declaring",
+     "source": "https://reddit.com/r/TechnologyNewsIndia/comments/1wlilbj/indians_are_literally_flying_to_dubai_to_buy_the/"
+    },
+    {
+     "item": "Dates and date chocolates",
+     "search": "Medjool dates",
+     "why": "Top pick in an Indian thread along with camel milk chocolate",
+     "source": "https://reddit.com/r/Kerala/comments/1ev2blp/things_to_buy_when_coming_back_to_kerala_from/liois24/"
+    },
+    {
+     "item": "Attar and saffron",
+     "search": "attar perfume oil",
+     "why": "Attar and saffron both show up on the most upvoted Gulf gift list",
+     "source": "https://reddit.com/r/Kerala/comments/1ev2blp/things_to_buy_when_coming_back_to_kerala_from/lionwqn/"
+    },
+    {
+     "item": "Imported chocolates",
+     "search": "chocolate gift box",
+     "why": "Commenters say chocolates from the Gulf beat what they find at home",
+     "source": "https://reddit.com/r/Kerala/comments/1ev2blp/things_to_buy_when_coming_back_to_kerala_from/lionk08/"
+    },
+    {
+     "item": "Scotch whisky",
+     "search": "Chivas Regal",
+     "why": "The classic Gulf return gift, still named in Indian threads",
+     "source": "https://reddit.com/r/Kerala/comments/1ev2blp/things_to_buy_when_coming_back_to_kerala_from/liois3w/"
+    }
+   ],
+   "funFacts": [
+    {
+     "text": "The Dubai Shopping Festival began in 1996 to pull tourists to the city",
+     "source": "https://www.thenationalnews.com/weekend/2022/01/21/timeframe-how-dubai-shopping-festival-became-so-much-more-than-a-retail-event/"
+    },
+    {
+     "text": "Ajmal, a big Dubai perfume name, was started in Assam in the early 1950s",
+     "source": "https://gulfnews.com/uae-success-stories/ajmal-perfumes-indian-farmer-started-with-dh25-now-owns-multimillion-dollar-perfume-company-in-the-uae-1.77197086"
+    },
+    {
+     "text": "The UAE added 5 percent VAT in 2018, and tourists can claim it back when they leave",
+     "source": "https://u.ae/en/information-and-services/finance-and-investment/taxation/vat/tax-refund-for-tourists"
+    }
+   ],
+   "watchOuts": [
+    {
+     "text": "India lets you bring goods worth up to Rs 75,000 duty free by air. Declare anything above that",
+     "source": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2222384&reg=3&lang=1"
+    },
+    {
+     "text": "Duty free gold jewellery is only for Indians abroad over a year, 40 g for women and 20 g for others",
+     "source": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2222384&reg=3&lang=1"
+    },
+    {
+     "text": "Apple may limit iPhone warranty repairs to the country where you bought it",
+     "source": "https://www.apple.com/legal/warranty/products/ios-warranty-document-us.html"
+    },
+    {
+     "text": "Lattafa bottles carry a code you can scan on its site to check it is genuine",
+     "source": "https://lattafa.com/spot-a-fake/"
+    }
+   ]
+  },
+  {
+   "code": "TH",
+   "name": "Thailand",
+   "currency": "THB",
+   "knownFor": [
+    {
+     "item": "Thai silk",
+     "search": "Jim Thompson silk scarf",
+     "kind": "quality",
+     "why": "TAT picked Jim Thompson for its Thai silk heritage, and the brand turns 75 in 2026",
+     "source": "https://www.tatnews.org/2026/06/amazing-thailand-x-jim-thompson-collection-promotes-thai-silk-through-crafted-luxury-travel/"
+    },
+    {
+     "item": "Ya dom herbal inhalers",
+     "search": "Hong Thai inhaler",
+     "kind": "local",
+     "why": "Thais reach for ya dom when dizzy, and a Thai foundation tells tourists to take some home",
+     "source": "https://thailandfoundation.or.th/ya-dom-inhalers-the-ultimate-item-that-thais-hold-dear-to-their-hearts-and-noses/"
+    },
+    {
+     "item": "Herbal balms and massage oil",
+     "search": "Thai herbal balm",
+     "kind": "famous",
+     "why": "A classic in any Thai medicine cabinet, sold in small portable jars",
+     "source": "https://www.tagthai.com/explore/p/21-souvenirs-and-gift-list-of-what-to-buy-in-thailand"
+    },
+    {
+     "item": "Thai curry pastes",
+     "search": "Thai green curry paste",
+     "kind": "famous",
+     "why": "Curry pastes carry the real flavour and pack flat in a suitcase",
+     "source": "https://www.atlys.com/blog/what-to-buy-in-thailand"
+    },
+    {
+     "item": "Thai tea",
+     "search": "ChaTraMue Thai tea",
+     "kind": "local",
+     "why": "ChaTraMue has sold its original Thai tea since 1945",
+     "source": "https://www.chatramue.com/"
+    },
+    {
+     "item": "Dried mango",
+     "search": "Thai dried mango",
+     "kind": "famous",
+     "why": "Sweet, chewy and survives long flights",
+     "source": "https://www.tagthai.com/explore/p/21-souvenirs-and-gift-list-of-what-to-buy-in-thailand"
+    },
+    {
+     "item": "Crispy seaweed and coconut chips",
+     "search": "Taokaenoi seaweed",
+     "kind": "famous",
+     "why": "Light, crunchy snacks that are easy to stash in a suitcase",
+     "source": "https://www.tagthai.com/explore/p/21-souvenirs-and-gift-list-of-what-to-buy-in-thailand"
+    },
+    {
+     "item": "Benjarong porcelain",
+     "search": "Benjarong porcelain",
+     "kind": "quality",
+     "why": "Colourful hand painted porcelain, often trimmed in gold",
+     "source": "https://www.tagthai.com/explore/p/21-souvenirs-and-gift-list-of-what-to-buy-in-thailand"
+    },
+    {
+     "item": "Teak and mango wood carvings",
+     "search": "mango wood elephant",
+     "kind": "quality",
+     "why": "Hand carved and light, with a big selection at Chatuchak Market",
+     "source": "https://www.atlys.com/blog/what-to-buy-in-thailand"
+    }
+   ],
+   "usuallyBuy": [
+    {
+     "item": "Curry pastes and Thai tea",
+     "search": "Thai curry paste",
+     "why": "Locals told an Indian visitor that curry pastes and Thai tea are crowd favourite gifts",
+     "source": "https://reddit.com/r/Bangkok/comments/w20vxg/what_to_buy_gifts_and_souvenirs_from_bangkok/ignmfr1/"
+    },
+    {
+     "item": "Elephant pants",
+     "search": "elephant pants",
+     "why": "Named with curry paste as a crowd favourite gift in the same thread",
+     "source": "https://reddit.com/r/Bangkok/comments/w20vxg/what_to_buy_gifts_and_souvenirs_from_bangkok/ignmfr1/"
+    },
+    {
+     "item": "Herbal inhalers",
+     "search": "Hong Thai inhaler",
+     "why": "Hong Thai inhalers show up on visitors' stock up lists before flying home",
+     "source": "https://reddit.com/r/Bangkok/comments/1hwfguc/what_do_you_stock_up_on_when_leaving/m60u5a2/"
+    },
+    {
+     "item": "Thai snacks",
+     "search": "Tao Kae Noi seaweed",
+     "why": "Tao Kae Noi seaweed and special Lays flavours are common suitcase fillers",
+     "source": "https://reddit.com/r/Bangkok/comments/1hwfguc/what_do_you_stock_up_on_when_leaving/m60u5a2/"
+    },
+    {
+     "item": "Phone accessories and audio gear",
+     "search": "wireless earbuds",
+     "why": "A guide for Indians says they often cost less than in India, especially at MBK",
+     "source": "https://www.atlys.com/blog/what-to-buy-in-thailand"
+    },
+    {
+     "item": "Korean and Japanese skincare",
+     "search": "Korean sunscreen",
+     "why": "The same guide says these beauty brands cost less than Indian retail",
+     "source": "https://www.atlys.com/blog/what-to-buy-in-thailand"
+    }
+   ],
+   "funFacts": [
+    {
+     "text": "Jim Thompson helped revive Thai silk in the 1950s, then vanished in Malaysia's Cameron Highlands in 1967",
+     "source": "https://en.wikipedia.org/wiki/Jim_Thompson_(designer)"
+    },
+    {
+     "text": "Hong Thai's founder started as a street vendor, using an inhaler formula he found in a newspaper",
+     "source": "https://www.khaosodenglish.com/life/2024/08/13/scent-of-success-hong-thai-inhalers-path-from-streets-to-stars/"
+    }
+   ],
+   "watchOuts": [
+    {
+     "text": "A Bangkok gemologist says shop certificates prove little. Get an independent lab report before paying for gems",
+     "source": "https://reddit.com/r/Bangkok/comments/1rqp3qu/found_this_emerald_pendant_in_mbk_bangkok_real/o9tqm2h/"
+    },
+    {
+     "text": "Taking any Buddha image out of Thailand needs written permission or a licence",
+     "source": "https://www.bangkokpost.com/thailand/special-reports/357587/exporting-buddha"
+    },
+    {
+     "text": "VAT refund needs 2,000 baht per shop per day, a VAT Refund for Tourists sign and a P.P.10 form filled on the day",
+     "source": "https://vrtmap.rd.go.th/gps/en/Conditions.aspx"
+    },
+    {
+     "text": "In Oct 2025 Thai FDA recalled batch 332 of Hong Thai Formula 2 inhalers over microbial contamination",
+     "source": "https://www.khaosodenglish.com/news/business/2025/11/01/hong-thai-inhaler-boss-vows-to-rebuild-after-tainted-batch-recall/"
+    }
+   ]
+  },
+  {
+   "code": "ID",
+   "name": "Indonesia (Bali)",
+   "currency": "IDR",
+   "knownFor": [
+    {
+     "item": "Celuk silver jewellery",
+     "search": "925 silver ring",
+     "kind": "quality",
+     "why": "Celuk village is lined with silver and gold workshops where you can watch smiths at work",
+     "source": "https://bali.com/places/celuk-village/"
+    },
+    {
+     "item": "John Hardy jewellery",
+     "search": "John Hardy Naga bracelet",
+     "kind": "local",
+     "why": "Jewellery brand that began as an artisan collective in Bali in 1975",
+     "source": "https://www.johnhardy.com/pages/our-story"
+    },
+    {
+     "item": "Batik",
+     "search": "batik sarong",
+     "kind": "famous",
+     "why": "Cloth dyed by hand using hot wax, listed by UNESCO as Indonesian heritage",
+     "source": "https://ich.unesco.org/en/RL/indonesian-batik-00170"
+    },
+    {
+     "item": "Kopi Bali coffee",
+     "search": "Kopi Bali Kupu Kupu Bola Dunia",
+     "kind": "local",
+     "why": "Denpasar coffee house Bhineka Djaja has sold Bola Dunia coffee since 1935",
+     "source": "https://denpasartourism.com/id/article/kopi-bali-cap-kupu-kupu-bola-dunia"
+    },
+    {
+     "item": "Wood carvings",
+     "search": "Balinese wood carving",
+     "kind": "quality",
+     "why": "Began as a sacred craft for temples and palaces, Mas village is the place to look",
+     "source": "https://www.atlys.com/blog/things-to-buy-in-bali"
+    },
+    {
+     "item": "Rattan bags",
+     "search": "Bali rattan bag",
+     "kind": "famous",
+     "why": "Hand woven by Balinese artisans and sold in the Ubud and Seminyak art markets",
+     "source": "https://www.atlys.com/blog/things-to-buy-in-bali"
+    },
+    {
+     "item": "Barong masks",
+     "search": "Barong mask",
+     "kind": "famous",
+     "why": "Carved masks of the Barong, sold as guardians of the home",
+     "source": "https://www.atlys.com/blog/things-to-buy-in-bali"
+    },
+    {
+     "item": "Pie susu",
+     "search": "pie susu Bali",
+     "kind": "famous",
+     "why": "Custard milk tarts that tourists hunt for as a Bali snack",
+     "source": "https://www.liputan6.com/regional/read/5310806/sejarah-pie-susu-bali-oleh-oleh-populer-pulau-dewata"
+    }
+   ],
+   "usuallyBuy": [
+    {
+     "item": "Balinese coffee",
+     "search": "Kopi Bali coffee",
+     "why": "A Bali regular calls local coffee a solid buy, but says skip kopi luwak",
+     "source": "https://reddit.com/r/bali/comments/1gca1dt/what_to_buy_from_bali/ltteawe/"
+    },
+    {
+     "item": "Batik clothes",
+     "search": "Batik Keris dress",
+     "why": "A visitor says Batik Keris dresses last long and wash fine at home",
+     "source": "https://reddit.com/r/bali/comments/19c9xwb/things_to_buy_in_bali/kizmw80/"
+    },
+    {
+     "item": "Silver jewellery",
+     "search": "925 silver earrings",
+     "why": "A repeat visitor always brings back something silver",
+     "source": "https://reddit.com/r/bali/comments/1gca1dt/what_to_buy_from_bali/lttvprr/"
+    },
+    {
+     "item": "Pie susu",
+     "search": "pie susu Bali",
+     "why": "Suggested in a Bali thread as the tart to carry home",
+     "source": "https://reddit.com/r/bali/comments/1gca1dt/what_to_buy_from_bali/ltsj7sj/"
+    },
+    {
+     "item": "Bottled sambal",
+     "search": "Sambal Bu Rudy",
+     "why": "A local suggests bottled sambal such as Sambal Bu Rudy",
+     "source": "https://reddit.com/r/bali/comments/19c9xwb/things_to_buy_in_bali/kj0ex1k/"
+    }
+   ],
+   "funFacts": [
+    {
+     "text": "UNESCO added Indonesian batik to its intangible heritage list in 2009",
+     "source": "https://ich.unesco.org/en/RL/indonesian-batik-00170"
+    },
+    {
+     "text": "Bali's pie susu traces back to custard tarts from 1940s Hong Kong",
+     "source": "https://www.liputan6.com/regional/read/5310806/sejarah-pie-susu-bali-oleh-oleh-populer-pulau-dewata"
+    },
+    {
+     "text": "John Hardy's Bali workshop was built from bamboo, adobe and thatch amid 400 acres of rice paddies",
+     "source": "https://www.johnhardy.com/pages/our-story"
+    },
+    {
+     "text": "The Bola Dunia coffee house in Denpasar opened in 1935 under the name Bian Ek",
+     "source": "https://denpasartourism.com/id/article/kopi-bali-cap-kupu-kupu-bola-dunia"
+    }
+   ],
+   "watchOuts": [
+    {
+     "text": "Researchers found every one of 16 Bali civet coffee farms they checked failed basic animal welfare",
+     "source": "https://www.nationalgeographic.com/animals/article/160429-kopi-luwak-captive-civet-coffee-Indonesia"
+    },
+    {
+     "text": "Stamped or printed cloth is often sold as hand drawn batik tulis, so check before paying more",
+     "source": "https://www.thejakartapost.com/life/2018/02/23/differences-between-printed-batik-and-authentic-batik-tulis"
+    },
+    {
+     "text": "Tourist VAT refund needs your passport at the till and at least Rp 500,000 of VAT claimed in total",
+     "source": "https://www.pajak.go.id/en/artikel/how-does-vat-refund-indonesia-work"
+    },
+    {
+     "text": "India lets you bring goods worth up to Rs 75,000 duty free by air. Declare anything above that",
+     "source": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2222384&reg=3&lang=1"
+    }
+   ]
+  },
+  {
+   "code": "SG",
+   "name": "Singapore",
+   "currency": "SGD",
+   "knownFor": [
+    {
+     "item": "Tiger Balm",
+     "search": "Tiger Balm Red",
+     "kind": "local",
+     "why": "The Tiger Balm business moved its home to Singapore in 1926 and the balm is sold everywhere",
+     "source": "https://www.tigerbalm.com/sg/about-us/heritage"
+    },
+    {
+     "item": "TWG Tea",
+     "search": "TWG Tea",
+     "kind": "local",
+     "why": "Luxury tea brand set up in Singapore in 2008, first salon at Republic Plaza",
+     "source": "https://en.wikipedia.org/wiki/TWG_Tea"
+    },
+    {
+     "item": "Bengawan Solo kueh and cakes",
+     "search": "Bengawan Solo pandan chiffon",
+     "kind": "local",
+     "why": "Started in a home kitchen, now a household name in Singapore for kueh and cakes",
+     "source": "https://bengawansolo.com.sg/"
+    },
+    {
+     "item": "IRVINS salted egg snacks",
+     "search": "IRVINS Salted Egg Fish Skin",
+     "kind": "local",
+     "why": "Genuine IRVINS snacks are only made in Singapore",
+     "source": "https://www.irvinsaltedegg.com/pages/counterfeit-protection"
+    },
+    {
+     "item": "Kaya jam",
+     "search": "Ya Kun kaya",
+     "kind": "famous",
+     "why": "Egg and coconut spread served with toast at Ya Kun since its early days",
+     "source": "https://www.yakun.com/about-us/"
+    },
+    {
+     "item": "Bak kwa",
+     "search": "Bee Cheng Hiang bak kwa",
+     "kind": "famous",
+     "why": "Sweet and salty grilled meat jerky, Bee Cheng Hiang grills it fresh daily",
+     "source": "https://thesmartlocal.com/read/best-souvenirs-singapore/"
+    },
+    {
+     "item": "Gold plated orchids",
+     "search": "RISIS orchid pendant",
+     "kind": "quality",
+     "why": "RISIS gold plates real orchids, the national flower, into jewellery",
+     "source": "https://thesmartlocal.com/read/best-souvenirs-singapore/"
+    },
+    {
+     "item": "Charles & Keith bags and shoes",
+     "search": "Charles & Keith handbag",
+     "kind": "local",
+     "why": "Singapore label with a big overseas fanbase, its Changi outlet draws crowds",
+     "source": "https://thesmartlocal.com/read/best-souvenirs-singapore/"
+    }
+   ],
+   "usuallyBuy": [
+    {
+     "item": "iPhone",
+     "search": "iPhone 18 Pro 256GB",
+     "why": "An Indian visitor found it considerably cheaper than India, and GST can be refunded",
+     "source": "https://reddit.com/r/askSingapore/comments/xht4z3/iphone_availability_in_singapore_query/"
+    },
+    {
+     "item": "Kaya jam",
+     "search": "Killiney kaya",
+     "why": "Top gift pick in a local thread, sold in supermarkets",
+     "source": "https://reddit.com/r/askSingapore/comments/1vuic0j/what_are_some_affordable_uniquely_singaporean/p51exjx/"
+    },
+    {
+     "item": "Tiger Balm and Axe Oil",
+     "search": "Axe Oil",
+     "why": "Locals suggest these pain rubs as cheap gifts from any pharmacy",
+     "source": "https://reddit.com/r/askSingapore/comments/1vuic0j/what_are_some_affordable_uniquely_singaporean/p51exjx/"
+    },
+    {
+     "item": "Khong Guan biscuits",
+     "search": "Khong Guan lemon puff",
+     "why": "Made in Singapore and individually packed, easy to split as gifts",
+     "source": "https://reddit.com/r/askSingapore/comments/1vuic0j/what_are_some_affordable_uniquely_singaporean/p51bcxm/"
+    },
+    {
+     "item": "Bengawan Solo pandan cake",
+     "search": "Bengawan Solo pandan cake",
+     "why": "A local buys one at the airport every time they fly home",
+     "source": "https://reddit.com/r/askSingapore/comments/1vuic0j/what_are_some_affordable_uniquely_singaporean/p56447l/"
+    }
+   ],
+   "funFacts": [
+    {
+     "text": "Selling chewing gum has been banned in Singapore since 1992",
+     "source": "https://en.wikipedia.org/wiki/Chewing_gum_sales_ban_in_Singapore"
+    },
+    {
+     "text": "Tiger Balm is named after its maker Aw Boon Haw and was born in 1909",
+     "source": "https://www.tigerbalm.com/sg/about-us/heritage"
+    },
+    {
+     "text": "IRVINS began in 2014 when Irvin put his salted egg sauce on chips and fish skin",
+     "source": "https://www.irvinsaltedegg.com/pages/our-story"
+    }
+   ],
+   "watchOuts": [
+    {
+     "text": "GST refund needs SGD 100 at one shop, your passport at purchase and the airport eTRS kiosk",
+     "source": "https://www.iras.gov.sg/taxes/goods-services-tax-(gst)/consumers/tourist-refund-scheme"
+    },
+    {
+     "text": "Some Sim Lim Square phone shops have cheated tourists, and consumer watchdog CASE keeps watch",
+     "source": "https://www.malaymail.com/news/world/2014/11/06/singaporeans-raise-thousands-to-help-vietnam-tourist-victim-of-phone-scam/777711"
+    },
+    {
+     "text": "Apple may limit iPhone warranty repairs to the country where you bought it",
+     "source": "https://www.apple.com/legal/warranty/products/ios-warranty-document-us.html"
+    },
+    {
+     "text": "India lets you bring goods worth up to Rs 75,000 duty free by air. Declare anything above that",
+     "source": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2222384&reg=3&lang=1"
+    }
+   ]
+  },
+  {
+   "code": "MY",
+   "name": "Malaysia",
+   "currency": "MYR",
+   "knownFor": [
+    {
+     "item": "Royal Selangor pewter",
+     "search": "Royal Selangor pewter mug",
+     "kind": "quality",
+     "why": "Kuala Lumpur pewter maker, its cast pewter is 92 to 97 percent tin",
+     "source": "https://www.royalselangor.com/about-pewter"
+    },
+    {
+     "item": "Ipoh white coffee",
+     "search": "OldTown White Coffee",
+     "kind": "local",
+     "why": "OldTown is made in Ipoh, where Hainanese brewers created white coffee in the 1930s",
+     "source": "https://www.oldtown.com.my/our-story/"
+    },
+    {
+     "item": "Beryl's chocolate",
+     "search": "Beryl's chocolate",
+     "kind": "local",
+     "why": "Chocolate maker founded near Kuala Lumpur in 1995",
+     "source": "https://www.berylschocolate.com/about-us"
+    },
+    {
+     "item": "BOH tea",
+     "search": "BOH tea",
+     "kind": "local",
+     "why": "Tea grown in the Cameron Highlands by a company dating to 1929",
+     "source": "https://bohtea.com/about/our-history/"
+    },
+    {
+     "item": "Batik",
+     "search": "batik scarf",
+     "kind": "famous",
+     "why": "Wax resist dyed cloth sold as shirts, scarves and home items, light to pack",
+     "source": "https://www.pommietravels.com/souvenirs-from-malaysia/"
+    },
+    {
+     "item": "Songket",
+     "search": "songket fabric",
+     "kind": "quality",
+     "why": "Formal woven fabric seen at special events across Malaysia",
+     "source": "https://www.pommietravels.com/souvenirs-from-malaysia/"
+    },
+    {
+     "item": "Durian chocolates and candies",
+     "search": "durian chocolate",
+     "kind": "famous",
+     "why": "An easy way to try durian without handling the fruit",
+     "source": "https://www.pommietravels.com/souvenirs-from-malaysia/"
+    }
+   ],
+   "usuallyBuy": [
+    {
+     "item": "White coffee sachets",
+     "search": "OldTown White Coffee 3 in 1",
+     "why": "The usual tourist buy, some take home a whole carton",
+     "source": "https://reddit.com/r/malaysia/comments/1nqpkm4/top_5_mustbuy_souvenirs_in_malaysia/nga6uw4/"
+    },
+    {
+     "item": "Beryl's chocolate",
+     "search": "Beryl's chocolate",
+     "why": "A local says Japanese friends rated it above chocolate back home",
+     "source": "https://reddit.com/r/malaysia/comments/1nqpkm4/top_5_mustbuy_souvenirs_in_malaysia/ng8qkqx/"
+    },
+    {
+     "item": "Batik shirts and scarves",
+     "search": "batik shirt",
+     "why": "Named in a top five souvenir list for its colourful designs",
+     "source": "https://reddit.com/r/malaysia/comments/1nqpkm4/top_5_mustbuy_souvenirs_in_malaysia/"
+    },
+    {
+     "item": "Curry and rendang pastes",
+     "search": "rendang paste",
+     "why": "Locals suggest ready cooking pastes from brands like Adabi",
+     "source": "https://reddit.com/r/malaysia/comments/1nqpkm4/top_5_mustbuy_souvenirs_in_malaysia/nga9c9b/"
+    },
+    {
+     "item": "Langkawi duty free chocolate",
+     "search": "chocolate gift box",
+     "why": "Langkawi is known for cheap imported chocolate, keep it cool as it melts",
+     "source": "https://www.mynahknows.com/langkawi/duty-free-alcohol-langkawi/"
+    }
+   ],
+   "funFacts": [
+    {
+     "text": "Langkawi became a duty free island on 1 January 1987 to boost tourism",
+     "source": "https://says.com/my/lifestyle/why-is-langkawi-duty-free-heres-the-story-behind-its-special-status"
+    },
+    {
+     "text": "The Cameron Highlands grow about 70 percent of all tea made in Malaysia",
+     "source": "https://bohtea.com/about/our-history/"
+    },
+    {
+     "text": "Royal Selangor traces back to Yong Koon, who reached Kuala Lumpur in 1885",
+     "source": "https://www.royalselangor.com/heritage"
+    }
+   ],
+   "watchOuts": [
+    {
+     "text": "A 2026 Petaling Street raid found fake jerseys sold to tourists at double the local rate",
+     "source": "https://www.thestar.com.my/news/nation/2026/07/11/domestic-trade-enforcers-seize-fake-football-jerseys-worth-rm270150-in-kl"
+    },
+    {
+     "text": "Langkawi duty free buys face customs limits when you carry them to mainland Malaysia",
+     "source": "https://www.mynahknows.com/langkawi/duty-free-alcohol-langkawi/"
+    },
+    {
+     "text": "India lets you bring goods worth up to Rs 75,000 duty free by air. Declare anything above that",
+     "source": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2222384&reg=3&lang=1"
+    }
+   ]
+  },
+  {
+   "code": "VN",
+   "name": "Vietnam",
+   "currency": "VND",
+   "knownFor": [
+    {
+     "item": "Vietnamese coffee",
+     "search": "Trung Nguyen Legend coffee",
+     "kind": "local",
+     "why": "Trung Nguyen is a big Vietnamese coffee house and the maker of G7 instant coffee",
+     "source": "https://trungnguyenlegend.com/milestones/?lang=en"
+    },
+    {
+     "item": "Phin coffee filter",
+     "search": "Vietnamese phin coffee filter",
+     "kind": "famous",
+     "why": "The single cup metal drip filter locals brew with, sold with bags of local coffee",
+     "source": "https://vietnam.travel/things-to-do/12-traditional-vietnamese-souvenirs"
+    },
+    {
+     "item": "Silk from Hang Gai street",
+     "search": "Vietnamese silk scarf",
+     "kind": "quality",
+     "why": "Hanoi's Silk Street has tailor shops stacked with silk ready to be sewn",
+     "source": "https://vietnam.travel/things-to-do/12-traditional-vietnamese-souvenirs"
+    },
+    {
+     "item": "Lacquerware",
+     "search": "Vietnamese lacquer box",
+     "kind": "quality",
+     "why": "Paintings and gold leaf sealed under layer after layer of tree sap",
+     "source": "https://vietnam.travel/things-to-do/12-traditional-vietnamese-souvenirs"
+    },
+    {
+     "item": "Conical hat",
+     "search": "non la conical hat",
+     "kind": "famous",
+     "why": "Handwoven palm leaf hat, the classic symbol of Vietnam",
+     "source": "https://vietnam.travel/things-to-do/12-traditional-vietnamese-souvenirs"
+    },
+    {
+     "item": "Marou chocolate",
+     "search": "Marou chocolate",
+     "kind": "local",
+     "why": "Dark chocolate made in Vietnam from Vietnamese cacao, started by two Frenchmen",
+     "source": "https://marouchocolate.com/pages/our-story"
+    },
+    {
+     "item": "Ben Tre coconut candy",
+     "search": "Ben Tre coconut candy",
+     "kind": "famous",
+     "why": "Keo dua is one of the best known products of Ben Tre in the Mekong Delta",
+     "source": "https://vietnamnet.vn/en/ben-tre-vietnams-coconut-kingdom-E200297.html"
+    },
+    {
+     "item": "Tailored clothes in Hoi An",
+     "search": "tailored suit",
+     "kind": "quality",
+     "why": "Guides call Hoi An the tailoring capital of the world, with many tailor shops",
+     "source": "https://vietnamdiscovery.com/hoi-an/top-lists/tailoring-in-hoi-an/"
+    }
+   ],
+   "usuallyBuy": [
+    {
+     "item": "Marou chocolate and coconut candy",
+     "search": "Marou chocolate",
+     "why": "Suggested as food souvenirs to an Indian family in an Indian travel thread",
+     "source": "https://reddit.com/r/indiatravel/comments/1ogrru9/need_some_help_designing_itinerary_for_vietnam/nne02zj/"
+    },
+    {
+     "item": "Coffee with a phin and cup set",
+     "search": "Vietnamese coffee phin set",
+     "why": "A visitor brought home lots of coffee plus a filter and cup set",
+     "source": "https://reddit.com/r/VietNam/comments/1gd6bfi/what_should_i_bring_home_from_vietnam/ltzo8t4/"
+    },
+    {
+     "item": "Dried mango and fruit snacks",
+     "search": "dried mango",
+     "why": "Locals suggest dried fruit, jerky and Trung Nguyen coffee to take home",
+     "source": "https://reddit.com/r/VietNam/comments/1gd6bfi/what_should_i_bring_home_from_vietnam/lu0ivxj/"
+    },
+    {
+     "item": "Custom made suit",
+     "search": "tailored suit",
+     "why": "A custom suit is a common answer to what to bring home from Vietnam",
+     "source": "https://reddit.com/r/VietNam/comments/1gd6bfi/what_should_i_bring_home_from_vietnam/ltzkllu/"
+    },
+    {
+     "item": "Tailor made ao dai",
+     "search": "ao dai",
+     "why": "Named along with the conical hat as the classic take home",
+     "source": "https://reddit.com/r/VietNam/comments/1gd6bfi/what_should_i_bring_home_from_vietnam/ltzs9l5/"
+    }
+   ],
+   "funFacts": [
+    {
+     "text": "Vietnam is the world's largest exporter of Robusta coffee",
+     "source": "https://vietnam.travel/things-to-do/12-traditional-vietnamese-souvenirs"
+    },
+    {
+     "text": "Vietnamese lacquer painting grew out of the Hanoi College of Fine Arts in the 1930s",
+     "source": "https://vietnam.travel/things-to-do/12-traditional-vietnamese-souvenirs"
+    },
+    {
+     "text": "Marou began after its founders found a cacao farm in Ba Ria through a Google search",
+     "source": "https://marouchocolate.com/pages/our-story"
+    }
+   ],
+   "watchOuts": [
+    {
+     "text": "One buyer's fake North Face bag from Vietnam started falling apart right away",
+     "source": "https://reddit.com/r/onebag/comments/1gpiqmt/wandrd_transit_vs_peak_design_travel/"
+    },
+    {
+     "text": "Skip snake wine. It is illegal to bring into many countries",
+     "source": "https://www.araioflight.com/shopping-vietnam-souvenirs/"
+    },
+    {
+     "text": "Bargain politely. An Indian visitor suggests starting at 50 to 60 percent and not haggling at fixed price shops",
+     "source": "https://reddit.com/r/VietNam/comments/1lcxjq3/to_indians_visiting_vietnam_from_another_indian/"
+    },
+    {
+     "text": "India lets you bring goods worth up to Rs 75,000 duty free by air. Declare anything above that",
+     "source": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2222384&reg=3&lang=1"
+    }
+   ]
+  },
+  {
+   "code": "LK",
+   "name": "Sri Lanka",
+   "currency": "LKR",
+   "knownFor": [
+    {
+     "item": "Ceylon tea",
+     "search": "Dilmah Ceylon tea",
+     "kind": "local",
+     "why": "Dilmah, launched in 1985, packs single origin Ceylon tea at the source",
+     "source": "https://www.dilmahtea.com/about"
+    },
+    {
+     "item": "Ceylon cinnamon",
+     "search": "Ceylon cinnamon sticks",
+     "kind": "quality",
+     "why": "True cinnamon from Sri Lanka, an EU protected geographical indication since 2022",
+     "source": "https://www.srilankabusiness.com/spices/ceylon-cinnamon-geographical-indication.html"
+    },
+    {
+     "item": "Blue sapphires",
+     "search": "Ceylon blue sapphire",
+     "kind": "famous",
+     "why": "The blue sapphire is Sri Lanka's national gemstone, prized for its clarity",
+     "source": "https://ngja.gov.lk/our-history/sri-lanka-the-blue-sapphire-capital/"
+    },
+    {
+     "item": "Kolam masks",
+     "search": "Sri Lankan wooden mask",
+     "kind": "famous",
+     "why": "Carved demon masks from Ambalangoda, where workshops are open to visitors",
+     "source": "https://www.insightguides.com/inspire-me/blog/what-to-buy-in-sri-lanka-and-where"
+    },
+    {
+     "item": "Batik",
+     "search": "Sri Lankan batik",
+     "kind": "famous",
+     "why": "Hand dyed cloth and art made in workshops across the island",
+     "source": "https://www.insightguides.com/inspire-me/blog/what-to-buy-in-sri-lanka-and-where"
+    },
+    {
+     "item": "Brass and lacquerware",
+     "search": "Kandy brass lamp",
+     "kind": "quality",
+     "why": "Kandy makes ceremonial brass lamps, lacquer work comes from Matale nearby",
+     "source": "https://www.insightguides.com/inspire-me/blog/what-to-buy-in-sri-lanka-and-where"
+    },
+    {
+     "item": "Siddhalepa balm",
+     "search": "Siddhalepa balm",
+     "kind": "local",
+     "why": "Sri Lankan Ayurvedic herbal balm for headaches, colds and aches",
+     "source": "https://www.siddhalepa.com/brands/siddhalepa.html"
+    }
+   ],
+   "usuallyBuy": [
+    {
+     "item": "Semi precious gemstones",
+     "search": "moonstone",
+     "why": "An Indian flying home from Colombo had bought amethyst, moonstone and garnet",
+     "source": "https://reddit.com/r/srilanka/comments/1ubjxww/leaving_sri_lanka_today_any_lastminute_snack/"
+    },
+    {
+     "item": "Dilmah tea",
+     "search": "Dilmah tea",
+     "why": "Locals point Indian visitors to Dilmah tea as a take home",
+     "source": "https://reddit.com/r/srilanka/comments/1ubjxww/leaving_sri_lanka_today_any_lastminute_snack/oswlxv7/"
+    },
+    {
+     "item": "Siddhalepa balm",
+     "search": "Siddhalepa balm",
+     "why": "Named by locals as an Ayurvedic buy for an Indian heading home",
+     "source": "https://reddit.com/r/srilanka/comments/1ubjxww/leaving_sri_lanka_today_any_lastminute_snack/osyeji7/"
+    },
+    {
+     "item": "Coconut toffee and sweets",
+     "search": "Sri Lankan coconut toffee",
+     "why": "Locals suggest coconut toffee and sesame rolls from Keells supermarkets",
+     "source": "https://reddit.com/r/srilanka/comments/1ubjxww/leaving_sri_lanka_today_any_lastminute_snack/oswpy5i/"
+    },
+    {
+     "item": "Handloom and handicrafts",
+     "search": "Sri Lankan handloom saree",
+     "why": "Laksala for crafts and local handloom brands for sarees and shirts",
+     "source": "https://reddit.com/r/srilanka/comments/1ubjxww/leaving_sri_lanka_today_any_lastminute_snack/oswpy5i/"
+    }
+   ],
+   "funFacts": [
+    {
+     "text": "Lady Diana's engagement ring held a 12 carat blue Ceylon sapphire",
+     "source": "https://ngja.gov.lk/our-history/sri-lanka-the-blue-sapphire-capital/"
+    },
+    {
+     "text": "Batik came to Sri Lanka from Indonesia with the Dutch",
+     "source": "https://www.insightguides.com/inspire-me/blog/what-to-buy-in-sri-lanka-and-where"
+    },
+    {
+     "text": "Dilmah was the world's first producer owned tea brand",
+     "source": "https://www.dilmahtea.com/about"
+    }
+   ],
+   "watchOuts": [
+    {
+     "text": "Look for the Lion logo. It guarantees 100 percent Ceylon tea packed in Sri Lanka",
+     "source": "https://srilankateaboard.lk/ceylon-tea/lion-logo-symbol-of-quality/"
+    },
+    {
+     "text": "Street sellers may offer cut glass as gems. Buy from a Sri Lanka Gem and Jewellery Association member",
+     "source": "https://www.insightguides.com/inspire-me/blog/what-to-buy-in-sri-lanka-and-where"
+    },
+    {
+     "text": "The state gem authority NGJA runs a gem testing lab in Colombo that issues certificates",
+     "source": "https://ngja.gov.lk/business_services/gem-testing-and-valuation/"
+    },
+    {
+     "text": "India lets you bring goods worth up to Rs 75,000 duty free by air. Declare anything above that",
+     "source": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2222384&reg=3&lang=1"
+    }
+   ]
+  },
+  {
+   "code": "JP",
+   "name": "Japan",
+   "currency": "JPY",
+   "knownFor": [
+    {
+     "item": "Seki kitchen knives",
+     "search": "Seki kitchen knife",
+     "kind": "quality",
+     "why": "Seki in Gifu was once famed for samurai swords and now makes high quality blades",
+     "source": "https://www.japan.travel/en/au/story/7-traditional-crafts-and-souvenirs-from-different-regions-in-japan/"
+    },
+    {
+     "item": "Sabae eyeglass frames",
+     "search": "Sabae titanium glasses frame",
+     "kind": "quality",
+     "why": "Fukui and Sabae make around 95 percent of the eyeglass frames made in Japan",
+     "source": "https://www.japan.travel/en/au/story/7-traditional-crafts-and-souvenirs-from-different-regions-in-japan/"
+    },
+    {
+     "item": "Arita porcelain",
+     "search": "Arita ware tea cup",
+     "kind": "quality",
+     "why": "Arita in Saga is seen as the birthplace of porcelain in Japan",
+     "source": "https://www.japan.travel/en/au/story/7-traditional-crafts-and-souvenirs-from-different-regions-in-japan/"
+    },
+    {
+     "item": "Imabari towels",
+     "search": "Imabari towel",
+     "kind": "quality",
+     "why": "Branded towels must meet 12 quality standards, including a five second absorbency test",
+     "source": "https://www.gov-online.go.jp/eng/publicity/book/hlj/html/202009/202009_06_en.html"
+    },
+    {
+     "item": "Kyoto green tea and matcha",
+     "search": "Fukujuen matcha",
+     "kind": "local",
+     "why": "Kyoto tea house Fukujuen dates to 1790 and is known for top quality green tea",
+     "source": "https://www.japan.travel/en/story/shopping-in-kyoto/"
+    },
+    {
+     "item": "Japan only KitKat flavours",
+     "search": "KitKat matcha Japan",
+     "kind": "famous",
+     "why": "Nestle makes KitKat flavours and premium editions that are sold only in Japan",
+     "source": "https://www.timeout.com/tokyo/shopping/best-japan-only-kit-kat-flavours"
+    },
+    {
+     "item": "Royce chocolate",
+     "search": "Royce Nama Chocolate",
+     "kind": "local",
+     "why": "Chocolate maker founded in Sapporo, Hokkaido in 1983",
+     "source": "https://www.royce.com/contents/english/"
+    },
+    {
+     "item": "Biore UV sunscreen",
+     "search": "Biore UV Aqua Rich Watery Essence",
+     "kind": "local",
+     "why": "Kao's light, watery sunscreen, launched in 2011 and a hit with buyers",
+     "source": "https://www.kao.com/global/en/newsroom/news/release/2025/20250213-001/"
+    },
+    {
+     "item": "Anessa sunscreen",
+     "search": "Anessa Perfect UV Skin Care Milk",
+     "kind": "quality",
+     "why": "A Japan drugstore guide rates it the best sunscreen for outdoor and water use",
+     "source": "https://metropolisjapan.com/japan-drugstore-guide-the-best-japanese-sunscreen-brands/"
+    },
+    {
+     "item": "Umeboshi pickled plums",
+     "search": "umeboshi",
+     "kind": "famous",
+     "why": "Pickled plums from Wakayama, suggested by the tourism board as a gift box",
+     "source": "https://www.japan.travel/en/guide/last-minute-souvenirs/"
+    }
+   ],
+   "usuallyBuy": [
+    {
+     "item": "Japanese sunscreen",
+     "search": "Biore UV Aqua Rich Watery Essence",
+     "why": "An Indian skincare fan came back from Don Quijote with Biore and Skin Aqua sunscreens",
+     "source": "https://reddit.com/r/IndianSkincareAddicts/comments/1rv4wew/japan_skincare_haul/"
+    },
+    {
+     "item": "Kitchen knife",
+     "search": "Japanese santoku knife",
+     "why": "A Mumbai family set aside time for knife shopping at Kappabashi. Blades go in checked bags",
+     "source": "https://reddit.com/r/indiatravel/comments/1u95vha/went_to_japan_from_mumbai_for_2_weeks_with_a_15/"
+    },
+    {
+     "item": "Matcha",
+     "search": "matcha powder",
+     "why": "Travellers name high grade matcha as one of the things they bring home",
+     "source": "https://reddit.com/r/JapanTravelTips/comments/1jnbm7b/my_top_ten_things_i_bought_in_japan_that_i_have/mkilure/"
+    },
+    {
+     "item": "Kai nail clippers",
+     "search": "Kai nail clipper",
+     "why": "First on a much upvoted list of Japan buys that people use every day",
+     "source": "https://reddit.com/r/JapanTravelTips/comments/1jnbm7b/my_top_ten_things_i_bought_in_japan_that_i_have/"
+    },
+    {
+     "item": "Imabari towels",
+     "search": "Imabari towel",
+     "why": "On the same list, where the buyer says they wish they had bought more",
+     "source": "https://reddit.com/r/JapanTravelTips/comments/1jnbm7b/my_top_ten_things_i_bought_in_japan_that_i_have/"
+    }
+   ],
+   "funFacts": [
+    {
+     "text": "KitKat sounds like kitto katsu, a Japanese good luck phrase, so students get it before exams",
+     "source": "https://www.timeout.com/tokyo/shopping/best-japan-only-kit-kat-flavours"
+    },
+    {
+     "text": "Sabae made the world's first titanium eyeglass frames in 1983",
+     "source": "https://www.japan.travel/en/au/story/7-traditional-crafts-and-souvenirs-from-different-regions-in-japan/"
+    },
+    {
+     "text": "Imabari has made towels since 1894 and makes over half of the towels made in Japan",
+     "source": "https://www.gov-online.go.jp/eng/publicity/book/hlj/html/202009/202009_06_en.html"
+    },
+    {
+     "text": "Arita porcelain goes back to 1616, when porcelain stone was found near the town",
+     "source": "https://www.japan.travel/en/au/story/7-traditional-crafts-and-souvenirs-from-different-regions-in-japan/"
+    }
+   ],
+   "watchOuts": [
+    {
+     "text": "From 1 Nov 2026 you pay the tax in the shop and get it refunded only after customs checks your goods when you leave",
+     "source": "https://www.japan.travel/en/plan/japans-tax-exemption/"
+    },
+    {
+     "text": "Knives are not allowed in cabin bags. Pack them in checked baggage",
+     "source": "https://www.narita-airport.jp/en/airportguide/security/master-sheet/"
+    },
+    {
+     "text": "India lets you bring goods worth up to Rs 75,000 duty free by air. Declare anything above that",
+     "source": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2222384&reg=3&lang=1"
+    },
+    {
+     "text": "Apple may limit iPhone warranty repairs to the country where you bought it",
+     "source": "https://www.apple.com/legal/warranty/products/ios-warranty-document-us.html"
+    }
+   ]
+  },
+  {
+   "code": "US",
+   "name": "United States",
+   "currency": "USD",
+   "knownFor": [
+    {
+     "item": "Levi's jeans",
+     "search": "Levi's 501 Original jeans",
+     "kind": "local",
+     "why": "Jacob Davis and Levi Strauss patented riveted jeans in San Francisco in 1873",
+     "source": "https://www.levistrauss.com/2021/05/20/celebrating-the-levis-501-jean/"
+    },
+    {
+     "item": "Coach leather bags",
+     "search": "Coach handbag",
+     "kind": "local",
+     "why": "Leather goods label founded in New York City in 1941",
+     "source": "https://en.wikipedia.org/wiki/Coach_New_York"
+    },
+    {
+     "item": "Ghirardelli chocolate",
+     "search": "Ghirardelli chocolate squares",
+     "kind": "local",
+     "why": "San Francisco chocolate maker started in 1852 by an Italian immigrant",
+     "source": "https://www.kaveyeats.com/best-souvenirs-usa"
+    },
+    {
+     "item": "Barbecue sauce",
+     "search": "barbecue sauce",
+     "kind": "famous",
+     "why": "Styles change by region, and well known barbecue houses bottle their own sauce",
+     "source": "https://www.kaveyeats.com/best-souvenirs-usa"
+    },
+    {
+     "item": "NASA merchandise",
+     "search": "NASA t-shirt",
+     "kind": "famous",
+     "why": "A classic US souvenir, sold at places like Johnson Space Center in Houston",
+     "source": "https://www.kaveyeats.com/best-souvenirs-usa"
+    },
+    {
+     "item": "Team baseball caps",
+     "search": "New York Yankees cap",
+     "kind": "famous",
+     "why": "A travel writer rates a team cap as one of the best souvenirs from the US",
+     "source": "https://www.kaveyeats.com/best-souvenirs-usa"
+    },
+    {
+     "item": "Outlet mall clothing",
+     "search": "Polo Ralph Lauren shirt",
+     "kind": "famous",
+     "why": "US outlets sell clothes and sports gear from big brands at reduced prices",
+     "source": "https://www.exoticca.com/us/america/north-america/usa/shopping"
+    }
+   ],
+   "usuallyBuy": [
+    {
+     "item": "iPhone and Apple gear",
+     "search": "iPhone 18 Pro 256GB",
+     "why": "Indian visitors call Apple gear cheaper in the US, but the warranty stays US only",
+     "source": "https://reddit.com/r/indiansinusa/comments/1o0jxp6/things_to_buy_when_in_usa/"
+    },
+    {
+     "item": "Coach bags and cosmetics",
+     "search": "Coach handbag",
+     "why": "Named by an Indian in the US as the pick for women, alongside cosmetics",
+     "source": "https://reddit.com/r/indiansinusa/comments/1o0jxp6/things_to_buy_when_in_usa/niclpe0/"
+    },
+    {
+     "item": "Bath & Body Works",
+     "search": "Bath & Body Works candle",
+     "why": "NRIs suggest Bath & Body Works items as gifts, bought when on sale",
+     "source": "https://reddit.com/r/nri/comments/1t3p7h3/what_gifts_do_you_take_back_when_returning_to/ok1edb7/"
+    },
+    {
+     "item": "Ghirardelli chocolates and dry fruits",
+     "search": "Ghirardelli chocolate",
+     "why": "NRIs say families usually want dry fruits and Ghirardelli, best value at Costco",
+     "source": "https://reddit.com/r/nri/comments/1t3p7h3/what_gifts_do_you_take_back_when_returning_to/ojz5pil/"
+    },
+    {
+     "item": "Costco pistachios and vitamins",
+     "search": "Costco pistachios",
+     "why": "An NRI takes salted pistachios and multivitamins from Costco for parents",
+     "source": "https://reddit.com/r/nri/comments/1t3p7h3/what_gifts_do_you_take_back_when_returning_to/ojwwafe/"
+    }
+   ],
+   "funFacts": [
+    {
+     "text": "Levi's marks 20 May as 501 Day, the date in 1873 the first blue jean got its patent",
+     "source": "https://www.levistrauss.com/2021/05/20/celebrating-the-levis-501-jean/"
+    },
+    {
+     "text": "Ghirardelli is the third oldest chocolate company in the US",
+     "source": "https://en.wikipedia.org/wiki/Ghirardelli_Chocolate_Company"
+    },
+    {
+     "text": "Ghirardelli, a San Francisco name, has been owned by Swiss chocolatier Lindt since 1998",
+     "source": "https://www.kaveyeats.com/best-souvenirs-usa"
+    }
+   ],
+   "watchOuts": [
+    {
+     "text": "iPhone 17 and 18 Pro models sold in the US have no SIM tray and work only with eSIM",
+     "source": "https://support.apple.com/en-us/118569"
+    },
+    {
+     "text": "Apple may limit iPhone warranty repairs to the country where you bought it",
+     "source": "https://www.apple.com/legal/warranty/products/ios-warranty-document-us.html"
+    },
+    {
+     "text": "India lets you bring goods worth up to Rs 75,000 duty free by air. Declare anything above that",
+     "source": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2222384&reg=3&lang=1"
+    }
+   ]
+  },
+  {
+   "code": "GB",
+   "name": "United Kingdom",
+   "currency": "GBP",
+   "knownFor": [
+    {
+     "item": "Twinings tea",
+     "search": "Twinings English Breakfast tea",
+     "kind": "local",
+     "why": "Tea shop on London's Strand since 1706, still trading today",
+     "source": "https://en.wikipedia.org/wiki/Twinings"
+    },
+    {
+     "item": "Fortnum & Mason tea and biscuits",
+     "search": "Fortnum & Mason Earl Grey tea",
+     "kind": "local",
+     "why": "Piccadilly store known for hampers, plus teas and biscuits in collectible tins",
+     "source": "https://globetotting.com/best-souvenirs-from-london/"
+    },
+    {
+     "item": "Cadbury chocolate",
+     "search": "Cadbury Dairy Milk",
+     "kind": "local",
+     "why": "Birmingham chocolate maker, its Dairy Milk bar dates to 1905",
+     "source": "https://en.wikipedia.org/wiki/History_of_Cadbury"
+    },
+    {
+     "item": "Burberry trench coat",
+     "search": "Burberry Heritage trench coat",
+     "kind": "quality",
+     "why": "Made of gabardine, a weatherproof fabric the founder invented in 1879",
+     "source": "https://us.burberry.com/c/burberry-world/heritage/trench-coat/"
+    },
+    {
+     "item": "Dr. Martens boots",
+     "search": "Dr. Martens 1460 boots",
+     "kind": "local",
+     "why": "The 1460 boot dates to 1960 and is still made at Cobbs Lane in Wollaston",
+     "source": "https://en.wikipedia.org/wiki/Dr._Martens"
+    },
+    {
+     "item": "Liberty print gifts",
+     "search": "Liberty print scarf",
+     "kind": "famous",
+     "why": "Liberty London is famous for small floral and paisley prints on scarves and gifts",
+     "source": "https://globetotting.com/best-souvenirs-from-london/"
+    },
+    {
+     "item": "Scotch whisky",
+     "search": "Glenfiddich 12 Year Old",
+     "kind": "famous",
+     "why": "Scotland ships 43 bottles of Scotch every second to over 160 markets",
+     "source": "https://www.scotch-whisky.org.uk/industry-insights/facts-figures/"
+    },
+    {
+     "item": "Marks & Spencer",
+     "search": "Marks & Spencer shortbread",
+     "kind": "local",
+     "why": "British retailer founded in Leeds in 1884",
+     "source": "https://en.wikipedia.org/wiki/Marks_%26_Spencer"
+    }
+   ],
+   "usuallyBuy": [
+    {
+     "item": "Biscuits and chocolate",
+     "search": "Cadbury Dairy Milk",
+     "why": "An Indian who researched it found cookies and chocolate the best buys to take home",
+     "source": "https://reddit.com/r/IndiansInUK/comments/1um5sxr/my_friend_in_uk_is_sending_parcel_to_india/ov9mo52/"
+    },
+    {
+     "item": "Cosmetics",
+     "search": "No7 serum",
+     "why": "Indians in the UK suggest cosmetics for their quality",
+     "source": "https://reddit.com/r/IndiansInUK/comments/1um5sxr/my_friend_in_uk_is_sending_parcel_to_india/ovdu5gd/"
+    },
+    {
+     "item": "Scotch whisky",
+     "search": "Glenfiddich 12 Year Old",
+     "why": "Alcohol is a standard answer when Indians ask what to bring from the UK",
+     "source": "https://reddit.com/r/IndiansInUK/comments/1um5sxr/my_friend_in_uk_is_sending_parcel_to_india/ova4y0c/"
+    },
+    {
+     "item": "Fortnum & Mason tea tins",
+     "search": "Fortnum & Mason tea",
+     "why": "London souvenir lists focus on Fortnum's tea and biscuits, and locals suggest M&S too",
+     "source": "https://reddit.com/r/LondonTravel/comments/1wim0xv/help_me_judge_my_london_tea_foodie_souvenir_list/"
+    }
+   ],
+   "funFacts": [
+    {
+     "text": "The Twinings logo, created in 1787, is the oldest company logo still in use",
+     "source": "https://en.wikipedia.org/wiki/Twinings"
+    },
+    {
+     "text": "India is the biggest market for Scotch whisky by volume",
+     "source": "https://www.scotch-whisky.org.uk/industry-insights/international-trade/"
+    },
+    {
+     "text": "The Dr. Martens 1460 boot is named after its launch date, 1 April 1960",
+     "source": "https://en.wikipedia.org/wiki/Dr._Martens"
+    }
+   ],
+   "watchOuts": [
+    {
+     "text": "The UK ended VAT refunds for tourists on 1 January 2021, so there is no tax back at the airport",
+     "source": "https://data.london.gov.uk/blog/the-impact-of-ending-tax-free-shopping-on-the-uk-and-london-economies"
+    },
+    {
+     "text": "Council raids on Oxford Street sweet shops found counterfeit goods, including fake EarPods",
+     "source": "https://www.timeout.com/london/news/1-million-of-illegal-goods-have-been-seized-from-oxford-street-us-sweetshops-030323"
+    },
+    {
+     "text": "Dr. Martens are also made in China, Vietnam, Laos and Thailand. Check the label if you want UK made",
+     "source": "https://en.wikipedia.org/wiki/Dr._Martens"
+    },
+    {
+     "text": "India lets you bring goods worth up to Rs 75,000 duty free by air. Declare anything above that",
+     "source": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2222384&reg=3&lang=1"
+    }
+   ]
+  },
+  {
+   "code": "TR",
+   "name": "Turkey",
+   "currency": "TRY",
+   "knownFor": [
+    {
+     "item": "Turkish delight",
+     "search": "Hacı Bekir Turkish delight",
+     "kind": "local",
+     "why": "Hacı Bekir has made lokum in Istanbul since opening a sweet shop there in 1777",
+     "source": "https://shop.hacibekir.com/en/pages/tarihcemiz"
+    },
+    {
+     "item": "Turkish coffee",
+     "search": "Kurukahveci Mehmet Efendi Turkish coffee",
+     "kind": "local",
+     "why": "Istanbul roaster selling fresh ground coffee since 1871",
+     "source": "https://www.mehmetefendi.com/eng/about-us/history/mehmet-efendi"
+    },
+    {
+     "item": "Turkish black tea",
+     "search": "Turkish tea",
+     "kind": "famous",
+     "why": "Cay is the most widely drunk hot drink in Turkey",
+     "source": "https://goturkiye.com/blog/10-best-souvenirs-to-buy-from-istanbul"
+    },
+    {
+     "item": "Evil eye charms",
+     "search": "nazar evil eye",
+     "kind": "famous",
+     "why": "The blue nazar boncugu charm is one of the tourism board's top Istanbul souvenirs",
+     "source": "https://goturkiye.com/blog/10-best-souvenirs-to-buy-from-istanbul"
+    },
+    {
+     "item": "Iznik ceramics",
+     "search": "Iznik ceramic plate",
+     "kind": "quality",
+     "why": "Painted Iznik plates, bowls and vases are a classic Istanbul buy",
+     "source": "https://goturkiye.com/blog/10-best-souvenirs-to-buy-from-istanbul"
+    },
+    {
+     "item": "Kilim rugs",
+     "search": "Turkish kilim rug",
+     "kind": "quality",
+     "why": "Kilim rugs are easy to carry, so they make a good Istanbul souvenir",
+     "source": "https://goturkiye.com/blog/10-best-souvenirs-to-buy-from-istanbul"
+    },
+    {
+     "item": "Mosaic lamps",
+     "search": "Turkish mosaic lamp",
+     "kind": "famous",
+     "why": "Mosaic lamps are among the most popular Istanbul souvenirs",
+     "source": "https://goturkiye.com/blog/10-best-souvenirs-to-buy-from-istanbul"
+    },
+    {
+     "item": "Olive oil soap",
+     "search": "Turkish olive oil soap",
+     "kind": "local",
+     "why": "Handmade olive oil soap is a leading bath souvenir from Turkey",
+     "source": "https://goturkiye.com/blog/10-best-souvenirs-to-buy-from-istanbul"
+    },
+    {
+     "item": "Baklava",
+     "search": "pistachio baklava",
+     "kind": "famous",
+     "why": "Thin pastry layers filled with walnuts or pistachios",
+     "source": "https://goturkiye.com/blog/10-best-souvenirs-to-buy-from-istanbul"
+    }
+   ],
+   "usuallyBuy": [
+    {
+     "item": "Turkish delight and coffee",
+     "search": "Turkish delight",
+     "why": "A local's first tip to an Indian asking what his parents should bring back",
+     "source": "https://reddit.com/r/Turkey/comments/3n2op7/parents_are_visiting_istanbul_what_should_i_ask/cvkai1k/"
+    },
+    {
+     "item": "Copper coffee pot",
+     "search": "copper cezve",
+     "why": "Suggested in the same thread to go with the coffee",
+     "source": "https://reddit.com/r/Turkey/comments/3n2op7/parents_are_visiting_istanbul_what_should_i_ask/cvkbfex/"
+    },
+    {
+     "item": "Clothes from Turkish brands",
+     "search": "Turkish cotton shirt",
+     "why": "A local says Turkish textile brands give high quality at lower prices",
+     "source": "https://reddit.com/r/Turkey/comments/3n2op7/parents_are_visiting_istanbul_what_should_i_ask/cvknh9e/"
+    },
+    {
+     "item": "Scarves and shawls",
+     "search": "silk scarf",
+     "why": "Grand Bazaar stalls sell many scarves that pack small and make easy gifts",
+     "source": "https://reddit.com/r/Turkey/comments/3n2op7/parents_are_visiting_istanbul_what_should_i_ask/cvkhtqz/"
+    },
+    {
+     "item": "Baklava",
+     "search": "baklava box",
+     "why": "Named as a must in the same thread for an Indian family",
+     "source": "https://reddit.com/r/Turkey/comments/3n2op7/parents_are_visiting_istanbul_what_should_i_ask/cvkbwf6/"
+    }
+   ],
+   "funFacts": [
+    {
+     "text": "Turkish coffee culture has been on UNESCO's intangible heritage list since 2013",
+     "source": "https://ich.unesco.org/en/RL/turkish-coffee-culture-and-tradition-00645"
+    },
+    {
+     "text": "A British customer of Hacı Bekir took lokum home and called it Turkish Delight, and the name stuck",
+     "source": "https://shop.hacibekir.com/en/pages/tarihcemiz"
+    },
+    {
+     "text": "Mehmet Efendi packed fresh ground coffee in paper bags in front of waiting customers in 1871",
+     "source": "https://www.mehmetefendi.com/eng/about-us/history/mehmet-efendi"
+    }
+   ],
+   "watchOuts": [
+    {
+     "text": "Exporting antiquities, including old carpets and tiles, is illegal. Ask the shop for a museum form saying it is not antique",
+     "source": "https://turkeytravelplanner.com/details/Shopping/AntiquitiesWarning.html"
+    },
+    {
+     "text": "Locals warn that spices and Turkish delight at the Grand Bazaar are often overpriced",
+     "source": "https://reddit.com/r/istanbul/comments/146xbjz/what_is_a_fair_tip_in_istanbul_in_lira_lets_say/jnsmidq/"
+    },
+    {
+     "text": "Shops in tourist areas sell the same stock, so compare a few and bargain before you pay",
+     "source": "https://reddit.com/r/istanbul/comments/1jdo02e/my_guide_to_istanbul_for_tourists/"
+    },
+    {
+     "text": "India lets you bring goods worth up to Rs 75,000 duty free by air. Declare anything above that",
+     "source": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2222384&reg=3&lang=1"
+    }
+   ]
+  },
+  {
+   "code": "NP",
+   "name": "Nepal",
+   "currency": "NPR",
+   "knownFor": [
+    {
+     "item": "Chyangra pashmina",
+     "search": "Chyangra pashmina shawl",
+     "kind": "quality",
+     "why": "The Chyangra Pashmina logo marks Nepali pashmina made to set quality rules",
+     "source": "https://kathmandupost.com/money/2018/03/06/nepals-chyangra-pashmina-logo-okayed-by-47-countries"
+    },
+    {
+     "item": "Singing bowls",
+     "search": "singing bowl",
+     "kind": "famous",
+     "why": "Made of copper, brass or a seven metal alloy and used in Tibetan style meditation",
+     "source": "https://www.thirdrockadventures.com/blog/what-souvenirs-buy-nepal"
+    },
+    {
+     "item": "Thangka paintings",
+     "search": "thangka painting",
+     "kind": "quality",
+     "why": "Tibetan scroll paintings of Buddhist deities, a popular Nepal souvenir",
+     "source": "https://www.thirdrockadventures.com/blog/what-souvenirs-buy-nepal"
+    },
+    {
+     "item": "Khukuri knife",
+     "search": "khukuri",
+     "kind": "local",
+     "why": "Traditional Nepali blade carried by Gurkha soldiers, some workshops make them to order",
+     "source": "https://www.thirdrockadventures.com/blog/what-souvenirs-buy-nepal"
+    },
+    {
+     "item": "Ilam tea",
+     "search": "Ilam orthodox tea",
+     "kind": "local",
+     "why": "Grown across the border from Darjeeling in similar soil and climate",
+     "source": "https://nepalitimes.com/ilam-tea-goes-green"
+    },
+    {
+     "item": "Lokta paper",
+     "search": "lokta paper notebook",
+     "kind": "local",
+     "why": "Handmade paper from Daphne bark, used for centuries for scriptures",
+     "source": "https://www.thirdrockadventures.com/blog/what-souvenirs-buy-nepal"
+    },
+    {
+     "item": "Felt products",
+     "search": "felt ball rug",
+     "kind": "local",
+     "why": "Light, colourful felt rugs, bags and toys that pack small",
+     "source": "https://www.thirdrockadventures.com/blog/what-souvenirs-buy-nepal"
+    },
+    {
+     "item": "Dhaka fabric",
+     "search": "Dhaka topi",
+     "kind": "local",
+     "why": "Nepal's traditional hand woven cloth from the eastern hills",
+     "source": "https://www.thirdrockadventures.com/blog/what-souvenirs-buy-nepal"
+    },
+    {
+     "item": "Rudraksha beads",
+     "search": "rudraksha mala",
+     "kind": "famous",
+     "why": "Holy beads from trees that grow in the Himalayan foothills",
+     "source": "https://www.thirdrockadventures.com/blog/what-souvenirs-buy-nepal"
+    }
+   ],
+   "usuallyBuy": [
+    {
+     "item": "Pashmina shawl",
+     "search": "pashmina shawl",
+     "why": "An Indian solo traveller's top asks were genuine pashmina, not blends",
+     "source": "https://reddit.com/r/Nepal/comments/1pscge8/please_help_planning_my_first_solo_trip_to_nepal/"
+    },
+    {
+     "item": "Khukuri",
+     "search": "khukuri",
+     "why": "The same Indian traveller wanted a good khukuri, not cheap souvenir ones",
+     "source": "https://reddit.com/r/Nepal/comments/1pscge8/please_help_planning_my_first_solo_trip_to_nepal/"
+    },
+    {
+     "item": "Trekking gear",
+     "search": "down jacket",
+     "why": "Locals point Indian trekkers to Thamel shops for affordable trekking gear",
+     "source": "https://reddit.com/r/Nepal/comments/u1p604/what_is_the_best_market_in_kathmandu_to_buy_or/i4dwd7h/"
+    },
+    {
+     "item": "Thangka and rudraksha",
+     "search": "thangka painting",
+     "why": "First timers in Kathmandu ask locals where to buy pashmina, thangkas and rudraksha",
+     "source": "https://reddit.com/r/Kathmandu/comments/1rf9gtl/need_recommendations/"
+    }
+   ],
+   "funFacts": [
+    {
+     "text": "The Chyangra Pashmina logo was approved in 2011 and later okayed by 47 countries",
+     "source": "https://kathmandupost.com/money/2018/03/06/nepals-chyangra-pashmina-logo-okayed-by-47-countries"
+    },
+    {
+     "text": "When Ilam tea crosses into India it is often sold as Darjeeling tea",
+     "source": "https://ekantipur.com/koseli/2025/12/27/en/nepali-tea-in-the-shadow-of-the-darjeeling-brand-55-29.html"
+    },
+    {
+     "text": "Many Nepal shops take UPI payments through Fonepay QR codes",
+     "source": "https://reddit.com/r/Nepal/comments/1pscge8/please_help_planning_my_first_solo_trip_to_nepal/nv8eqox/"
+    }
+   ],
+   "watchOuts": [
+    {
+     "text": "Coming home by road gives you no duty free allowance at the Indian border",
+     "source": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2222384&reg=3&lang=1"
+    },
+    {
+     "text": "Objects over 100 years old cannot leave Nepal. Antiques need a Department of Archaeology certificate",
+     "source": "https://trade.ntb.gov.np/travel-essentials/custom-formalities/"
+    },
+    {
+     "text": "Street shops selling 100 percent cashmere are often selling synthetic fabric",
+     "source": "https://reddit.com/r/Nepal/comments/1r84r6i/any_legit_cadhmerepashmina_scarf_store_in/"
+    },
+    {
+     "text": "Indian Rs 200 and Rs 500 notes are allowed only up to Rs 25,000 a person, and only notes issued from Nov 2016",
+     "source": "https://www.nriaffairs.com/nepal-indian-currency-rs-200-and-rs-500-2026/"
+    }
+   ]
+  }
+ ]
+}

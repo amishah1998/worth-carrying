@@ -1,6 +1,6 @@
 # The rules the verdict uses, with sources
 
-Every number in `src/rules.js` comes from a page listed here. Change it here first, then in the code. Checked 2026-09-23.
+Every number in `src/rules.js` and `src/sales.js` comes from a page listed here. Change it here first, then in the code. Checked 2026-09-25.
 
 ## Indian customs, arriving by air
 
@@ -12,17 +12,9 @@ Every number in `src/rules.js` comes from a page listed here. Change it here fir
 | Social Welfare Surcharge on baggage | 0 since 2 Feb 2025 | [Budget 2025 memorandum, section VI item 25](https://www.indiabudget.gov.in/budget2025-26/doc/memo.pdf) |
 | Arrival by land | No general allowance | Baggage Rules 2026, Rule 5 |
 
-Customs converts at its own notified rate, revised about twice a month, so the duty line is approximate. Whether an officer values an item with or without the refunded VAT is not stated anywhere we could find; the app uses the full invoice price, which is the conservative choice.
+Customs converts at its own notified rate, revised about twice a month, so the duty line is approximate. The 38.5 percent quoted on many sites is the pre-2025 figure. The "10 percent" in some 2026 news is the rate for personal imports by post or courier (heading 9804), not baggage.
 
-The 38.5 percent quoted on many sites is the pre-2025 figure. The "10 percent" in some 2026 news is the rate for personal imports by post or courier (heading 9804), not baggage.
-
-## Tourist VAT refunds
-
-| Country | Rule | Source |
-|---|---|---|
-| UAE | 5 percent VAT; 87 percent of it refunded minus AED 3.60 per transaction; invoice AED 250 or more at a Planet-registered store; validate at the airport within 90 days; goods unused | [UAE Federal Tax Authority](https://tax.gov.ae/en/services/tourist.vat.refunds.aspx) |
-| Indonesia | 11 percent effective VAT; refund only when the trip's refundable VAT reaches Rp 500,000; claim at the airport | Indonesian Directorate General of Taxes, tourist refund page |
-| Thailand | 7 percent VAT; 2,000 baht per store per day; form P.P.10 from the store; fee not verified | Thai Revenue Department, VAT refund for tourists |
+Tourist VAT refunds (UAE 5 percent through Planet, Thailand 7 percent, Indonesia 11 percent) are not applied in the verdict. They are small, come with fees and minimums, and most travellers never reach the kiosk. The shelf price is taken as paid.
 
 ## Warranty in India for goods bought abroad
 
@@ -35,6 +27,15 @@ The 38.5 percent quoted on many sites is the pre-2025 figure. The "10 percent" i
 | Bose | Unclear | Bose India warranty PDF |
 | American Tourister, Samsonite | Kept, global warranty | Brand warranty pages |
 
-## Currency
+## Indian sale seasons shown on the card
 
-Rates come from [Frankfurter](https://frankfurter.dev/) v2, which needs no key and allows commercial use. Cached for a day.
+| Sale | 2026 dates | Source |
+|---|---|---|
+| Amazon Great Indian Festival | From 8 October, Prime early access 7 October | [DesiDime, sale updates page](https://www.desidime.com/news/amazon-great-indian-festival-2026-agif-sale) |
+| Flipkart Big Billion Days | From 9 October, Plus and VIP early access 8 October | [The Sunday Guardian, September 2026](https://sundayguardianlive.com/trending/flipkart-big-billion-days-2026-starts-on-october-9-with-exclusive-early-access-on-october-8-for-flipkart-plus-black-eligible-credit-card-members-heres-bank-offers-discounts-deals-290338/) |
+
+Dates are for the current year and drop off the card a month after they pass. Update them here and in `src/sales.js` when the next ones are announced.
+
+## Currency and countries
+
+Rates come from [Frankfurter](https://frankfurter.dev/) v2, which needs no key and allows commercial use. Cached for a day. The country list with each country's currency comes from the [mledoze/countries](https://github.com/mledoze/countries) dataset, fetched 2026-09-25 into `src/countries.json`.

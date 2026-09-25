@@ -5,14 +5,6 @@
 // basic customs duty; the surcharge on baggage was withdrawn on 2 Feb 2025.
 export const INDIA = { allowanceInr: 75000, dutyRate: 0.35, laptopsFree: 1 };
 
-// Tourist VAT refund schemes. share = part of the VAT paid back, fee = per-transaction fee in local currency,
-// min = minimum invoice in local currency. Countries not listed get no refund line.
-export const REFUND = {
-  AE: { name: "UAE", currency: "AED", vat: 0.05, share: 0.87, fee: 3.6, min: 250, note: "Planet kiosk at the airport, invoice AED 250 or more, goods unused" },
-  ID: { name: "Indonesia", currency: "IDR", vat: 0.11, share: 1, fee: 0, min: 0, minVatTotal: 500000, note: "Refund only when the trip's refundable VAT reaches Rp 500,000" },
-  TH: { name: "Thailand", currency: "THB", vat: 0.07, share: 1, fee: null, min: 2000, note: "Form P.P.10 from the store, 2,000 baht per store per day, fee not verified" },
-};
-
 // Which brands keep, lose or risk their India warranty when bought abroad.
 export const WARRANTY = [
   { match: /\bsamsung\b/i, status: "lost", text: "Samsung India repairs products bought abroad at cost" },
@@ -39,25 +31,16 @@ export function notesFor(text) {
 }
 
 // Landed cost of one item. tripTotalInr is everything else new the same person carries.
-export function landedCost({ price, currency, country, rate, tripTotalInr = 0, invoiceMeetsMin = true }) {
+// Tourist VAT refunds are deliberately not applied: small, uncertain, and most people skip the kiosk.
+export function landedCost({ price, rate, tripTotalInr = 0 }) {
   const shelfInr = price * rate;
-  const r = REFUND[String(country || "").toUpperCase()];
-  let refundInr = 0, refundNote = null;
-  if (r && r.currency !== String(currency || "").toUpperCase()) refundNote = `Refund is worked out on a ${r.currency} invoice; enter the price in ${r.currency} to see it`;
-  else if (r && invoiceMeetsMin && price >= (r.min || 0)) {
-    const vatLocal = price * r.vat / (1 + r.vat);
-    const refundLocal = Math.max(0, vatLocal * r.share - (r.fee || 0));
-    refundInr = refundLocal * rate;
-    refundNote = r.note;
-  }
-  const netInr = shelfInr - refundInr;
-  const excess = Math.max(0, netInr + tripTotalInr - INDIA.allowanceInr);
+  const excess = Math.max(0, shelfInr + tripTotalInr - INDIA.allowanceInr);
   const dutyInr = excess * INDIA.dutyRate;
   return {
-    shelfInr, refundInr, refundNote, netInr, dutyInr, landedInr: netInr + dutyInr,
+    shelfInr, dutyInr, landedInr: shelfInr + dutyInr,
     allowanceInr: INDIA.allowanceInr, dutyRate: INDIA.dutyRate,
     dutyNote: dutyInr > 0
-      ? `Trip total ${Math.round(netInr + tripTotalInr).toLocaleString("en-IN")} is above the ${INDIA.allowanceInr.toLocaleString("en-IN")} allowance; 35 percent on the excess, approximate`
+      ? `Trip total ${Math.round(shelfInr + tripTotalInr).toLocaleString("en-IN")} is above the ${INDIA.allowanceInr.toLocaleString("en-IN")} allowance; 35 percent on the excess, approximate`
       : `Within the ${INDIA.allowanceInr.toLocaleString("en-IN")} per-person allowance, no duty`,
   };
 }

@@ -7,11 +7,16 @@ import { openRecorder } from "./history.js";
 import { queryFromPhoto } from "./vision.js";
 import { pickProvider } from "./providers/index.js";
 import { CURRENCIES, rateToInr } from "./fx.js";
-import { REFUND } from "./rules.js";
 import { getGuide, listCountries } from "./guides.js";
+import { recheck } from "./history.js";
+import { searchIndia } from "./providers/index.js";
+import { matchListings } from "./match.js";
+import { isTrusted } from "./verdict.js";
+import { upcomingSales } from "./sales.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const PUBLIC = path.join(here, "..", "public");
+const COUNTRIES = JSON.parse(fs.readFileSync(path.join(here, "countries.json"), "utf8")).countries;
 
 const STATIC = { "/manifest.json": "application/manifest+json", "/sw.js": "application/javascript", "/icon.svg": "image/svg+xml", "/icon-192.png": "image/png", "/icon-512.png": "image/png" };
 
@@ -37,11 +42,9 @@ export function createServer({ port = Number(process.env.PORT) || 8787, dailyCap
       return g ? json(res, 200, g) : json(res, 404, { error: "no guide for that country yet" });
     }
     if (req.method === "GET" && url.pathname === "/api/config") {
-      const byCode = new Map();
-      for (const [code, r] of Object.entries(REFUND)) byCode.set(code, { code, name: r.name, currency: r.currency, refund: true, guide: false });
-      for (const c of listCountries()) byCode.set(c.code, { ...(byCode.get(c.code) || { code: c.code, name: c.name, currency: c.currency, refund: false }), guide: true });
-      const countries = [...byCode.values()].sort((a, b) => a.name.localeCompare(b.name));
-      return json(res, 200, { provider: pickProvider(), currencies: CURRENCIES, countries, photo: Boolean(process.env.ANTHROPIC_API_KEY), history: process.env.KEEPA_API_KEY ? "keepa" : "own", jev: Boolean(process.env.TYPESAFE_API_KEY), dailyCap, usedToday: used });
+      const withGuide = new Set(listCountries().map((c) => c.code));
+      const countries = COUNTRIES.map((c) => ({ ...c, guide: withGuide.has(c.code) }));
+      return json(res, 200, { provider: pickProvider(), currencies: CURRENCIES, countries, sales: upcomingSales(), photo: Boolean(process.env.ANTHROPIC_API_KEY), history: process.env.KEEPA_API_KEY ? "keepa" : "own", jev: Boolean(process.env.TYPESAFE_API_KEY), dailyCap, usedToday: used });
     }
     if (req.method === "POST" && url.pathname === "/api/check") {
       if (today() !== day) { day = today(); used = 0; }
@@ -71,6 +74,17 @@ export function createServer({ port = Number(process.env.PORT) || 8787, dailyCap
     send(res, 404, "not found", "text/plain");
   });
   server.listen(port, () => console.log(`worth-carrying on http://localhost:${port}  provider=${pickProvider()}  history=${process.env.KEEPA_API_KEY ? "keepa+own" : "own"}  photo=${process.env.ANTHROPIC_API_KEY ? "on" : "off"}`));
+  // Daily re-pricing of everything looked up, so the own history fills in for every store.
+  // Not with the development Chrome, which would open a tab per product on the person's screen.
+  const hours = Number(process.env.RECHECK_HOURS ?? 24);
+  if (hours > 0 && pickProvider() !== "chrome") {
+    const run = async () => {
+      const r = await recheck(recorder, { search: (q) => searchIndia(q), match: (q, l) => matchListings(q, l, { apiKey: process.env.TYPESAFE_API_KEY }), isTrusted, log: console.error });
+      console.log(`recheck: ${r.done} of ${r.items} products re-priced`);
+    };
+    setTimeout(run, 60 * 1000).unref();
+    setInterval(run, hours * 3600 * 1000).unref();
+  }
   return server;
 }
 
