@@ -25,12 +25,13 @@ export async function check({ query, price, currency = "AED", country = "AE", tr
   try { history = await keepaHistory(asin, { apiKey: env.KEEPA_API_KEY }); } catch { history = null; }
   if (!history && recorder) history = recorder.history(qkey);
   const india = indiaFigures(kept, history);
-  const abroad = price && fx ? landedCost({ price, currency, country, rate: fx.rate, tripTotalInr }) : null;
+  const abroad = price && fx ? landedCost({ price, rate: fx.rate, tripTotalInr }) : null;
   const warranty = warrantyFor(q + " " + (kept[0]?.title || ""));
   const verdict = abroad ? decide({ india, landed: abroad.landedInr, warranty }) : { verdict: "unknown", label: "India price only", reason: "No shelf price given", saving: null, savingPct: null };
   return {
-    query: q, provider: used, jevUsed,
+    query: q, provider: used, jevUsed, country: country || null,
     india, abroad, fx, warranty, notes: notesFor(q), verdict,
+    series: recorder ? recorder.series(qkey) : [],
     listings: { kept: kept.map(strip), rejected: rejected.map(strip) },
     meta: { ms: Date.now() - started, listingsSeen: listings.length, historySource: india.historySource },
   };

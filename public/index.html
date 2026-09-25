@@ -42,6 +42,7 @@
   .ladder .k{color:var(--dark-muted)} .ladder .v{font-family:var(--mono);font-size:.85rem}
   .flag{margin-top:14px;padding:10px 12px;border-radius:10px;background:#26241f;font-size:.88rem} .flag.lost{border-left:3px solid #ff9b93}.flag.at_risk,.flag.unclear{border-left:3px solid #f2c46d}.flag.kept{border-left:3px solid #7ed49a}.flag.na,.flag.unknown{border-left:3px solid #6f6a62}
   .foot{margin-top:14px;font:.72rem var(--mono);color:var(--dark-muted)}
+  .hist{margin-top:14px;padding-top:12px;border-top:1px solid #2f2d28} .hist .kicker{margin-bottom:6px} .spark{width:100%;height:48px;display:block;margin:4px 0 2px}
   .list{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:6px 14px}
   .list h2{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:10px 0 6px}
   .list .li{display:grid;grid-template-columns:1fr auto;gap:10px;padding:8px 0;border-top:1px solid var(--line);font-size:.92rem;align-items:start} .list .li:first-of-type{border-top:0}
@@ -71,15 +72,16 @@
       <div><label for="q">Product</label><input id="q" name="query" placeholder="Dior Sauvage EDP 100ml" autocomplete="off" inputmode="search"></div>
       <label class="cam" id="camlabel" title="Photograph the box"><input type="file" id="photo" accept="image/*" capture="environment"><span>📷</span><span id="camtext">Photo</span></label>
     </div>
+    <div><label for="country">Country you are in</label><select id="country" name="country"><option value="">Other</option></select></div>
     <div class="row3">
       <div><label for="price">Shelf price</label><input id="price" name="price" type="number" inputmode="decimal" step="0.01" min="0" placeholder="350"></div>
       <div><label for="currency">Currency</label><select id="currency" name="currency"></select></div>
     </div>
     <div class="fx" id="fx" aria-live="polite">Type a price to see it in rupees at today's rate.</div>
-    <details class="more"><summary>Where you are, and what else you are carrying</summary>
+    <details class="more"><summary>What else you are carrying home</summary>
       <div class="row">
-        <div><label for="country">Country you are in</label><select id="country" name="country"><option value="">Other</option></select></div>
-        <div><label for="trip">Other new goods, ₹</label><input id="trip" name="trip" type="number" inputmode="numeric" placeholder="0"></div>
+        <div><label for="trip">Other new goods this trip, ₹</label><input id="trip" name="trip" type="number" inputmode="numeric" placeholder="0"></div>
+        <div class="hint" style="margin-top:22px">Counts toward the ₹75,000 per-person allowance.</div>
       </div>
     </details>
     <button class="go" id="go" type="submit">Check India</button>
@@ -95,7 +97,13 @@ if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.se
   const $=(s)=>document.querySelector(s); const out=$('#out'), status=$('#status'), go=$('#go');
   const cfg=await fetch('/api/config').then(r=>r.json()).catch(()=>({currencies:['AED','USD','INR'],countries:[]}));
   $('#currency').innerHTML=cfg.currencies.map(c=>`<option ${c==='AED'?'selected':''}>${c}</option>`).join('');
-  $('#country').innerHTML='<option value="">Other</option>'+cfg.countries.map(c=>`<option value="${c.code}" ${c.code==='AE'?'selected':''}>${esc(c.name)}${c.refund?' (VAT refund)':''}</option>`).join('');
+  $('#country').innerHTML='<option value="">Choose a country</option>'+cfg.countries.map(c=>`<option value="${c.code}" data-currency="${esc(c.currency||'')}" ${c.code==='AE'?'selected':''}>${esc(c.name)}</option>`).join('');
+  // Country first; its currency follows, and the price line reconverts. The person can still override the currency.
+  function currencyForCountry(){
+    const opt=$('#country').selectedOptions[0]; const cur=opt?.dataset.currency; if(!cur) return;
+    if([...$('#currency').options].some(o=>o.value===cur)){ $('#currency').value=cur; showFx(); }
+  }
+  $('#country').addEventListener('change',currencyForCountry);
   // The country guide: what the place is known for, what people bring back, tap to search.
   const guideBox=$('#guide'); const guides={};
   async function showGuide(){
@@ -128,6 +136,7 @@ if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.se
   }
   $('#price').addEventListener('input',()=>{ clearTimeout(fxTimer); fxTimer=setTimeout(showFx,250); });
   $('#currency').addEventListener('change',showFx);
+  currencyForCountry();
   rateFor($('#currency').value).catch(()=>{});
   let photo=null;
   $('#photo').addEventListener('change',async(e)=>{ const f=e.target.files[0]; if(!f) return; photo=await shrink(f); $('#camtext').textContent='Photo ✓'; $('#q').placeholder='reading the photo on submit'; });
@@ -153,18 +162,38 @@ if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.se
       <div class="tile"><b>${a?inr(a.landedInr):'n/a'}</b><span>${a?'Landed cost here':'Enter a shelf price'}</span></div></div>`;
     const ladder=a?`<ul class="ladder">
       <li><span class="k">Shelf price</span><span class="v">${inr(a.shelfInr)}</span></li>
-      ${a.refundInr?`<li><span class="k">VAT refund</span><span class="v">−${inr(a.refundInr)}</span></li>`:''}
       <li><span class="k">Duty</span><span class="v">${a.dutyInr?'+'+inr(a.dutyInr):'0'}</span></li>
       ${i.typical?`<li><span class="k">India typical</span><span class="v">${inr(i.typical)}</span></li>`:''}
       ${i.cheapestAny?`<li><span class="k">Cheapest seen, ${esc(i.cheapestAny.seller)}, unverified shop</span><span class="v">${inr(i.cheapestAny.price)}</span></li>`:''}
-      ${i.high?`<li><span class="k">India high</span><span class="v">${inr(i.high)}</span></li>`:''}
-      </ul><div class="why" style="color:var(--dark-muted);margin-top:6px">${esc(a.dutyNote)}${a.refundNote?'. '+esc(a.refundNote):''}${i.historyNote?'. '+esc(i.historyNote):''}</div>`:'';
+      </ul><div class="why" style="color:var(--dark-muted);margin-top:6px">${esc(a.dutyNote)}</div>`:'';
+    const hist=historyBlock(d);
     const flag=`<div class="flag ${d.warranty.status}">${esc(d.warranty.text)}${d.notes.length?'<br>'+d.notes.map(esc).join('<br>'):''}</div>`;
     const kept=d.listings.kept.map(l=>`<div class="li"><div><div class="t">${l.url?`<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.title)}</a>`:esc(l.title)}</div><div class="s">${esc(l.seller)}${l.p!=null?' · '+Math.round(l.p*100)+'% match':''}</div></div><div class="p">${inr(l.price)}</div></div>`).join('');
     const rej=d.listings.rejected.map(l=>`<div class="li"><div><div class="t">${esc(l.title)}</div><div class="s">${esc(l.seller)} · <span class="why">${esc(l.reason||'')}</span></div></div><div class="p">${inr(l.price)}</div></div>`).join('');
-    out.innerHTML=`<div class="card"><div class="kicker">${esc(d.query)}</div><p class="verdict ${v.verdict}">${esc(v.label)}</p><div class="reason">${esc(v.reason)}${v.saving!=null?' · '+(v.saving>=0?'save ':'lose ')+inr(Math.abs(v.saving)):''}</div>${tiles}${ladder}${flag}<div class="foot">${d.listings.kept.length} matches from ${d.meta.listingsSeen} listings · ${d.provider}${d.jevUsed?' + Jev':''} · ${d.meta.ms} ms${d.fx?' · 1 '+esc($('#currency').value)+' = ₹'+d.fx.rate:''}</div></div>
+    out.innerHTML=`<div class="card"><div class="kicker">${esc(d.query)}</div><p class="verdict ${v.verdict}">${esc(v.label)}</p><div class="reason">${esc(v.reason)}${v.saving!=null?' · '+(v.saving>=0?'save ':'lose ')+inr(Math.abs(v.saving)):''}</div>${tiles}${ladder}${hist}${flag}<div class="foot">${d.listings.kept.length} matches from ${d.meta.listingsSeen} listings · ${d.provider}${d.jevUsed?' + Jev':''} · ${d.meta.ms} ms${d.fx?' · 1 '+esc($('#currency').value)+' = ₹'+d.fx.rate:''}</div></div>
       <div class="list"><h2>Indian listings that match</h2>${kept||'<div class="s">None. Try a shorter name, or check the rejected list below.</div>'}
       ${rej?`<details><summary>${d.listings.rejected.length} rejected, with the reason</summary>${rej}</details>`:''}</div>`;
+  }
+  // Price history: our own daily record when it exists, Keepa when configured, and where to look for a full year.
+  function historyBlock(d){
+    const i=d.india, s=d.series||[];
+    const fmt=(x)=>x?new Date(x).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}):'';
+    const rows=[];
+    if(i.low) rows.push(`<li><span class="k">India lowest${i.lowDate?', '+fmt(i.lowDate):''}</span><span class="v">${inr(i.low)}</span></li>`);
+    if(i.high) rows.push(`<li><span class="k">India highest${i.highDate?', '+fmt(i.highDate):''}</span><span class="v">${inr(i.high)}</span></li>`);
+    const spark=s.length>=3?sparkline(s):'';
+    const sales=(cfg.sales||[]).map(x=>`${esc(x.name)} from ${fmt(x.start)}`).join(', ');
+    const q=encodeURIComponent('site:pricehistory.app '+d.query);
+    return `<div class="hist"><div class="kicker">Price history in India</div>
+      ${spark}${rows.length?`<ul class="ladder">${rows.join('')}</ul>`:''}
+      <div class="why" style="color:var(--dark-muted)">${i.historyNote?esc(i.historyNote)+'. ':(i.historySource==='keepa'?'':'No record yet for this product; it starts today and fills in daily. ')}${sales?'Next big sales: '+sales+'. Lows usually land in sale weeks; check again then. ':''}<a href="https://www.google.com/search?q=${q}" target="_blank" rel="noopener" style="color:inherit">One year of Amazon and Flipkart history on pricehistory.app</a></div></div>`;
+  }
+  function sparkline(s){
+    const w=300,h=48,p=4; const ys=s.map(x=>x.price); const lo=Math.min(...ys), hi=Math.max(...ys); const span=hi-lo||1;
+    const pts=s.map((x,k)=>[p+(k/(s.length-1))*(w-2*p), h-p-((x.price-lo)/span)*(h-2*p)]);
+    const path=pts.map((pt,k)=>(k?'L':'M')+pt[0].toFixed(1)+' '+pt[1].toFixed(1)).join(' ');
+    const last=pts[pts.length-1];
+    return `<svg class="spark" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-label="price over time"><path d="${path}" fill="none" stroke="#7ed49a" stroke-width="2"/><circle cx="${last[0].toFixed(1)}" cy="${last[1].toFixed(1)}" r="3" fill="#7ed49a"/></svg><div class="why" style="color:var(--dark-muted)">${s.length} days, ${inr(lo)} to ${inr(hi)}</div>`;
   }
   function esc(s){return String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
   function shrink(file){ return new Promise((res)=>{ const img=new Image(); img.onload=()=>{ const max=1400, s=Math.min(1,max/Math.max(img.width,img.height)); const c=document.createElement('canvas'); c.width=img.width*s; c.height=img.height*s; c.getContext('2d').drawImage(img,0,0,c.width,c.height); res({data:c.toDataURL('image/jpeg',.85).split(',')[1], type:'image/jpeg'}); }; img.src=URL.createObjectURL(file); }); }

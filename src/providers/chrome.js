@@ -16,12 +16,9 @@ async function debugBase() {
 const NOISE = /^(sponsored|sale|low price|also nearby|nearby|free delivery|special offer|refurbished|pre-owned|price|under|over|was|usually|\d+% off|& more|free by|\(?[$€£])/i;
 const BARE_NUMBER = /^[\d,]+(?:\.\d+)?$/;
 
-export async function searchChrome(query, { gl = "in", hl = "en" } = {}) {
-  const BASE = await debugBase();
-  const t = await (await fetch(`${BASE}/json/new?about:blank`, { method: "PUT" })).json();
-  const ws = new WebSocket(t.webSocketDebuggerUrl);
+function rpc(ws) {
   let id = 0;
-  const call = (method, params = {}) => new Promise((res) => {
+  return (method, params = {}) => new Promise((res) => {
     const i = ++id;
     ws.addEventListener("message", function h(e) {
       const d = JSON.parse(e.data);
@@ -29,7 +26,25 @@ export async function searchChrome(query, { gl = "in", hl = "en" } = {}) {
     });
     ws.send(JSON.stringify({ id: i, method, params }));
   });
-  await new Promise((r) => ws.addEventListener("open", r));
+}
+
+async function connect(url) {
+  const ws = new WebSocket(url);
+  await new Promise((r, j) => { ws.addEventListener("open", r); ws.addEventListener("error", j); });
+  return ws;
+}
+
+export async function searchChrome(query, { gl = "in", hl = "en" } = {}) {
+  const BASE = await debugBase();
+  // A background target never takes focus from whatever the person is reading.
+  // /json/new would, so the tab is created through the browser-level connection instead.
+  const version = await (await fetch(`${BASE}/json/version`)).json();
+  const bws = await connect(version.webSocketDebuggerUrl);
+  const bcall = rpc(bws);
+  const { targetId } = await bcall("Target.createTarget", { url: "about:blank", background: true });
+  const wsUrl = version.webSocketDebuggerUrl.replace(/\/devtools\/browser\/.*$/, `/devtools/page/${targetId}`);
+  const ws = await connect(wsUrl);
+  const call = rpc(ws);
   try {
     const url = `https://www.google.com/search?udm=28&hl=${hl}&gl=${gl}&q=${encodeURIComponent(query)}`;
     await call("Page.navigate", { url });
@@ -46,8 +61,9 @@ export async function searchChrome(query, { gl = "in", hl = "en" } = {}) {
     if (page.blocked) throw new Error("Google served its unusual-traffic page");
     return parseShoppingText(page.text || "", page.links || []);
   } finally {
-    await call("Page.close").catch(() => {});
+    await bcall("Target.closeTarget", { targetId }).catch(() => {});
     ws.close();
+    bws.close();
   }
 }
 

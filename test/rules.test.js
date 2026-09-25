@@ -4,29 +4,21 @@ import { landedCost, warrantyFor, INDIA } from "../src/rules.js";
 
 const rate = 26.048;
 
-test("a perfume at AED 350 in Dubai lands at about 8,833 rupees after the VAT refund, no duty", () => {
-  const r = landedCost({ price: 350, currency: "AED", country: "AE", rate });
+test("a perfume at AED 350 in Dubai lands at the converted price, no duty", () => {
+  const r = landedCost({ price: 350, rate });
   assert.equal(Math.round(r.shelfInr), 9117);
-  assert.equal(Math.round(r.refundInr), 284);
-  assert.equal(Math.round(r.netInr), 8833);
   assert.equal(r.dutyInr, 0);
-  assert.equal(Math.round(r.landedInr), 8833);
-});
-
-test("no refund under the AED 250 minimum, in a country without a scheme, or when the price is not in the local currency", () => {
-  assert.equal(landedCost({ price: 200, currency: "AED", country: "AE", rate }).refundInr, 0);
-  assert.equal(landedCost({ price: 350, currency: "AED", country: "", rate }).refundInr, 0);
-  const r = landedCost({ price: 900, currency: "USD", country: "ID", rate: 95.7 });
-  assert.equal(r.refundInr, 0);
-  assert.match(r.refundNote, /IDR/);
+  assert.equal(Math.round(r.landedInr), 9117);
+  assert.match(r.dutyNote, /no duty/);
 });
 
 test("duty is 35 percent on the part of the trip total above 75,000", () => {
-  const r = landedCost({ price: 1600, currency: "AED", country: "AE", rate, tripTotalInr: 40000 });
+  const r = landedCost({ price: 1600, rate, tripTotalInr: 40000 });
   assert.equal(INDIA.allowanceInr, 75000);
-  const excess = r.netInr + 40000 - 75000;
+  const excess = r.shelfInr + 40000 - 75000;
   assert.equal(Math.round(r.dutyInr), Math.round(excess * 0.35));
   assert.ok(r.dutyInr > 0);
+  assert.match(r.dutyNote, /above the 75,000/);
 });
 
 test("warranty flags follow the brand", () => {

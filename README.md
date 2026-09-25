@@ -1,6 +1,6 @@
 # worth-carrying
 
-Standing in a shop abroad, wondering if that perfume, bag, watch or speaker is really cheaper than in India? Type the product and the shelf price, or photograph the box. You get India's price today across stores, India's lowest and typical price, the landed cost after the tourist VAT refund and Indian customs duty, the warranty catch, and a verdict.
+Standing in a shop abroad, wondering if that perfume, bag, watch or speaker is really cheaper than in India? Pick the country, type the product and the shelf price, or photograph the box. You get India's price today across stores, India's lowest and typical price with dates, the landed cost after Indian customs duty, the warranty catch, the next big Indian sale, and a verdict. Under the form, a panel says what that country is known for and what travellers from India usually bring back.
 
 ```
 worth-carrying check "Dior Sauvage EDP 100ml" --price 350 --currency AED --country AE
@@ -14,15 +14,15 @@ npx worth-carrying
 
 ## Why
 
-Shelf prices abroad get compared against India's printed MRP, and the MRP is a fiction. On Amazon.in the median MRP sits 103 percent above the typical selling price. So the honest comparison is against what India actually sells it for, today and at its lowest, minus what you get back at the airport, plus what customs charges above the allowance, and minus the warranty you may lose.
+Shelf prices abroad get compared against India's printed MRP, and the MRP is a fiction. On Amazon.in the median MRP sits 103 percent above the typical selling price. So the honest comparison is against what India actually sells it for, today and at its lowest, plus what customs charges above the allowance, and minus the warranty you may lose.
 
 ## What it does
 
 1. Turns your text or photo into a search. A photo goes to Claude, which reads the label, because that is where "EDP" and "100ml" are printed.
 2. Asks Google Shopping India for listings. Every Indian store Google lists, in rupees, in one call.
 3. Rejects wrong variants. Size and concentration rules first, then a yes/no question per listing to Jev, a small model that only returns probabilities. "Sauvage Elixir" scores 5 percent against "Sauvage EDP 100ml" and is dropped, with the reason shown.
-4. Finds the history. Keepa for Amazon.in when a key is present. Otherwise the app records every lookup, so lows for Flipkart, Nykaa and Myntra build from everyone's searches over time.
-5. Lands the shelf price. Frankfurter converts it, the VAT refund comes off, and duty at 35 percent goes on for anything above the 75,000 rupee per-person allowance.
+4. Finds the history. Keepa for Amazon.in when a key is present. Otherwise the app records every lookup from major stores and re-prices every product it has seen once a day, so lows and highs with dates build for Flipkart, Nykaa, Myntra and the rest over time. The card shows a sparkline once there are a few days, names the next big Indian sale, and links to a year of Amazon and Flipkart history on pricehistory.app.
+5. Lands the shelf price. Frankfurter converts it on the day's rate as you type, and duty at 35 percent goes on for anything above the 75,000 rupee per-person allowance. Tourist VAT refunds are not applied; see docs/rules.md.
 6. Decides. Cheaper abroad, marginal, not worth carrying, or wait for the India sale, with the reason and the warranty flag.
 
 ## As an app on your phone
@@ -42,7 +42,7 @@ Put them in a `.env` file in the folder you run from, or export them.
 | `KEEPA_API_KEY` | Amazon.in price history on the first lookup | From EUR 49 a month |
 | `ANTHROPIC_API_KEY` | Photo input. The upload, the request and the reply parsing are tested against a stand-in endpoint; accuracy on real shelf photos is not yet measured | Pay per use, about a cent per photo |
 
-`PORT` (default 8787), `DAILY_CAP` (default 300 lookups a day, for a hosted copy), `PRICE_PROVIDER` (`serper`, `serpapi`, `chrome`), `RECORDER_DB` (default `data/observations.sqlite`).
+`PORT` (default 8787), `DAILY_CAP` (default 300 lookups a day, for a hosted copy), `PRICE_PROVIDER` (`serper`, `serpapi`, `chrome`), `RECORDER_DB` (default `data/observations.sqlite`), `RECHECK_HOURS` (default 24, the daily re-pricing of everything looked up; 0 turns it off; never runs on the Chrome provider).
 
 ## What leaves your machine
 
@@ -50,7 +50,7 @@ The product name and the shelf price you type. The photo, if you take one, goes 
 
 ## The rules, and where they come from
 
-Every number has a source in [docs/rules.md](docs/rules.md). The short version: 75,000 rupees duty-free per person and not pooled, 35 percent on the excess, about 4 percent back from UAE VAT, Samsung and JBL lose their India warranty when bought abroad, Apple may refuse cross-border service, luggage brands keep a global warranty.
+Every number has a source in [docs/rules.md](docs/rules.md). The short version: 75,000 rupees duty-free per person and not pooled, 35 percent on the excess, Samsung and JBL lose their India warranty when bought abroad, Apple may refuse cross-border service, luggage brands keep a global warranty.
 
 ## Limits
 
