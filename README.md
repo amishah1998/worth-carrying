@@ -1,0 +1,69 @@
+# worth-carrying
+
+Standing in a shop abroad, wondering if that perfume, bag, watch or speaker is really cheaper than in India? Type the product and the shelf price, or photograph the box. You get India's price today across stores, India's lowest and typical price, the landed cost after the tourist VAT refund and Indian customs duty, the warranty catch, and a verdict.
+
+```
+worth-carrying check "Dior Sauvage EDP 100ml" --price 350 --currency AED --country AE
+```
+
+Or run the web app on your laptop and open it on your phone:
+
+```
+npx worth-carrying
+```
+
+## Why
+
+Shelf prices abroad get compared against India's printed MRP, and the MRP is a fiction. On Amazon.in the median MRP sits 103 percent above the typical selling price. So the honest comparison is against what India actually sells it for, today and at its lowest, minus what you get back at the airport, plus what customs charges above the allowance, and minus the warranty you may lose.
+
+## What it does
+
+1. Turns your text or photo into a search. A photo goes to Claude, which reads the label, because that is where "EDP" and "100ml" are printed.
+2. Asks Google Shopping India for listings. Every Indian store Google lists, in rupees, in one call.
+3. Rejects wrong variants. Size and concentration rules first, then a yes/no question per listing to Jev, a small model that only returns probabilities. "Sauvage Elixir" scores 5 percent against "Sauvage EDP 100ml" and is dropped, with the reason shown.
+4. Finds the history. Keepa for Amazon.in when a key is present. Otherwise the app records every lookup, so lows for Flipkart, Nykaa and Myntra build from everyone's searches over time.
+5. Lands the shelf price. Frankfurter converts it, the VAT refund comes off, and duty at 35 percent goes on for anything above the 75,000 rupee per-person allowance.
+6. Decides. Cheaper abroad, marginal, not worth carrying, or wait for the India sale, with the reason and the warranty flag.
+
+## Keys
+
+Put them in a `.env` file in the folder you run from, or export them.
+
+| Key | What it unlocks | Free? |
+|---|---|---|
+| `SERPER_API_KEY` | Google Shopping India through [Serper](https://serper.dev/) | 2,500 queries on signup, then about a dollar per 1,000 |
+| `SERPAPI_API_KEY` | The same through [SerpApi](https://serpapi.com/), used if Serper's key is absent | 250 a month |
+| neither | A Chrome you already run with `--remote-debugging-port=9222` reads the Google Shopping page. Development only | Free |
+| `TYPESAFE_API_KEY` | Jev, the variant check. Without it, listings the rules cannot decide are kept | Pay per use, cents per hundred lookups |
+| `KEEPA_API_KEY` | Amazon.in price history on the first lookup | From EUR 49 a month |
+| `ANTHROPIC_API_KEY` | Photo input | Pay per use, about a cent per photo |
+
+`PORT` (default 8787), `DAILY_CAP` (default 300 lookups a day, for a hosted copy), `PRICE_PROVIDER` (`serper`, `serpapi`, `chrome`), `RECORDER_DB` (default `data/observations.sqlite`).
+
+## What leaves your machine
+
+The product name and the shelf price you type. The photo, if you take one, goes to Anthropic. Listing titles go to Jev for the match check. Nothing else. The recorder database stays on the machine that runs the app.
+
+## The rules, and where they come from
+
+Every number has a source in [docs/rules.md](docs/rules.md). The short version: 75,000 rupees duty-free per person and not pooled, 35 percent on the excess, about 4 percent back from UAE VAT, Samsung and JBL lose their India warranty when bought abroad, Apple may refuse cross-border service, luggage brands keep a global warranty.
+
+## Limits
+
+- History is Amazon.in only until the recorder has seen a sale cycle for a product, and only with a Keepa key. The card says which source it used.
+- Google decides which stores appear. On the test queries it returned Amazon.in, Flipkart, Myntra, Nykaa, Sephora India, Tira, JBL India and others. Croma and Reliance Digital did not show for every query.
+- Matching is the way to lose trust. Rejected listings are always shown with the reason, so you can see when it dropped the right one.
+- Duty is approximate. Customs uses its own exchange rate and its own valuation.
+- Phones are handled, but Smartprix already does phones well. This is built for the categories nobody covers.
+
+## Tests
+
+```
+npm test
+```
+
+## Prior art
+
+Smartprix, MySmartPrice and 91mobiles compare Indian prices for gadgets. pricehistoryapp.com and BuyHatke show Indian price history one pasted link at a time. Keepa tracks Amazon. MobilePriceCheck compares phone prices Dubai versus India from estimates. None of them takes a name or a photo from a shop abroad and answers with the landed comparison.
+
+MIT licence.
