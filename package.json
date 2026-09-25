@@ -1,7 +1,7 @@
 {
   "name": "worth-carrying",
   "version": "0.1.0",
-  "description": "Is it cheaper than India? Type or photograph a product abroad, get India's current, lowest and typical price, the landed cost after duty and VAT refund, and a verdict.",
+  "description": "Is it cheaper than India? Pick the country, type the product and shelf price abroad, and get India's price today and lowest, the landed cost with customs duty, the warranty catch, and a verdict.",
   "type": "module",
   "bin": { "worth-carrying": "bin/worth-carrying.js" },
   "files": ["bin", "src", "public", "README.md", "LICENSE"],

@@ -1,15 +1,19 @@
 # worth-carrying
 
-Standing in a shop abroad, wondering if that perfume, bag, watch or speaker is really cheaper than in India? Pick the country, type the product and the shelf price, or photograph the box. You get India's price today across stores, India's lowest and typical price with dates, the landed cost after Indian customs duty, the warranty catch, the next big Indian sale, and a verdict. Under the form, a panel says what that country is known for and what travellers from India usually bring back.
+Standing in a shop abroad, wondering if that perfume, bag, watch or speaker is really cheaper than in India? Pick the country, type the product and the shelf price. You get India's price today across stores, India's lowest and typical price with dates, the landed cost after Indian customs duty, the warranty catch, the next big Indian sale, and a verdict. Under the form, a panel says what that country is known for and what travellers from India usually bring back.
+
+![The phone page after a lookup: Dior Sauvage EDP 100ml at AED 350, cheaper abroad, with India today, the landed cost, and the listings that matched](docs/app.png)
+
+Run it on your laptop and open it on your phone on the same Wi-Fi:
 
 ```
-worth-carrying check "Dior Sauvage EDP 100ml" --price 350 --currency AED --country AE
+npx github:karanb192/worth-carrying
 ```
 
-Or run the web app on your laptop and open it on your phone:
+Or one lookup from the terminal:
 
 ```
-npx worth-carrying
+npx github:karanb192/worth-carrying check "Dior Sauvage EDP 100ml" --price 350 --currency AED --country AE
 ```
 
 ## Why
@@ -18,7 +22,7 @@ Shelf prices abroad get compared against India's printed MRP, and the MRP is a f
 
 ## What it does
 
-1. Turns your text or photo into a search. A photo goes to Claude, which reads the label, because that is where "EDP" and "100ml" are printed.
+1. Turns what you typed into a search. With the optional photo reader switched on, a photo of the box works too, because the label is where "EDP" and "100ml" are printed.
 2. Asks Google Shopping India for listings. Every Indian store Google lists, in rupees, in one call.
 3. Rejects wrong variants. Every word you typed must appear in the title, sizes and concentrations must agree, and decants, bundles, imports and suspiciously cheap listings are dropped, each with the reason shown. A generic query like "almonds roasted" is matched on the kind of product and compared per 100 g. With a Jev key, a yes/no question per listing adds fuzzier judgment on top.
 4. Finds the history. Keepa for Amazon.in when a key is present. Otherwise the app records every lookup from major stores and re-prices every product it has seen once a day, so lows and highs with dates build for Flipkart, Nykaa, Myntra and the rest over time. The card shows a sparkline once there are a few days, names the next big Indian sale, and links to a year of Amazon and Flipkart history on pricehistory.app.
@@ -56,17 +60,15 @@ Every number has a source in [docs/rules.md](docs/rules.md). The short version: 
 
 ## Limits
 
-- History is Amazon.in only until the recorder has seen a sale cycle for a product, and only with a Keepa key. The card says which source it used.
-- Google decides which stores appear. On the test queries it returned Amazon.in, Flipkart, Myntra, Nykaa, Sephora India, Tira, JBL India and others. Croma and Reliance Digital did not show for every query.
-- Matching is the way to lose trust. Rejected listings are always shown with the reason, so you can see when it dropped the right one.
-- Duty is approximate. Customs uses its own exchange rate and its own valuation.
-- Phones are handled, but Smartprix already does phones well. This is built for the categories nobody covers.
+The honest list is in [LIMITS.md](LIMITS.md). The short version: matching reads words, history starts empty and fills daily, Google decides which stores appear, duty is approximate, and phones are handled but Smartprix already does phones well. This is built for the categories nobody covers.
 
-## Tests
+## Tests and contributing
 
 ```
 npm test
 ```
+
+Country guides and matching fixes are the two changes most welcome; [CONTRIBUTING.md](CONTRIBUTING.md) says how, and every guide item needs the page that supports it.
 
 ## Prior art
 
