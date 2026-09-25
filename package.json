@@ -1,0 +1,16 @@
+{
+  "name": "worth-carrying",
+  "version": "0.1.0",
+  "description": "Is it cheaper than India? Type or photograph a product abroad, get India's current, lowest and typical price, the landed cost after duty and VAT refund, and a verdict.",
+  "type": "module",
+  "bin": { "worth-carrying": "bin/worth-carrying.js" },
+  "files": ["bin", "src", "public", "README.md", "LICENSE"],
+  "scripts": {
+    "start": "node bin/worth-carrying.js",
+    "test": "node --test test/*.test.js"
+  },
+  "engines": { "node": ">=22.5" },
+  "repository": { "type": "git", "url": "git+https://github.com/karanb192/worth-carrying.git" },
+  "keywords": ["india", "price", "travel", "dubai", "customs", "duty", "price-history", "google-shopping"],
+  "license": "MIT"
+}
