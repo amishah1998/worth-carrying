@@ -2,14 +2,14 @@
 
 The web page is already a phone app. Open the site on a phone, choose "Add to Home Screen", and it installs with an icon, opens full screen, and keeps its shell cached for weak roaming data. Lookups always go to the network.
 
-A hosted copy needs three things: a price key (Serper, 2,500 free queries), the Jev key for the variant check, and a folder that survives restarts for the recorder database. Everything else is optional.
+A hosted copy needs two things: a price key (Serper, 2,500 free queries; a search key, not a model key) and a folder that survives restarts for the recorder database. No model key is needed; Jev, Keepa and the photo reader are optional extras.
 
 ## Fly.io, the path this repo is set up for
 
 ```
 fly launch --copy-config --no-deploy
 fly volumes create data --size 1 --region bom
-fly secrets set SERPER_API_KEY=... TYPESAFE_API_KEY=... KEEPA_API_KEY=... ANTHROPIC_API_KEY=...
+fly secrets set SERPER_API_KEY=...
 fly deploy
 ```
 
@@ -19,7 +19,7 @@ fly deploy
 
 ```
 docker build -t worth-carrying .
-docker run -p 8080:8080 -v wc-data:/data -e SERPER_API_KEY=... -e TYPESAFE_API_KEY=... worth-carrying
+docker run -p 8080:8080 -v wc-data:/data -e SERPER_API_KEY=... worth-carrying
 ```
 
 Mount something persistent at `/data`, or set `RECORDER_DB` to a path that is. On Render and Railway that is a "persistent disk" or "volume" in the service settings.
@@ -28,7 +28,7 @@ Mount something persistent at `/data`, or set `RECORDER_DB` to a path that is. O
 
 ```
 npm install --omit=dev
-SERPER_API_KEY=... TYPESAFE_API_KEY=... PORT=8080 node bin/worth-carrying.js
+SERPER_API_KEY=... PORT=8080 node bin/worth-carrying.js
 ```
 
 Put nginx or Caddy in front for HTTPS. The camera only works over HTTPS.

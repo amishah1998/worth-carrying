@@ -9,7 +9,7 @@ import { inr } from "../src/util.js";
 // .env in the working directory, so keys never sit in shell history.
 const envFile = path.resolve(".env");
 if (fs.existsSync(envFile)) for (const line of fs.readFileSync(envFile, "utf8").split("\n")) {
-  const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*"?([^"#]*)"?\s*$/); if (m && !process.env[m[1]]) process.env[m[1]] = m[2].trim();
+  const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*"?([^"#]*)"?\s*$/); if (m && process.env[m[1]] === undefined) process.env[m[1]] = m[2].trim();
 }
 
 const args = process.argv.slice(2);
