@@ -4,8 +4,10 @@ const PROMPT = 'Identify the product in this photo for a price search in India. 
 
 // A shelf photo becomes a search query. Claude reads the label, which is where the
 // concentration and the size are printed. Returns null when no key is configured.
-export async function queryFromPhoto({ base64, mediaType = "image/jpeg", apiKey = process.env.ANTHROPIC_API_KEY, model = process.env.VISION_MODEL || "claude-opus-5" }) {
+export async function queryFromPhoto({ base64, mediaType = "image/jpeg", apiKey = process.env.ANTHROPIC_API_KEY, model = process.env.VISION_MODEL || "claude-opus-5", fetchImpl = fetchJson }) {
   if (!apiKey) return null;
+  if (!base64 || base64.length < 100) throw new Error("photo is empty");
+  if (!/^image\/(jpeg|png|webp|gif)$/.test(mediaType)) throw new Error(`unsupported photo type ${mediaType}`);
   const payload = {
     model,
     max_tokens: 300,
@@ -17,7 +19,8 @@ export async function queryFromPhoto({ base64, mediaType = "image/jpeg", apiKey 
       ],
     }],
   };
-  const body = await fetchJson("https://api.anthropic.com/v1/messages", {
+  const base = (process.env.ANTHROPIC_BASE_URL || "https://api.anthropic.com").replace(/\/$/, "");
+  const body = await fetchImpl(`${base}/v1/messages`, {
     method: "POST",
     headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
     body: JSON.stringify(payload),

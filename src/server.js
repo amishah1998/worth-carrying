@@ -8,6 +8,7 @@ import { queryFromPhoto } from "./vision.js";
 import { pickProvider } from "./providers/index.js";
 import { CURRENCIES, rateToInr } from "./fx.js";
 import { REFUND } from "./rules.js";
+import { getGuide, listCountries } from "./guides.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const PUBLIC = path.join(here, "..", "public");
@@ -31,7 +32,17 @@ export function createServer({ port = Number(process.env.PORT) || 8787, dailyCap
       if (!/^[A-Z]{3}$/.test(from)) return json(res, 400, { error: "from must be a 3-letter currency code" });
       try { return json(res, 200, { from, ...(await rateToInr(from)) }); } catch (err) { return json(res, 502, { error: err.message }); }
     }
-    if (req.method === "GET" && url.pathname === "/api/config") return json(res, 200, { provider: pickProvider(), currencies: CURRENCIES, countries: Object.entries(REFUND).map(([code, r]) => ({ code, name: r.name })), photo: Boolean(process.env.ANTHROPIC_API_KEY), history: process.env.KEEPA_API_KEY ? "keepa" : "own", jev: Boolean(process.env.TYPESAFE_API_KEY), dailyCap, usedToday: used });
+    if (req.method === "GET" && url.pathname === "/api/guide") {
+      const g = getGuide(url.searchParams.get("country"));
+      return g ? json(res, 200, g) : json(res, 404, { error: "no guide for that country yet" });
+    }
+    if (req.method === "GET" && url.pathname === "/api/config") {
+      const byCode = new Map();
+      for (const [code, r] of Object.entries(REFUND)) byCode.set(code, { code, name: r.name, currency: r.currency, refund: true, guide: false });
+      for (const c of listCountries()) byCode.set(c.code, { ...(byCode.get(c.code) || { code: c.code, name: c.name, currency: c.currency, refund: false }), guide: true });
+      const countries = [...byCode.values()].sort((a, b) => a.name.localeCompare(b.name));
+      return json(res, 200, { provider: pickProvider(), currencies: CURRENCIES, countries, photo: Boolean(process.env.ANTHROPIC_API_KEY), history: process.env.KEEPA_API_KEY ? "keepa" : "own", jev: Boolean(process.env.TYPESAFE_API_KEY), dailyCap, usedToday: used });
+    }
     if (req.method === "POST" && url.pathname === "/api/check") {
       if (today() !== day) { day = today(); used = 0; }
       if (used >= dailyCap) return json(res, 429, { error: `Daily cap of ${dailyCap} lookups reached; try tomorrow` });
