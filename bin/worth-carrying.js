@@ -28,12 +28,13 @@ if (args[0] === "check") {
   const out = await check({ query: words.join(" "), price: opt.price, currency: opt.currency, country: opt.country, tripTotalInr: opt.trip, recorder });
   recorder.close();
   if (opt.json) { console.log(JSON.stringify(out, null, 2)); process.exit(0); }
-  console.log(`\n${out.query}   via ${out.provider}${out.jevUsed ? " + Jev" : ""}`);
-  console.log(`India today  ${inr(out.india.now)} at ${out.india.nowSeller || "n/a"}${out.india.nowTrusted === false ? " (not a major store)" : ""}   typical ${inr(out.india.typical)}   low ${inr(out.india.low)}   high ${inr(out.india.high)}   ${out.india.historyNote || "no history yet"}`);
+  console.log(`\n${out.query}   via ${out.provider}${out.jevUsed ? " + Jev" : ""}${out.generic ? "   (generic, compared per 100 g)" : ""}`);
+  if (out.india.per100) console.log(`India per 100 g   cheapest ${inr(out.india.per100.low)} at ${out.india.per100.lowSeller}   typical ${inr(out.india.per100.typical)}   high ${inr(out.india.per100.high)}${out.india.queryGrams ? `   scaled to ${out.india.queryGrams} g: ${inr(out.india.now)}` : ""}`);
+  else console.log(`India today  ${inr(out.india.now)} at ${out.india.nowSeller || "n/a"}${out.india.nowTrusted === false ? " (not a major store)" : ""}   typical ${inr(out.india.typical)}   low ${inr(out.india.low)}   high ${inr(out.india.high)}   ${out.india.historyNote || "no history yet"}`);
   if (out.india.cheapestAny) console.log(`Cheapest seen ${inr(out.india.cheapestAny.price)} at ${out.india.cheapestAny.seller}, unverified shop`);
   if (out.abroad) console.log(`Abroad       ${opt.price} ${opt.currency} = ${inr(out.abroad.shelfInr)}   duty ${inr(out.abroad.dutyInr)}   landed ${inr(out.abroad.landedInr)}`);
   console.log(`Verdict      ${out.verdict.label}. ${out.verdict.reason}   warranty: ${out.warranty.status}`);
-  for (const k of out.listings.kept) console.log(`  keep   ${inr(k.price).padStart(11)}  ${k.seller.padEnd(22)} ${k.title.slice(0, 70)}${k.p != null ? `  (${Math.round(k.p * 100)}%)` : ""}`);
+  for (const k of out.listings.kept) console.log(`  keep   ${inr(k.price).padStart(11)}  ${k.seller.padEnd(22)} ${k.title.slice(0, 70)}${k.p != null ? `  (${Math.round(k.p * 100)}%)` : ""}${k.per100 ? `  ${k.grams} g, ${inr(k.per100)}/100 g` : ""}`);
   for (const r of out.listings.rejected) console.log(`  drop   ${inr(r.price).padStart(11)}  ${r.seller.padEnd(22)} ${r.title.slice(0, 50)}  ${r.reason}`);
   console.log(`${out.meta.ms} ms, ${out.meta.listingsSeen} listings seen\n`);
 } else if (args[0] === "--help" || args[0] === "-h") {
