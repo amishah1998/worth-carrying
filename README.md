@@ -2,7 +2,7 @@
 
 Standing in a shop abroad, wondering if that perfume, bag, watch or speaker is really cheaper than in India? Pick the country, type the product and the shelf price. You get India's price today across stores, India's lowest and typical price with dates, the landed cost after Indian customs duty, the warranty catch, the next big Indian sale, and a verdict. Under the form, a panel says what that country is known for and what travellers from India usually bring back.
 
-![The phone page after a lookup: Dior Sauvage EDP 100ml at AED 350, cheaper abroad, with India today, the landed cost, and the listings that matched](docs/app.png)
+![The mobile comparison form with country, product and shelf price inputs](docs/app.png)
 
 Run it on your laptop and open it on your phone on the same Wi-Fi:
 
@@ -32,6 +32,10 @@ Shelf prices abroad get compared against India's printed MRP, and the MRP is a f
 ## As an app on your phone
 
 Host it once (see [docs/deploy.md](docs/deploy.md), Fly.io is set up in the repo), open the address on your phone, and choose "Add to Home Screen". It installs with an icon, opens full screen, and keeps its shell cached for weak roaming data. The camera button opens the phone camera directly.
+
+The interface is designed for mobile browsers. It remembers the last country and currency on your device. Enter the product and shelf price, then tap **Compare prices**. The result shows the saving first, with the customs calculation, matching stores and price history in expandable sections. You can cancel a check and share a comparison.
+
+GitHub Pages can host the interface, with a separate Node backend for live lookups. The manual Pages workflow builds only the public files. See [the Pages setup](docs/deploy.md#github-pages-interface-and-a-separate-backend) for the backend URL, allowed origin and custom-domain configuration.
 
 ## Keys
 

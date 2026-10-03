@@ -20,13 +20,27 @@ const COUNTRIES = JSON.parse(fs.readFileSync(path.join(here, "countries.json"), 
 // Common currencies first, then every other currency a listed country uses, so the pick always lands.
 const ALL_CURRENCIES = [...new Set([...CURRENCIES, ...COUNTRIES.map((c) => c.currency).filter(Boolean).sort()])];
 
-const STATIC = { "/manifest.json": "application/manifest+json", "/sw.js": "application/javascript", "/icon.svg": "image/svg+xml", "/icon-192.png": "image/png", "/icon-512.png": "image/png" };
+const STATIC = { "/manifest.json": "application/manifest+json", "/sw.js": "application/javascript", "/app.js": "application/javascript", "/config.js": "application/javascript", "/app.css": "text/css", "/icon.svg": "image/svg+xml", "/icon-192.png": "image/png", "/icon-512.png": "image/png" };
 
-export function createServer({ port = Number(process.env.PORT) || 8787, dailyCap = Number(process.env.DAILY_CAP) || 300, ipHourlyCap = Number(process.env.IP_HOURLY_CAP) || 30, recorder = openRecorder() } = {}) {
+export function createServer({ port = Number(process.env.PORT) || 8787, dailyCap = Number(process.env.DAILY_CAP) || 300, ipHourlyCap = Number(process.env.IP_HOURLY_CAP) || 30, recorder = openRecorder(), webOrigins = process.env.WEB_ORIGINS || "" } = {}) {
+  const allowedOrigins = new Set(webOrigins.split(",").map((origin) => origin.trim()).filter(Boolean));
   let day = today(), used = 0;
   const perIp = new Map();
   const server = http.createServer(async (req, res) => {
     const url = new URL(req.url, "http://x");
+    if (url.pathname.startsWith("/api/")) {
+      res.setHeader("Vary", "Origin");
+      const origin = req.headers.origin;
+      let sameHost = false;
+      try { sameHost = new URL(origin).host === req.headers.host; } catch {}
+      if (origin && !sameHost && !allowedOrigins.has(origin)) return json(res, 403, { error: "Origin not allowed" });
+      if (origin && allowedOrigins.has(origin)) {
+        res.setHeader("Access-Control-Allow-Origin", origin);
+        res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+        res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+      }
+      if (req.method === "OPTIONS") { res.writeHead(204); res.end(); return; }
+    }
     if (req.method === "GET" && (url.pathname === "/" || url.pathname === "/index.html")) return send(res, 200, fs.readFileSync(path.join(PUBLIC, "index.html")), "text/html; charset=utf-8");
     if (req.method === "GET" && STATIC[url.pathname]) {
       const file = path.join(PUBLIC, url.pathname);

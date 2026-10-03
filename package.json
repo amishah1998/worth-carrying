@@ -4,9 +4,10 @@
   "description": "Is it cheaper than India? Pick the country, type the product and shelf price abroad, and get India's price today and lowest, the landed cost with customs duty, the warranty catch, and a verdict.",
   "type": "module",
   "bin": { "worth-carrying": "bin/worth-carrying.js" },
-  "files": ["bin", "src", "public", "README.md", "LICENSE"],
+  "files": ["bin", "src", "public", "scripts", "README.md", "LICENSE"],
   "scripts": {
     "start": "node bin/worth-carrying.js",
+    "build:pages": "node scripts/build-pages.js",
     "test": "node --test test/*.test.js"
   },
   "engines": { "node": ">=22.5" },
