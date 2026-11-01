@@ -1,0 +1,22 @@
+{
+  "name": "worth-carrying",
+  "version": "0.1.0",
+  "description": "Is it cheaper than India? Pick the country, type the product and shelf price abroad, and get India's price today and lowest, the landed cost with customs duty, the warranty catch, and a verdict.",
+  "type": "module",
+  "bin": { "worth-carrying": "bin/worth-carrying.js" },
+  "files": ["bin", "src", "public", "scripts", "README.md", "LICENSE"],
+  "scripts": {
+    "start": "node bin/worth-carrying.js",
+    "build:pages": "node scripts/build-pages.js",
+    "test": "node --test test/*.test.js",
+    "worker": "npx --yes wrangler@4.151.1",
+    "worker:dev": "npx --yes wrangler@4.151.1 dev",
+    "worker:deploy": "npx --yes wrangler@4.151.1 deploy"
+  },
+  "engines": { "node": ">=22.5" },
+  "repository": { "type": "git", "url": "git+https://github.com/amishah1998/worth-carrying.git" },
+  "homepage": "https://worth-carry.aidojo.si",
+  "bugs": { "url": "https://github.com/amishah1998/worth-carrying/issues" },
+  "keywords": ["india", "price", "travel", "dubai", "customs", "duty", "price-history", "google-shopping"],
+  "license": "MIT"
+}

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Worth Carrying · Is it cheaper than India?</title>
+<meta name="description" content="Shopping abroad? Compare the shelf price with India, including estimated customs duty and warranty details.">
+<link rel="canonical" href="https://worth-carry.aidojo.si/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://worth-carry.aidojo.si/">
+<meta property="og:title" content="Worth Carrying · Is it cheaper than India?">
+<meta property="og:description" content="Shopping abroad? Compare the shelf price with India, including estimated customs duty and warranty details.">
+<meta property="og:image" content="https://worth-carry.aidojo.si/og.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="Worth Carrying: Is it cheaper than India? A real check in the app shows Dior Sauvage EDP 100ml at 14,200 rupees in India against 9,064 rupees to bring it home.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f5f5f7">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Worth Carrying">
+<link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" href="./icon-192.png">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./app.css">
+<script src="./config.js"></script>
+<script src="./app.js" defer></script>
+</head>
+<body>
+<main class="wrap">
+  <header class="brand"><img src="./icon.svg" width="28" height="28" alt=""><span>Worth Carrying</span><span class="destination">to India</span></header>
+  <div class="intro"><h1>Is it cheaper<br>than India?</h1><p>Check the price before you bring it home.</p></div>
+  <form id="f" novalidate>
+    <div class="field"><label for="country">Where are you shopping?</label><select id="country" name="country" required disabled><option value="">Loading countries…</option></select></div>
+    <div class="field">
+      <label for="q">What are you buying?</label>
+      <input id="q" name="query" placeholder="Dior Sauvage EDP 100ml" autocomplete="off" enterkeyhint="next" maxlength="240" aria-describedby="product-help">
+      <p class="help" id="product-help">Include the model, size or pack weight.</p>
+      <div class="photo-row" id="photo-row" hidden><label class="photo-control" for="photo"><span aria-hidden="true">＋</span> Use a photo<input type="file" id="photo" accept="image/*" capture="environment" class="visually-hidden"></label><button id="clear-photo" class="text-button" type="button" hidden>Remove photo</button></div>
+      <p class="help" id="photo-note" aria-live="polite" hidden></p>
+    </div>
+    <div class="field">
+      <label for="price">Price on the shelf</label>
+      <div class="price-row"><input id="price" name="price" type="number" inputmode="decimal" step="any" min="0.01" placeholder="350" required enterkeyhint="done"><select id="currency" name="currency" aria-label="Price currency" disabled><option>AED</option></select></div>
+      <p class="help fx" id="fx" aria-live="polite">We will show the price in rupees.</p>
+    </div>
+    <details class="more"><summary>Bringing other purchases?</summary><div class="detail-body"><label for="trip">Other purchases, in rupees</label><input id="trip" name="trip" type="number" inputmode="decimal" min="0" step="any" placeholder="0" aria-describedby="trip-help"><p class="help" id="trip-help">Used to estimate customs duty on your trip.</p></div></details>
+    <div id="error" class="error" role="alert" hidden></div>
+    <button class="go" id="go" type="submit" disabled>Compare prices <span aria-hidden="true">↗</span></button>
+    <p class="form-note">No account needed.</p>
+  </form>
+  <p class="status" id="status" role="status" aria-live="polite"></p>
+  <section id="out" aria-label="Price comparison" hidden></section>
+  <details class="guide" id="guide" hidden><summary id="guide-title">Shopping ideas</summary><div id="guide-content" class="detail-body"></div></details>
+  <footer>Live prices need an internet connection.<br>Customs duty is an estimate. Check the variant and seller.<br><a href="https://github.com/amishah1998/worth-carrying">Open source on GitHub</a></footer>
+  <noscript><p class="error">Enable JavaScript to compare prices.</p></noscript>
+</main>
+</body>
+</html>

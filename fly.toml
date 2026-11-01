@@ -1,0 +1,25 @@
+# fly launch --copy-config --no-deploy, then fly volumes create data --size 1, fly secrets set SERPER_API_KEY=... TYPESAFE_API_KEY=..., fly deploy
+app = "worth-carrying"
+primary_region = "bom"
+
+[build]
+
+[env]
+  PORT = "8080"
+  RECORDER_DB = "/data/observations.sqlite"
+  DAILY_CAP = "300"
+
+[[mounts]]
+  source = "data"
+  destination = "/data"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "suspend"
+  auto_start_machines = true
+  min_machines_running = 0
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "256mb"
