@@ -48,7 +48,9 @@ Keys, read from .env in the current folder or the environment:
   TYPESAFE_API_KEY    Jev, rejects wrong variants and clones (optional but recommended)
   KEEPA_API_KEY       Amazon.in price history (optional, paid); without it history builds from your own lookups
   ANTHROPIC_API_KEY   photo input (optional)
-  PORT, DAILY_CAP, PRICE_PROVIDER, RECORDER_DB`);
+  PORT, DAILY_CAP, PRICE_PROVIDER, RECORDER_DB
+
+Source and issues: https://github.com/amishah1998/worth-carrying`);
 } else {
   createServer();
 }

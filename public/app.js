@@ -2,6 +2,7 @@
   const $ = (s) => document.querySelector(s);
   const form = $('#f'), go = $('#go'), out = $('#out'), status = $('#status');
   const apiBase = (window.WORTH_CARRYING?.apiBase || '').replace(/\/$/, '');
+  const REPO = 'https://github.com/amishah1998/worth-carrying';
   const money = (n) => Number.isFinite(n) ? '₹' + Math.round(n).toLocaleString('en-IN') : 'Not found';
   const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
   const date = (s) => s ? new Date(s).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
@@ -180,6 +181,7 @@
       out.scrollIntoView({ behavior: motion(), block: 'start' });
       const heading = out.querySelector('h2');
       heading.focus({ preventScroll: true });
+      askForStar();
     } catch (err) {
       if (controller.signal.aborted) status.textContent = 'Check cancelled. You can edit and try again.';
       else {
@@ -192,6 +194,21 @@
       go.innerHTML = 'Compare prices <span aria-hidden="true">↗</span>';
     }
   });
+  // The one star ask: once per browser, after the third finished comparison. The flag is written
+  // before the note shows, and a browser that cannot store it never sees the note.
+  function askForStar() {
+    try {
+      const checks = Number(localStorage.getItem('wc-checks') || 0) + 1;
+      localStorage.setItem('wc-checks', String(checks));
+      if (checks < 3 || localStorage.getItem('wc-star-asked')) return;
+      localStorage.setItem('wc-star-asked', new Date().toISOString().slice(0, 10));
+    } catch { return; }
+    const note = document.createElement('div');
+    note.className = 'star-note';
+    note.innerHTML = '<p>If it helped you decide, a star on GitHub helps the next traveller find it.</p><a href="' + REPO + '" target="_blank" rel="noopener">Star on GitHub</a><button type="button" aria-label="Dismiss">×</button>';
+    note.querySelector('button').addEventListener('click', () => note.remove());
+    out.querySelector('.result')?.append(note);
+  }
   function render(d, input) {
     const india = d.india, abroad = d.abroad, verdict = d.verdict;
     const saving = verdict.saving;
