@@ -7,7 +7,7 @@ import { openD1Recorder } from "../src/recorder-d1.js";
 useGuides(guides);
 let api = null;
 
-// The Cloudflare Worker serves only /api/; the page itself is the static GitHub Pages build.
+// Files in public/ are served as static assets before this runs, so only /api/ and unknown paths reach it.
 // Daily re-check and the weekly sale-date search need timers and do not run here.
 export default {
   async fetch(request, env) {

@@ -1,8 +1,11 @@
-# Cloudflare Worker for the API (free plan). The page is the GitHub Pages build; see docs/deploy.md.
-name = "worth-carrying"
+# Cloudflare Worker (free plan) serving the page from public/ and the API under /api/. See docs/deploy.md.
+name = "worth-carry"
 main = "worker/index.js"
 compatibility_date = "2026-10-01"
 compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = "./public"
 
 [vars]
 PRICE_PROVIDER = "serpapi"

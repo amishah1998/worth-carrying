@@ -37,7 +37,7 @@ Host it once, open the address on your phone, and choose "Add to Home Screen". I
 
 The page remembers the last country and currency on your device. Enter the product and shelf price, then tap **Compare prices**. The result shows the saving first, with the customs calculation, matching stores and price history in expandable sections. You can cancel a check and share a comparison.
 
-The free way to host it is a Cloudflare Worker for the lookups and GitHub Pages for the page. [docs/deploy.md](docs/deploy.md) covers that setup, the custom domain, and the Node, Docker and Fly.io options.
+The free way to host it is one Cloudflare Worker, which serves the page and the lookups; GitHub Pages can serve the page instead. [docs/deploy.md](docs/deploy.md) covers that setup, the custom domain, and the Node, Docker and Fly.io options.
 
 ## Keys
 

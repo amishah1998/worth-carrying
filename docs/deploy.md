@@ -40,13 +40,13 @@ Replace the example backend with the deployed server's address. Without a runnin
 
 ## Cloudflare Worker backend, the free route
 
-The API also runs as a [Cloudflare Worker](https://developers.cloudflare.com/workers/) on the free plan, with the interface on GitHub Pages. With SerpApi's free plan as the price search, it costs nothing to run. `wrangler.toml` holds the settings, and the npm scripts pin the Wrangler version.
+The whole app also runs as one [Cloudflare Worker](https://developers.cloudflare.com/workers/) on the free plan. The `[assets]` block in `wrangler.toml` serves the page from `public/`, and the Worker answers `/api/`. With SerpApi's free plan as the price search, it costs nothing to run. `wrangler.toml` holds the settings, and the npm scripts pin the Wrangler version.
 
 1. Create a free Cloudflare account, then sign in from this folder: `npm run worker -- login`.
 2. For price history on your own account, run `npm run worker -- d1 create worth-carrying` and replace the `database_id` in the `[[d1_databases]]` block in `wrangler.toml` with the printed one. The table is created on first use. To run without history, delete the block; lookups still work and the card shows no history of its own.
 3. Add the price key as a secret, never in `wrangler.toml`: `npm run worker -- secret put SERPAPI_API_KEY`.
-4. Set `WEB_ORIGINS` in `wrangler.toml` to the interface's HTTPS origin.
-5. Deploy with `npm run worker:deploy`. Wrangler prints the Worker's address, `https://worth-carrying.<your-subdomain>.workers.dev`; use it as `API_BASE_URL` for the Pages build above.
+4. If the page will also be hosted somewhere else, such as GitHub Pages, set `WEB_ORIGINS` in `wrangler.toml` to that HTTPS origin. The Worker's own page needs no entry.
+5. Deploy with `npm run worker:deploy`. Wrangler prints the Worker's address, `https://worth-carry.<your-subdomain>.workers.dev`, which serves the page and the API. For a GitHub Pages copy of the page, use that address as `API_BASE_URL` in the Pages build above.
 
 To try it locally first, put the key in `.dev.vars` (`SERPAPI_API_KEY=...`, ignored by git) and run `npm run worker:dev`.
 
