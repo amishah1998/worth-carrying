@@ -9,7 +9,7 @@ A hosted copy needs a price key (a search key, not a model key: SerpApi's free p
 [GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages) serves static files. It cannot run this app's Node server, SQLite recorder or price-search requests. Host the backend on a Node or Docker host and the interface on Pages. API keys stay in the backend's environment.
 
 1. Deploy the backend with a price-search key: the free [Cloudflare Worker](#cloudflare-worker-backend-the-free-route), or a Node server from the options further down.
-2. Set the backend's `WEB_ORIGINS` to the exact HTTPS origin of the interface, such as `https://carry.aidojo.si`. Separate multiple origins with commas. Add the account's Pages origin if you also use the default Pages address.
+2. Set the backend's `WEB_ORIGINS` to the exact HTTPS origin of the interface, such as `https://worth-carry.aidojo.si`. Separate multiple origins with commas. Add the account's Pages origin if you also use the default Pages address.
 3. In the interface repository, set the Actions variable `API_BASE_URL` to the backend's HTTPS origin. It must have no path or credentials. This variable is public and must never contain an API key.
 4. Set the Actions variable `PAGES_DOMAIN` to the custom hostname, or leave it unset for a default Pages address.
 5. In Settings → Pages, select GitHub Actions as the publishing source and add the custom domain.
@@ -17,23 +17,23 @@ A hosted copy needs a price key (a search key, not a model key: SerpApi's free p
 7. Configure DNS after adding the domain in Pages settings. For a subdomain, create a CNAME to the account's `<username>.github.io` hostname, without a repository path.
 8. Enable **Enforce HTTPS** after the domain check and certificate finish.
 
-For an interface hosted under `amishah1998` with the hostname `carry.aidojo.si`:
+For an interface hosted under `amishah1998` with the hostname `worth-carry.aidojo.si`:
 
 | Configuration | Value |
 |---|---|
 | DNS record type | CNAME |
-| DNS name | `carry` |
+| DNS name | `worth-carry` |
 | DNS target | `amishah1998.github.io` |
-| Pages custom domain | `carry.aidojo.si` |
-| Actions `PAGES_DOMAIN` | `carry.aidojo.si` |
-| Backend `WEB_ORIGINS` | `https://carry.aidojo.si` |
+| Pages custom domain | `worth-carry.aidojo.si` |
+| Actions `PAGES_DOMAIN` | `worth-carry.aidojo.si` |
+| Backend `WEB_ORIGINS` | `https://worth-carry.aidojo.si` |
 
 [GitHub's custom-domain instructions](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site) describe the DNS order and HTTPS setup. A private Pages source needs a supported paid GitHub plan. Do not make a private repository public just to enable Pages.
 
 To build the static files locally:
 
 ```sh
-API_BASE_URL=https://backend.example.com PAGES_DOMAIN=carry.aidojo.si npm run build:pages
+API_BASE_URL=https://backend.example.com PAGES_DOMAIN=worth-carry.aidojo.si npm run build:pages
 ```
 
 Replace the example backend with the deployed server's address. Without a running backend, the interface shows a reconnect message instead of a working comparison. Offline caching retains the interface, never live prices. The Pages workflow runs only when manually started.

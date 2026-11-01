@@ -6,7 +6,7 @@ compatibility_flags = ["nodejs_compat"]
 
 [vars]
 PRICE_PROVIDER = "serpapi"
-WEB_ORIGINS = "https://carry.aidojo.si"
+WEB_ORIGINS = "https://worth-carry.aidojo.si"
 # SerpApi's free plan is 250 searches a month. The cap counts per Worker instance.
 DAILY_CAP = "25"
 
