@@ -7,13 +7,13 @@ Standing in a shop abroad, wondering if that perfume, bag, watch or speaker is r
 Run it on your laptop and open it on your phone on the same Wi-Fi:
 
 ```
-npx github:karanb192/worth-carrying
+npx github:amishah1998/worth-carrying
 ```
 
 Or one lookup from the terminal:
 
 ```
-npx github:karanb192/worth-carrying check "Dior Sauvage EDP 100ml" --price 350 --currency AED --country AE
+npx github:amishah1998/worth-carrying check "Dior Sauvage EDP 100ml" --price 350 --currency AED --country AE
 ```
 
 ## Why
