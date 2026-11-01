@@ -2,7 +2,7 @@
 
 The web page is already a phone app. Open the site on a phone, choose "Add to Home Screen", and it installs with an icon, opens full screen, and keeps its shell cached for weak roaming data. Lookups always go to the network.
 
-A hosted copy needs a price key (a search key, not a model key: SerpApi's free plan gives 250 searches a month, Serper gives 2,500 once) and, for price history, a place that survives restarts: a folder on disk for the Node server, or Cloudflare D1 for the Worker. No model key is needed; Jev, Keepa and the photo reader are optional extras.
+A hosted copy needs a price key, which is a search key, not a model key. SerpApi's free plan gives 250 searches a month, and Serper gives 2,500 once. For price history it also needs storage that survives restarts, a folder on disk for the Node server or Cloudflare D1 for the Worker. No model key is needed; Jev, Keepa and the photo reader are optional extras.
 
 ## GitHub Pages interface and a separate backend
 

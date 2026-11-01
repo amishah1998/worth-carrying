@@ -10,7 +10,7 @@ async function debugBase() {
   for (const base of CANDIDATES) {
     try { const r = await fetch(`${base}/json/version`, { signal: AbortSignal.timeout(1500) }); if (r.ok) return base; } catch {}
   }
-  throw new Error("no debug Chrome on " + CANDIDATES.join(" or ") + "; start one with --remote-debugging-port, or set SERPER_API_KEY");
+  throw new Error("no debug Chrome on " + CANDIDATES.join(" or ") + "; start one with --remote-debugging-port, or set SERPAPI_API_KEY or SERPER_API_KEY");
 }
 
 const NOISE = /^(sponsored|sale|low price|also nearby|nearby|free delivery|special offer|refurbished|pre-owned|price|under|over|was|usually|\d+% off|& more|free by|\(?[$€£])/i;

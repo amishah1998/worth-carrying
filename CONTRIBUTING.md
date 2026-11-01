@@ -4,7 +4,7 @@ Two kinds of change are welcome without discussion: a country guide, and a match
 
 ## Adding or fixing a country guide
 
-Guides live in `src/guides.json`, one entry per country, four lists each: `knownFor`, `usuallyBuy`, `funFacts`, `watchOuts`. Every item carries a `source`, the public page that supports it. The rules:
+Guides live in `src/guides.json`, one entry per country, four lists each: `knownFor`, `usuallyBuy`, `funFacts`, `watchOuts`. Every item carries a `source`, the public page that supports it. Each item follows these rules.
 
 - A claim without a page that backs it does not go in. Fewer true items beat more plausible ones.
 - No prices in the guide; the app fetches live prices. "Cheaper than India" only when the source says so.
