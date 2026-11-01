@@ -8,7 +8,10 @@
   "scripts": {
     "start": "node bin/worth-carrying.js",
     "build:pages": "node scripts/build-pages.js",
-    "test": "node --test test/*.test.js"
+    "test": "node --test test/*.test.js",
+    "worker": "npx --yes wrangler@4.151.1",
+    "worker:dev": "npx --yes wrangler@4.151.1 dev",
+    "worker:deploy": "npx --yes wrangler@4.151.1 deploy"
   },
   "engines": { "node": ">=22.5" },
   "repository": { "type": "git", "url": "git+https://github.com/karanb192/worth-carrying.git" },
