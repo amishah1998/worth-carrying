@@ -15,7 +15,7 @@
   },
   "engines": { "node": ">=22.5" },
   "repository": { "type": "git", "url": "git+https://github.com/amishah1998/worth-carrying.git" },
-  "homepage": "https://worth-carry.aidojo-si.workers.dev",
+  "homepage": "https://worth-carry.aidojo.si",
   "bugs": { "url": "https://github.com/amishah1998/worth-carrying/issues" },
   "keywords": ["india", "price", "travel", "dubai", "customs", "duty", "price-history", "google-shopping"],
   "license": "MIT"
