@@ -4,19 +4,22 @@ import { fileURLToPath } from "node:url";
 
 // Country guides: what a place is known for, what Indian travellers usually bring back,
 // fun facts and watch-outs. Every entry in the file carries the URL it came from.
-const here = path.dirname(fileURLToPath(import.meta.url));
-const FILE = process.env.GUIDES_FILE || path.join(here, "guides.json");
 let cache = null;
 
-export function loadGuides(file = FILE) {
+// The Worker has no file system for guides.json, so it imports the file and hands it over here.
+export function useGuides(parsed) {
+  cache = { generated: parsed?.generated || null, countries: Array.isArray(parsed?.countries) ? parsed.countries : [] };
+  return cache;
+}
+
+export function loadGuides(file) {
   if (cache) return cache;
   try {
-    const parsed = JSON.parse(fs.readFileSync(file, "utf8"));
-    cache = { generated: parsed.generated || null, countries: Array.isArray(parsed.countries) ? parsed.countries : [] };
+    file ??= process.env.GUIDES_FILE || path.join(path.dirname(fileURLToPath(import.meta.url)), "guides.json");
+    return useGuides(JSON.parse(fs.readFileSync(file, "utf8")));
   } catch {
-    cache = { generated: null, countries: [] };
+    return useGuides(null);
   }
-  return cache;
 }
 
 export function listCountries() {

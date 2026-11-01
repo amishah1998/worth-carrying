@@ -3,7 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { createServer } from "../src/server.js";
 import { check } from "../src/check.js";
-import { openRecorder } from "../src/history.js";
+import { openRecorder } from "../src/recorder.js";
 import { inr } from "../src/util.js";
 
 // .env in the working directory, so keys never sit in shell history.

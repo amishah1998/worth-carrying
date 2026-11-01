@@ -19,11 +19,12 @@ export async function check({ query, price, currency = "AED", country = "AE", tr
   const qkey = queryKey(q);
   // Only stores a traveller would order from feed the history, so an odd seller never sets the low.
   const trusted = kept.filter(isTrusted);
-  if (recorder && trusted.length) recorder.record(qkey, trusted);
+  // History is a bonus: a store that fails (D1 over the network) must not fail the lookup.
+  if (recorder && trusted.length) await quiet(() => recorder.record(qkey, trusted));
   const asin = kept.find((k) => k.asin)?.asin || null;
   let history = null;
   try { history = await keepaHistory(asin, { apiKey: env.KEEPA_API_KEY }); } catch { history = null; }
-  if (!history && recorder) history = recorder.history(qkey);
+  if (!history && recorder) history = await quiet(() => recorder.history(qkey), null);
   const india = generic ? genericFigures(kept, queryGrams) : indiaFigures(kept, history);
   const abroad = price && fx ? landedCost({ price, rate: fx.rate, tripTotalInr }) : null;
   const warranty = warrantyFor(q + " " + (kept[0]?.title || ""));
@@ -31,10 +32,14 @@ export async function check({ query, price, currency = "AED", country = "AE", tr
   return {
     query: q, provider: used, jevUsed, generic: Boolean(generic), country: country || null,
     india, abroad, fx, warranty, notes: notesFor(q), verdict,
-    series: recorder ? recorder.series(qkey) : [],
+    series: recorder ? await quiet(() => recorder.series(qkey), []) : [],
     listings: { kept: kept.map(strip), rejected: rejected.map(strip) },
     meta: { ms: Date.now() - started, listingsSeen: listings.length, historySource: india.historySource },
   };
+}
+
+async function quiet(fn, fallback) {
+  try { return await fn(); } catch { return fallback; }
 }
 
 function strip(l) {

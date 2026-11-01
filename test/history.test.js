@@ -4,7 +4,8 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { DatabaseSync } from "node:sqlite";
-import { openRecorder, queryKey, recheck } from "../src/history.js";
+import { queryKey, recheck } from "../src/history.js";
+import { openRecorder } from "../src/recorder.js";
 
 function tempDb() {
   return path.join(fs.mkdtempSync(path.join(os.tmpdir(), "wc-")), "obs.sqlite");

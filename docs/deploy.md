@@ -2,13 +2,13 @@
 
 The web page is already a phone app. Open the site on a phone, choose "Add to Home Screen", and it installs with an icon, opens full screen, and keeps its shell cached for weak roaming data. Lookups always go to the network.
 
-A hosted copy needs two things: a price key (Serper, 2,500 free queries; a search key, not a model key) and a folder that survives restarts for the recorder database. No model key is needed; Jev, Keepa and the photo reader are optional extras.
+A hosted copy needs a price key (a search key, not a model key: SerpApi's free plan gives 250 searches a month, Serper gives 2,500 once) and, for price history, a place that survives restarts: a folder on disk for the Node server, or Cloudflare D1 for the Worker. No model key is needed; Jev, Keepa and the photo reader are optional extras.
 
 ## GitHub Pages interface and a separate backend
 
 [GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages) serves static files. It cannot run this app's Node server, SQLite recorder or price-search requests. Host the backend on a Node or Docker host and the interface on Pages. API keys stay in the backend's environment.
 
-1. Deploy the Node backend with a price-search key and persistent storage using one of the server options in this document.
+1. Deploy the backend with a price-search key: the free [Cloudflare Worker](#cloudflare-worker-backend-the-free-route), or a Node server from the options further down.
 2. Set the backend's `WEB_ORIGINS` to the exact HTTPS origin of the interface, such as `https://carry.aidojo.si`. Separate multiple origins with commas. Add the account's Pages origin if you also use the default Pages address.
 3. In the interface repository, set the Actions variable `API_BASE_URL` to the backend's HTTPS origin. It must have no path or credentials. This variable is public and must never contain an API key.
 4. Set the Actions variable `PAGES_DOMAIN` to the custom hostname, or leave it unset for a default Pages address.
@@ -37,6 +37,24 @@ API_BASE_URL=https://backend.example.com PAGES_DOMAIN=carry.aidojo.si npm run bu
 ```
 
 Replace the example backend with the deployed server's address. Without a running backend, the interface shows a reconnect message instead of a working comparison. Offline caching retains the interface, never live prices. The Pages workflow runs only when manually started.
+
+## Cloudflare Worker backend, the free route
+
+The API also runs as a [Cloudflare Worker](https://developers.cloudflare.com/workers/) on the free plan, with the interface on GitHub Pages. With SerpApi's free plan as the price search, it costs nothing to run. `wrangler.toml` holds the settings, and the npm scripts pin the Wrangler version.
+
+1. Create a free Cloudflare account, then sign in from this folder: `npm run worker -- login`.
+2. Optional, for price history: run `npm run worker -- d1 create worth-carrying`, paste the printed `database_id` into the `[[d1_databases]]` block in `wrangler.toml` and uncomment it. The table is created on first use. Without it, lookups work and the card shows no history of its own.
+3. Add the price key as a secret, never in `wrangler.toml`: `npm run worker -- secret put SERPAPI_API_KEY`.
+4. Set `WEB_ORIGINS` in `wrangler.toml` to the interface's HTTPS origin.
+5. Deploy with `npm run worker:deploy`. Wrangler prints the Worker's address, `https://worth-carrying.<your-subdomain>.workers.dev`; use it as `API_BASE_URL` for the Pages build above.
+
+To try it locally first, put the key in `.dev.vars` (`SERPAPI_API_KEY=...`, ignored by git) and run `npm run worker:dev`.
+
+How it differs from the Node server:
+
+- The daily re-check and the weekly sale-date search do not run, because they need timers. History grows from lookups only, and the card uses the hand-checked sale dates in `src/sales.js`.
+- `DAILY_CAP` and `IP_HOURLY_CAP` count per Worker instance, not across all of them. On SerpApi's free plan, running out means failed lookups until the month resets, not a bill.
+- The free plan allows 100,000 requests a day and 10 ms of CPU per request ([limits](https://developers.cloudflare.com/workers/platform/limits/)). A lookup spends most of its time waiting on the price search, and waiting is not CPU time.
 
 ## Hostinger web apps (Business or Cloud plan)
 
@@ -86,6 +104,8 @@ Put nginx or Caddy in front for HTTPS. The camera only works over HTTPS.
 | `SALES_REFRESH_DAYS` | 7 | Weekly web search for this year's sale dates; 0 turns it off |
 | `SALES_STATE` | data/sales.json | Where confirmed sale dates are kept |
 
+On the Worker, set these under `[vars]` in `wrangler.toml` and keys with `npm run worker -- secret put <NAME>`. `PORT`, `RECORDER_DB`, `CHROME_DEBUG_URL` and the sales settings do not apply there.
+
 ## What it costs to run
 
-Serper: free for the first 2,500 lookups, then about a dollar per 1,000. Jev: cents per hundred lookups. Fly.io: a shared machine that suspends when idle runs a few dollars a month at most. Keepa, if you add it: from EUR 49 a month.
+SerpApi: 250 searches a month free. Serper: free for the first 2,500 lookups, then about a dollar per 1,000. Cloudflare Workers and D1: free plan. Jev: cents per hundred lookups. Fly.io: a shared machine that suspends when idle runs a few dollars a month at most. Keepa, if you add it: from EUR 49 a month.

@@ -1,0 +1,18 @@
+# Cloudflare Worker for the API (free plan). The page is the GitHub Pages build; see docs/deploy.md.
+name = "worth-carrying"
+main = "worker/index.js"
+compatibility_date = "2026-10-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+PRICE_PROVIDER = "serpapi"
+WEB_ORIGINS = "https://carry.aidojo.si"
+# SerpApi's free plan is 250 searches a month. The cap counts per Worker instance.
+DAILY_CAP = "25"
+
+# Price history. Create it with `npm run worker -- d1 create worth-carrying` and paste the id here.
+# Without this block the Worker runs and the card shows no own history.
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "worth-carrying"
+# database_id = ""

@@ -31,11 +31,11 @@ Shelf prices abroad get compared against India's printed MRP, and the MRP is a f
 
 ## As an app on your phone
 
-Host it once (see [docs/deploy.md](docs/deploy.md), Fly.io is set up in the repo), open the address on your phone, and choose "Add to Home Screen". It installs with an icon, opens full screen, and keeps its shell cached for weak roaming data. The camera button opens the phone camera directly.
+Host it once (see [docs/deploy.md](docs/deploy.md); the free route is a Cloudflare Worker for the API and GitHub Pages for the page), open the address on your phone, and choose "Add to Home Screen". It installs with an icon, opens full screen, and keeps its shell cached for weak roaming data. The camera button opens the phone camera directly.
 
 The interface is designed for mobile browsers. It remembers the last country and currency on your device. Enter the product and shelf price, then tap **Compare prices**. The result shows the saving first, with the customs calculation, matching stores and price history in expandable sections. You can cancel a check and share a comparison.
 
-GitHub Pages can host the interface, with a separate Node backend for live lookups. The manual Pages workflow builds only the public files. See [the Pages setup](docs/deploy.md#github-pages-interface-and-a-separate-backend) for the backend URL, allowed origin and custom-domain configuration.
+GitHub Pages can host the interface, with a separate backend for live lookups: a free Cloudflare Worker or a Node server. The manual Pages workflow builds only the public files. See [the Pages setup](docs/deploy.md#github-pages-interface-and-a-separate-backend) for the backend URL, allowed origin and custom-domain configuration.
 
 ## Keys
 
@@ -56,7 +56,7 @@ Put keys in a `.env` file in the folder you run from, or export them.
 
 ## What leaves your machine
 
-The product name you type goes to the price search. With the optional keys set, a photo goes to Anthropic and listing titles go to Jev. Nothing else leaves. The recorder database stays on the machine that runs the app.
+The product name you type goes to the price search. With the optional keys set, a photo goes to Anthropic and listing titles go to Jev. Nothing else leaves. The recorder database stays with whoever runs the backend: a file on their machine, or their own Cloudflare D1 database.
 
 ## The rules, and where they come from
 
